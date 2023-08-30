@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <p class="my_title text-center mx-auto my-4">
+        <span class="underline_span_center">Alumni Directory</span>
+    </p>
+  <div class="row mt-4">
+    <div class="col-md-3 ml-auto">
+      <form class="form-inline" method="get">
+        <div class="form-group">
+          <select class="form-control" name="series">
+            <option value="">All Series</option>
+            {% for year in years %}
+                <option value="{{ year }}" {% if series_filter == year %}selected{% endif %}>{{ year }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-blue ml-2">Filter</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="row mt-4 d-flex justify-content-center">
+    {% for profile in page_obj %}
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-4 mx-2 alumni_card">
+        <img src="{{ profile.profile_picture.url }}" alt="{{ profile.user.name }}" class="speaker_img d-flex">
+        <div class="px-3 py-2">
+            <p class="notice_headline m-0">{{ profile.user.name }}</p>
+            <p class="m-0 fs-15 fw-700 text-blue my-1">{{ profile.series }} Series</p>
+            <p class="fs-15 my-1">
+                {{ profile.current_position }} at {{ profile.current_organization }}
+            </p>
+            <div class="row m-0 mt-4 mb-3">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'app:alumni_profile' pk=profile.user.pk %}" class="btn btn-outline-primary bg-outline-blue mx-auto px-4">View full profile</a>
+                {% else %}
+                    <button type="button" class="btn btn-outline-primary bg-outline-blue mx-auto mx-1 px-4" data-toggle="modal" data-target="#loginModal">
+                        <i class="fas fa-sign-in-alt" style="margin-right: 5px;"></i> Login to View Profile
+                    </button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="row mt-4">
+    <div class="col">
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          {% if page_obj.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page=1&series={{ series_filter }}">First</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}&series={{ series_filter }}">Previous</a>
+          </li>
+          {% endif %}
+
+          <li class="page-item disabled">
+            <span class="page-link">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+          </li>
+
+          {% if page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}&series={{ series_filter }}">Next</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}&series={{ series_filter }}">Last</a>
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+{% endblock %}

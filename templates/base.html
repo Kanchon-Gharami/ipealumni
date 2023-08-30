@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+
+    <title>Alumni | IPE RUET</title>
+	<link rel="icon" type="image/x-icon" href="{% static 'imgs/logo.png' %}">
+
+    <meta charset="UTF-8">
+
+  	<!-- media queary support -->
+  	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+
+  	<!-- Latest compiled and minified CSS -->
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+  	<!-- jQuery library -->
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  	<!-- Popper JS -->
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+  	<!-- Latest compiled JavaScript -->
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+  	<!-- animated css link -->
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
+
+	<!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
+
+  	<!-- font awsome css link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+
+  	<!-- poppins font link -->
+  	<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
+  	<!-- google font link -->
+    <link href='https://fonts.googleapis.com/css?family=Quicksand:100,200,300,400,500,600,700,800,900|Ubuntu:100,200,300,400,500,600,700,800,900' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Open Sans:100,200,300,400,500,600,700,800,900|Ubuntu:100,200,300,400,500,600,700,800,900' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family="Montserrat":100,200,300,400,500,600,700,800,900|Ubuntu:100,200,300,400,500,600,700,800,900' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900|Ubuntu:100,200,300,400,500,600,700,800,900' rel='stylesheet'>
+    
+  	<!-- custom css link -->
+  	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
+    </head>
+    <body>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top my_menu">
+            <a class="navbar-brand" href="{% url 'app:index' %}">
+                <img src="{% static 'imgs/logo.png' %}" alt="" class="nav_logo mr-1">
+                IPE Alumni RUET
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item active mx-2">
+                  <a class="nav-link" href="{% url 'app:index' %}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown mx-2">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        About
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">About RIAA</a>
+                        <a class="dropdown-item" href="#">Mission</a>
+                        <a class="dropdown-item" href="#">Vision</a>
+                        <a class="dropdown-item" href="#">Alumni Constitution</a>
+                        <a class="dropdown-item" href="#">Executive Committee</a>
+                        <a class="dropdown-item" href="#">Contacts</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown mx-2">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Interest
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#">Career Centre</a>
+                      <a class="dropdown-item" href="#">News & Stories</a>
+                      <a class="dropdown-item" href="#">Learning Recourses</a>
+                      <a class="dropdown-item" href="#">Scholarship</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown mx-2">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Events
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Upcoming Event</a>
+                        <a class="dropdown-item" href="#">Past Events</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'app:all_alumni' %}">Alumni Directory</a>
+                </li>
+                <li class="nav-item dropdown mx-2">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Giving
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Giving Overview</a>
+                        <a class="dropdown-item" href="#">Donar Recognition</a>
+                        <a class="dropdown-item" href="#">Make a Gift</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-4 hide_in_android" href="#">|</a>
+                </li>
+                
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    {% if user.is_alumni %}
+                        <a href="{% url 'app:alumni_profile'  pk=user.pk %}" class="nav-link mx-1">
+                            <i class="fas fa-user" style="margin-right: 5px;"></i> Profile
+                        </a>
+                    {% elif user.is_admin %}
+                        <a href="#" class="nav-link mx-1">
+                            <i class="fas fa-user" style="margin-right: 5px;"></i> Admin Panel
+                        </a>
+                    {% elif user.is_superuser %}
+                        <a href="{% url 'superuser_pannel' %}" class="nav-link mx-1">
+                            <i class="fas fa-user" style="margin-right: 5px;"></i> Superuser Panel
+                        </a>
+                    {% endif %}
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'app:logout' %}" class="nav-link mx-1 ">
+                        <i class="fas fa-sign-in-alt" style="margin-right: 5px;"></i> Logout
+                    </a>
+                </li>
+                    <!-- <button type="button" class="btn btn-primary bg-blue mx-1 px-4">
+                        <i class="fas fa-user" style="margin-right: 5px;"></i> Profile
+                    </button> -->
+                {% else %}
+                <li class="nav-item">
+                    <button type="button" class="btn btn-primary bg-blue mx-1 px-4" data-toggle="modal" data-target="#loginModal">
+                        <i class="fas fa-sign-in-alt" style="margin-right: 5px;"></i> Sign In
+                    </button>
+                    <!-- <a href="" type="button" class="btn btn-outline-primary bg-outline-blue mx-1 px-3">
+                        <i class="fas fa-user-plus" style="margin-right: 5px;"></i> Sign Up
+                    </a> -->
+                </li>
+                {% endif %}
+                </li>             
+              </ul>
+            </div>
+        </nav>
+
+        <!-- Start: Login Modal -->
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content login_modal p-0">
+                    <div class="modal-header ml-auto mr-2" style="border: none;">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body m-0" style="width: 85% !important;">
+                        <img src="{% static 'imgs/logo.png' %}" class="img-fluid d-flex mx-auto pb-2">
+                        <h5 class="fw-400 text-center pt-4 m-0">Welcome to IPE Alumni RUET</h5>
+                        <p class="fw-300 text-center m-1 p-0">Please fill up the form to login</p>
+                        <form method="POST" class="my-5" action="{% url 'app:signin' %}">
+                            {% csrf_token %}
+                            {% if error %}
+                                <div class="alert alert-danger" role="alert">
+                                    {{ error }}
+                                </div>
+                            {% endif %}
+                            <div class="form-group">
+                                <input type="email" class="form-control" name="email" placeholder="Enter email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="password" placeholder="Enter Password" required>
+                            </div>
+                            <a href="{% url 'app:alumni_signup' %}" class="fw-500 cursor_hand">
+                                Don't have an account? 
+                                <span class="text-orange">Sign Up</span>
+                            </a>
+                            <div class="row m-0 mt-5 d-flex justify-content-center">
+                                <button type="button" class="btn btn-dark mx-1 px-4" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary bg-blue mx-1">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if show_login_modal %}
+            <script>
+                $.noConflict();
+                jQuery(document).ready(function($) {
+                    $('#loginModal').modal('show');
+                });
+            </script>
+        {% endif %}
+        <!-- End: Login Modal -->
+
+        {% block content %}
+        
+        {% endblock %}
+
+        <div class="section_gap"></div>
+
+        <div class="bg-light my_footer py-5">
+            <div class="row m-0 d-flex justify-content-center py-3">
+                <div class="col-xl-3 mx-4 p-0">
+                    <div class="row m-0 mb-3">
+                        <img src="{% static 'imgs/ruet_logo.png' %}" alt="" class="img-fluid footer_ruet_logo">
+                        <div class="col mt-2 mx-3" style="font-weight: 900;">
+                            <h3 style="font-weight: 900;" class="m-0">Alumni</h3>
+                            <h5 style="font-weight: 900;" class="m-0">IPE RUET</h5>
+                        </div>
+                        
+                    </div>
+                    <h6 class="fw-500">
+                        We are the IPE Alumni Network of RUET—a dynamic assembly of engineers, innovators, industry leaders, and changemakerss. Spanning from RUET's workshops to global industry, we're the heartbeat of excellence and innovation.
+                    </h6>
+                    
+                </div>
+                <div class="col-xl-1 mx-4 p-0">
+                    <p class="footer_heading">
+                        Links
+                    </p>
+                    <ul class="footer_list p-0">
+                        <li><a href="https://www.ruet.ac.bd/">RUET</a></li>
+                        <li><a href="http://www.ipe.ruet.ac.bd/">IPE RUET</a></li>
+                        <li><a href="">Link Three</a></li>
+                        <li><a href="">Link Four</a></li>
+                        <li><a href="">Link Five</a></li>
+                    </ul>
+                </div>
+                <div class="col-xl-2 mx-2">
+                    <p class="footer_heading">
+                        Contact
+                    </p>
+                    <ul class="footer_list p-0">
+                        <li class="my-2"><i class="fas fa-phone-alt"></i> Phone-1: 01111111111</li>
+                        <li class="my-2"><i class="fas fa-phone-alt"></i> Phone-2: 02222222222</li>
+                        <li class="my-2"><i class="fas fa-envelope"></i> Email: abc@gmal.com</li>
+                        <li class="my-2"><i class="fas fa-map-marker-alt"></i> Address: RUET, Kazla, Rajshahi-6204, Bangladesh.</li>
+                    </ul>
+                </div>
+                <div class="col-xl-2 mx-4 p-0">
+                    <button class="btn btn-primary btn-blue px-4 ml-4">ALUMNI REGISTRATION</button>
+                    <ul class="footer_social_media my-4 py-2">
+                        <li><a rel="nofollow" href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                        <li><a rel="nofollow" href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                        <li><a rel="nofollow" href="#"><i class="fab fa-youtube" aria-hidden="true"></i></a></li>
+                        <li><a rel="nofollow" href="#"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
+                        <li><a rel="nofollow" href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid bg-blue m-0 py-2">
+            <p class="text-center text-white fs-15 m-0">
+                © Copyright reserved by IPE RUET <span style="margin: 0 10px;">|
+                </span> Developed by <a href="https://kanchon-gharami.github.io/portfolio/" style="color: white;">Kanchon Gharami</a>
+            </p>
+
+        </div>
+
+
+  </body>
+</html>
+
+
+
+<!-- Table Sorting Library -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
+<script src=" https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('#sort1').DataTable();
+    $('#sort2').DataTable();
+    $('#sort3').DataTable();
+} );
+</script>
+
+
+
+
+
+<!-- Custom JS -->
+<script>
+    $(document).ready(function(){
+        // On mouseover, add border-bottom to the target item and remove from the active one
+        $('.my_menu .nav-item').mouseover(function(){
+            $('.my_menu .nav-item.active .nav-link').css('border-bottom', '2px solid transparent');
+            $(this).find('.nav-link').css('border-bottom', '2px solid #b2bebe');
+        });
+
+        // On mouseout, revert the border-bottom back to the active item
+        $('.my_menu .nav-item').mouseout(function(){
+            $(this).find('.nav-link').css('border-bottom', '2px solid transparent');
+            $('.my_menu .nav-item.active .nav-link').css('border-bottom', '2px solid #b2bebe');
+        });
+    });
+
+</script>

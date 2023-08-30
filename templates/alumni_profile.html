@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+    <p class="my_title text-center">
+        <span class="underline_span_center">Profile</span>
+    </p>
+    <div style="height: 40px;"></div>
+    <div class="row">
+        <div class="col-lg-4 mb-4">
+            <div class="card">
+                <img src="{{ profile.profile_picture.url }}" class="card-img-top" alt="Profile Picture">
+                <div class="card-body">
+                    <h5 class="card-title">{{ alumni.name }}</h5>
+                    <!-- Button trigger modal -->
+                    {% if request.user.pk == alumni.pk %}
+                    <button type="button" class="btn btn-outline-secondary btn-sm ml-auto" data-toggle="modal" data-target="#editProfilePictureModal">
+                        <i class="fas fa-edit"></i> Update Profile Pic
+                    </button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="editProfilePictureModal" tabindex="-1" aria-labelledby="editProfilePictureModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editProfilePictureModalLabel">Edit Profile Picture</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="profilePictureForm" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="modal-body">
+                            <input type="file" name="profile_picture">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- for profile pic edit -->
+        <script>
+            $(document).ready(function() {
+                $("#profilePictureForm").submit(function(e) {
+                    e.preventDefault();
+                    let formData = new FormData(this);
+                    $.ajax({
+                        url: "{% url 'app:alumni_profile' pk=alumni.pk %}", 
+                        type: 'POST',
+                        data: formData,
+                        success: function(response) {
+                            location.reload();
+                        },
+                        cache: false,
+                        contentType: false,
+                        processData: false
+                    });
+                });
+            });
+
+        </script>
+
+
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row m-0">
+                        Profile Information
+                        {% if request.user.pk == alumni.pk %}
+                        <a href="{% url 'app:edit_profile' %}" type="button" class="btn btn-outline-secondary btn-sm ml-auto">
+                            <i class="fas fa-edit"></i> Edit Profile
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Personal Information</h5>
+                    <p><strong>Full Name:</strong> {{ alumni.name }}</p>
+                    <p><strong>Membership:</strong> Alumni </p>
+                    <p class="card-text"><strong>Email:</strong> {{ alumni.email }}</p>
+                    <hr>
+
+                    <h5 class="card-title">Profile Details</h5>
+                    <p><strong>Roll:</strong> {{ profile.roll }}</p>
+                    <p><strong>Series:</strong> {{ profile.series }}</p>
+                    <p><strong>Phone Number:</strong> {{ profile.phone_number }}</p>
+                    <p><strong>WhatsApp Number:</strong> {{ profile.whatsapp_no }}</p>
+                    <p><strong>Current Position:</strong> {{ profile.current_position }}</p>
+                    <p><strong>Current Organization:</strong> {{ profile.current_organization }}</p>
+                    <p><strong>Previous Experience:</strong> {{ profile.previous_experience }}</p>
+                    <p><strong>Certificates:</strong> {{ profile.certificate }}</p>
+                    <p><strong>Skills:</strong> {{ profile.skills }}</p>
+                    <p><strong>Present Address:</strong> {{ profile.present_address }}</p>
+                    <p><strong>Home District:</strong> {{ profile.home_district }}</p>
+                    <p><strong>Blood Group:</strong> {{ profile.blood_group }}</p>
+                    <p><strong>Marital Status:</strong> {{ profile.marital_status }}</p>
+                    <p><strong>LinkedIn:</strong> <a href="{{ profile.linkedin }}">{{ profile.linkedin }}</a> </p>
+                    <p><strong>Facebook:</strong> <a href="{{ profile.facebook }}">{{ profile.facebook }}</a> </p>
+
+                    <hr>
+
+                    <h5 class="card-title">Higher Education</h5>
+                    <li>{{ profile.name_of_degree1 }} from {{ profile.institution1 }}</li>
+                    <li>{{ profile.name_of_degree2 }} from {{ profile.institution2 }}</li>
+                    <li>{{ profile.name_of_degree3 }} from {{ profile.institution3 }}</li>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

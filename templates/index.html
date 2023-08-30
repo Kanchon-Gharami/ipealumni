@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+ <!-- Start: Carousel Banner -->
+ <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+    <!--
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+    </ol>
+    -->
+    <div class="carousel-inner">
+        <div class="carousel-item active carousel-img">
+            <img src="{% static 'imgs/banner-1.jpg' %}" class="img-fluid w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h4>
+                    Greetings, IPE Alumni! Let's Rekindle Old Memories and Make New Ones
+                </h4>
+                <div class="row m-0 mt-5 d-flex justify-content-center">
+                    <button class="btn btn-blue mx-2 px-5">Explore</button>
+                    <button class="btn btn-outline-light mx-2 px-5">Share Memories</button>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item carousel-img">
+            <img src="{% static 'imgs/banner-2.jpg' %}" class="img-fluid w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h4>
+                    Empowering the Future, Celebrating the Past: IPE Alumni RUET
+                </h4>
+                <div class="row m-0 mt-5 d-flex justify-content-center">
+                    <button class="btn btn-blue mx-2 px-5">Explore</button>
+                    <button class="btn btn-outline-light mx-2 px-5">Share Memories</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+<!-- End: Carousel Banner -->
+
+
+<!-- Start: Floating Container1 -->
+<!-- <div class="container-fluid solution-parents-container">
+    <div class="row m-0 justify-content-center">
+        <div class="col-xl-10 solution-container px-3 py-4">
+            <div class="row m-0">
+                <div class="solution-card col-xl-3 mx-auto my-4">
+                    <img src="{% static 'icons/group.png' %}" class="d-block mx-auto">
+                    <p class="fs-18 fw-800 text-center mt-4 mb-1">WHO WE ARE</p>
+                    <div class="title-bar mx-auto mb-3"></div>
+                    <p class="text-center mt-2">
+                        Welcome to Your IPE Alumni Home: Where Every Engineer Belongs.
+                    </p>
+                    <div class="row m-0 d-flex justify-content-center">
+                        <a href="" class="mx-auto a-blue">
+                            READ MORE
+                            <i class='fa fa-long-arrow-right'></i>
+                        </a>
+                    </div>                            
+                </div>
+                <div class="solution-card col-xl-3 mx-auto my-4">
+                    <img src="{% static 'icons/congratulation.png' %}" class="d-block mx-auto">
+                    <p class="fs-18 fw-800 text-center mt-4 mb-1">1st IPE Reunion</p>
+                    <div class="title-bar mx-auto mb-3"></div>
+                    <p class="text-center mt-2">
+                        You've Arrived! Welcome to the Gathering Spot for IPE Alumni.
+                    </p>
+                    <div class="row m-0 d-flex justify-content-center">
+                        <a href="" class="mx-auto a-blue">
+                            READ MORE
+                            <i class='fa fa-long-arrow-right'></i>
+                        </a>
+                    </div>                            
+                </div>
+                <div class="solution-card col-xl-3 mx-auto my-4">
+                    <img src="{% static 'icons/witch.png' %}" class="d-block mx-auto">
+                    <p class="fs-18 fw-800 text-center mt-4 mb-1">Explore Memories</p>
+                    <div class="title-bar mx-auto mb-3"></div>
+                    <p class="text-center mt-2">
+                        Reconnect, Relive, and Reimagine Your IPE Journey.
+                    </p>
+                    <div class="row m-0 d-flex justify-content-center">
+                        <a href="" class="mx-auto a-blue">
+                            READ MORE
+                            <i class='fa fa-long-arrow-right'></i>
+                        </a>
+                    </div>                            
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!-- End: Floating Container1 -->
+
+
+<!-- Start: Floating Container2 -->
+<div class="container-fluid solution-parents-container">
+    <div class="row m-0 justify-content-center">
+        <div class="col-xl-9 solution-container reunion_redirect">
+            <div class="row mx-1 my-4">
+                <div class="col-md-5 col-sm-12 col-xs-12">
+                    <img src="{% static 'imgs/test_g1.jpg' %}" class="img-fluid floating_reunion_img" alt="">
+                </div>
+                <div class="col-md-7 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-sm-10 col-xs-9">
+                            <h5 class="">UPCOMING EVENT</h5>
+                            <h2 class="fw-700 reunion_flt_title">1st Alumni Reunion of IPE</h2>
+                            <span>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span class="text-place text-grey animated fadeInRight">RUET, Kazla, Rajshahi-6204, Bangladesh</span>
+                            </span>
+                        </div>
+                        <div class="col-sm-2 col-xs-3">
+                            <div class="area-calendar mr-2">
+                                <span class="day text-bold">07</span>
+                                <span class="month">Nov</span>
+                                <span class="year bg-year">2023</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="height: 60px;"></div>
+                    <div class="area-bottom row m-0">
+                        <div id="time-event" class="syotimer col-xl-8">
+                            <div class="timer-unit">
+                                <div class="syotimer-cell" id="days"></div>
+                                <div class="syotimer-label" id="label-days">Days</div>
+                            </div>
+                            <div class="colon">:</div>
+                            <div class="timer-unit">
+                                <div class="syotimer-cell" id="hours"></div>
+                                <div class="syotimer-label" id="label-hours">Hours</div>
+                            </div>
+                            <div class="colon">:</div>
+                            <div class="timer-unit">
+                                <div class="syotimer-cell" id="minutes"></div>
+                                <div class="syotimer-label" id="label-minutes">Minutes</div>
+                            </div>
+                            <div class="colon">:</div>
+                            <div class="timer-unit">
+                                <div class="syotimer-cell" id="seconds"></div>
+                                <div class="syotimer-label" id="label-seconds">Seconds</div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 text-center mt-3">
+                            <a href="#" class="btn btn-primary btn-blue px-4 py-2 fs-18">Register Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function updateTimer(endtime) {
+        var t = endtime - new Date();
+        var seconds = Math.floor((t / 1000) % 60);
+        var minutes = Math.floor((t / 1000 / 60) % 60);
+        var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+        var days = Math.floor(t / (1000 * 60 * 60 * 24));
+
+        document.getElementById('days').innerHTML = days;
+        document.getElementById('hours').innerHTML = hours;
+        document.getElementById('minutes').innerHTML = minutes;
+        document.getElementById('seconds').innerHTML = seconds;
+    }
+    var endtime = new Date('2023-11-07T00:45:00').getTime();
+    setInterval(updateTimer, 1000, endtime);
+</script>
+
+
+<!-- event page redirect -->
+<script>
+    $('.solution-container.reunion_redirect').on('click', function(e) {
+        if (!$(e.target).hasClass('btn')) {
+            window.location.href = 'https://www.ipe.ruet.ac.bd/';
+        }
+    });
+</script>
+
+<!-- End: Floating Container2 -->
+
+
+<div style="height: 150px;"></div>
+
+
+<!-- Start: Who we are/about -->
+<div class="container-fluid">
+    <div class="row m-0 d-flex justify-content-center">
+        <div class="col-xl-4 mx-2 about-img-container">
+            <div class="img-box-1"></div>
+            <div class="img-box-2"></div>
+            <button class="btn btn-blue">
+                <img src="{% static 'icons/Icon question-circle.png' %}">
+                <snap class="fs-18" style="margin-top: 4px !important;">Learn More</snap>
+            </button>
+        </div>
+        <div class="col-xl-6 mx-3 about-details">
+            <p class="text-blue fs-13 fw-700 m-0">| WHO WE ARE</p>
+            <p class="fs-32 fw-700 m-0 about-title">
+                Welcome, <span class="text-blue">IPE Alumni!</span> Let's Celebrate Our Shared Journey and Aspirations!
+            </p>
+            <p class="text-lightgrey fs-14 my-2 f-opensans">
+                We are the IPE Alumni Network of RUET—a dynamic assembly of engineers, innovators, industry leaders, and changemakerss. Spanning from RUET's workshops to global industry, we're the heartbeat of excellence and innovation. Our network serves as a nexus for sharing knowledge, fostering mentorship, and creating opportunities. Here, past meets present, wisdom meets curiosity, and aspiration meets inspiration. We are committed to supporting the professional growth and personal development of every member. Join us as we strengthen bonds and lay cornerstones for tomorrow's breakthroughs.
+            </p>
+            <div class="row m-0 mt-4">
+                <div class="about-card my-1">
+                    <img src="{% static 'icons/witch.png' %}" class="img-fluid mb-3">
+                    <p class="fs-20 fw-700 m-0">Vision</p>
+                    <p class="text-lightgrey fs-14 m-0 f-opensans">
+                        To be a global nexus for innovation and excellence, driving industrial advancements and setting new standards in engineering education.
+                    </p>
+                    <div class="row m-0 fs-13 fw-700">
+                        <a href="" class="text-blue mt-1">
+                            READ MORE
+                            <i class='fa fa-long-arrow-right ml-2'></i>
+                        </a>
+                    </div>  
+                </div>
+                <div class="about-card my-1 ml-5">
+                    <img src="{% static 'icons/witch.png' %}" class="img-fluid mb-3">
+                    <p class="fs-20 fw-700 m-0">Mission</p>
+                    <p class="text-lightgrey fs-14 m-0 f-opensans">
+                        To foster an environment of lifelong learning and mentorship, equipping our members to excel in their fields and contribute meaningfully to society.
+                    </p>
+                    <div class="row m-0 fs-13 fw-700">
+                        <a href="" class="text-blue mt-1">
+                            READ MORE
+                            <i class='fa fa-long-arrow-right ml-2'></i>
+                        </a>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End: Who we are/about -->
+
+<div class="section_gap"></div>
+
+<!-- Start: Achievements and Notice -->
+<div class="container-fluid bg-light achievements_notice">
+    <div class="row m-0 d-flex justify-content-center py-5">
+        <div class="col-xl-5 col-md-12 mx-3 my-5 p-0">
+            <p class="my_title">
+                <span class="underline_span_left">Achievements</span>
+            </p>
+            <!-- Start: Single Achievements -->
+            <div class="row mx-0 my-5">
+                <div class="col-md-3 p-0 mini_achievement">
+                    <img src="{% static 'imgs/test-1.jpg' %}" alt="" class="">
+                </div>
+                <div class="col-md-9 px-3">
+                    <p class="m-0">August 20, 2023 </p>
+                    <p class="notice_headline m-0">This is your awsome achievement container headline: Lorem ipsum dolor sit default emit, dolor sue exile.</p>
+                    <a href="" class="mx-auto a-blue">
+                        READ MORE
+                        <i class='fa fa-long-arrow-right'></i>
+                    </a>
+                </div>
+            </div>
+            <!-- End: Single Achievements -->
+            <!-- Start: Single Achievements -->
+            <div class="row mx-0 my-5">
+                <div class="col-md-3 p-0 mini_achievement">
+                    <img src="{% static 'imgs/test-1.jpg' %}" alt="" class="">
+                </div>
+                <div class="col-md-9 px-3">
+                    <p class="m-0">August 20, 2023 </p>
+                    <p class="notice_headline m-0">This is your awsome achievement container headline: Lorem ipsum dolor sit default emit, dolor sue exile.</p>
+                    <a href="" class="mx-auto a-blue">
+                        READ MORE
+                        <i class='fa fa-long-arrow-right'></i>
+                    </a>
+                </div>
+            </div>
+            <!-- End: Single Achievements -->
+            <a href="" class="btn btn-outline-primary bg-outline-blue px-5">Explore All</a>
+        </div>
+
+        <div class="col-xl-5 col-md-12 mx-3 my-5 p-0">
+            <p class="my_title">
+                <span class="underline_span_left">Notice</span>
+            </p>
+            <!-- start:single notice -->
+            <div class="row mx-0 my-5">
+                <div class="col-md-1 mr-3"> 
+                    <div class="notice_month">AUG</div>
+                    <div class="notice_day">27</div>
+                </div>
+                <div class="col-md-10 mt-2">
+                    <p class="notice_headline m-0">IPE Alumni's 1st Reunion at RUET! Join Now</p>
+                    <a href="" class="mx-auto a-blue">
+                        READ MORE
+                        <i class='fa fa-long-arrow-right'></i>
+                    </a>
+                </div>
+            </div>  
+            <!-- end:single notice -->
+            <!-- start:single notice -->
+            <div class="row mx-0 my-5">
+                <div class="col-md-1 mr-3"> 
+                    <div class="notice_month">AUG</div>
+                    <div class="notice_day">27</div>
+                </div>
+                <div class="col-md-10 mt-2">
+                    <p class="notice_headline m-0">IPE Alumni's 1st Reunion at RUET! Join Now</p>
+                    <a href="" class="mx-auto a-blue">
+                        READ MORE
+                        <i class='fa fa-long-arrow-right'></i>
+                    </a>
+                </div>
+            </div>  
+            <!-- end:single notice -->
+            <!-- start:single notice -->
+            <div class="row mx-0 my-5">
+                <div class="col-md-1 mr-3"> 
+                    <div class="notice_month">AUG</div>
+                    <div class="notice_day">27</div>
+                </div>
+                <div class="col-md-10 mt-2">
+                    <p class="notice_headline m-0">IPE Alumni's 1st Reunion at RUET! Join Now</p>
+                    <a href="" class="mx-auto a-blue">
+                        READ MORE
+                        <i class='fa fa-long-arrow-right'></i>
+                    </a>
+                </div>
+            </div>  
+            <!-- end:single notice -->
+            <div style="height: 32px;"></div>
+            <a href="" class="btn btn-outline-primary bg-outline-blue px-5">Explore All</a>
+        </div>
+    </div>
+</div>
+<!-- End: Achievements and Notice -->
+
+
+<div class="section_gap"></div>
+
+
+<!-- Start: Messages from Chief Patron & Presidents -->
+
+<div class="container-fluid my-2">
+    <p class="my_title text-center">
+        <!-- Warm Regards from Visionary Voices -->
+        <span class="underline_span_center">Visionary Voices</span>
+    </p>
+    <div class="row mx-0 my-5 d-flex justify-content-center">
+        <div class="col-xl-3 my_card m-4">
+            <img src="{% static 'imgs/test_dp2.jpg' %}" alt="" class="speaker_img d-flex">
+            <div class="px-3 py-3">
+                <p class="m-0">APRIL 27, 2023</p>
+                <p class="notice_headline m-0">Vice-Chancellor Message</p>
+                <p style="font-size: 14px;">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.    
+                </p>
+            </div>
+        </div>
+        <div class="col-xl-3 my_card m-4 p-0">
+            <img src="{% static 'imgs/test_dp1.jpg' %}" alt="" class="speaker_img d-flex">
+            <div class="px-3 py-3">
+                <p class="m-0">APRIL 27, 2023</p>
+                <p class="notice_headline m-0">President Message</p>
+                <p style="font-size: 14px;">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+            </div>
+        </div>
+        <div class="col-xl-3 my_card m-4">
+            <img src="{% static 'imgs/test_dp3.jpg' %}" alt="" class="speaker_img d-flex">
+            <div class="px-3 py-3">
+                <p class="m-0">APRIL 27, 2023</p>
+                <p class="notice_headline m-0">Chief Patron Message</p>
+                <p style="font-size: 14px;">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- End: Messages from Chief Patron & Presidents -->
+
+
+<div class="section_gap"></div>
+
+
+<!-- Start: Number count -->
+<div class="row m-0 d-flex justify-content-center bg-light py-5">
+    <div class="no_card mx-5">
+        <img src="{% static 'icons/witch.png' %}" class="img-fluid d-flex mx-auto my-3">
+        <h1 class="fw-700 text-center m-0 p-0"><span class="count">12</span>+</h1>
+        <p class="text-center fw-600 m-0 p-0">Faculti Member</p>
+    </div>
+    <div class="no_card mx-5">
+        <img src="{% static 'icons/witch.png' %}" class="img-fluid d-flex mx-auto my-3">
+        <h1 class="fw-700 text-center m-0 p-0"><span class="count">200</span>+</h1>
+        <p class="text-center fw-600 m-0 p-0">Registered Alumnie</p>
+    </div>
+    <div class="no_card mx-5">
+        <img src="{% static 'icons/witch.png' %}" class="img-fluid d-flex mx-auto my-3">
+        <h1 class="fw-700 text-center m-0 p-0"><span class="count">5</span></h1>
+        <p class="text-center fw-600 m-0 p-0">Committee</p>
+    </div>
+    <div class="no_card mx-5">
+        <img src="{% static 'icons/witch.png' %}" class="img-fluid d-flex mx-auto my-3">
+        <h1 class="fw-700 text-center m-0 p-0"><span class="count">10</span>+</h1>
+        <p class="text-center fw-600 m-0 p-0">Achievements</p>
+    </div>
+</div>
+<!-- End: Number count -->
+
+
+<div class="section_gap"></div>
+
+
+<!-- Start: Gallery -->
+
+<div class="container-fluid my-2">
+    <p class="my_title text-center">
+        <!-- Warm Regards from Visionary Voices -->
+        <span class="underline_span_center">Our Gallery</span>
+    </p>
+    <div class="row mx-0 my-5 d-flex justify-content-center">
+        <div class="col-xl-3 my_gallery_card m-4" data-toggle="modal" data-target="#imageModal" onclick="showImage(this)">
+            <div class="image-container">
+              <img src="{% static 'imgs/test_g1.jpg' %}" alt="" class="speaker_img d-flex">
+              <div class="image-overlay"></div>
+              <button class="view-button btn btn-primary btn-blue">Click to View Image</button>
+            </div>
+            <div class="px-3 py-3">
+              <p class="m-0">Caption of the picture1</p>
+            </div>
+        </div>
+        <div class="col-xl-3 my_gallery_card m-4" data-toggle="modal" data-target="#imageModal" onclick="showImage(this)">
+            <div class="image-container">
+              <img src="{% static 'imgs/test_g2.jpg' %}" alt="" class="speaker_img d-flex">
+              <div class="image-overlay"></div>
+              <button class="view-button btn btn-primary btn-blue">Click to View Image</button>
+            </div>
+            <div class="px-3 py-3">
+              <p class="m-0">Caption of the picture2</p>
+            </div>
+        </div>
+        <div class="col-xl-3 my_gallery_card m-4" data-toggle="modal" data-target="#imageModal" onclick="showImage(this)">
+            <div class="image-container">
+              <img src="{% static 'imgs/test_g3.jpg' %}" alt="" class="speaker_img d-flex">
+              <div class="image-overlay"></div>
+              <button class="view-button btn btn-primary btn-blue">Click to View Image</button>
+            </div>
+            <div class="px-3 py-3">
+              <p class="m-0">Caption of the picture3</p>
+            </div>
+        </div>
+        
+        <div class="col-xl-3 my_gallery_card m-4" data-toggle="modal" data-target="#imageModal" onclick="showImage(this)">
+            <div class="image-container">
+              <img src="{% static 'imgs/test_g2.jpg' %}" alt="" class="speaker_img d-flex">
+              <div class="image-overlay"></div>
+              <button class="view-button btn btn-primary btn-blue">Click to View Image</button>
+            </div>
+            <div class="px-3 py-3">
+              <p class="m-0">Caption of the picture1</p>
+            </div>
+        </div>
+        <div class="col-xl-3 my_gallery_card m-4" data-toggle="modal" data-target="#imageModal" onclick="showImage(this)">
+            <div class="image-container">
+              <img src="{% static 'imgs/test_g3.jpg' %}" alt="" class="speaker_img d-flex">
+              <div class="image-overlay"></div>
+              <button class="view-button btn btn-primary btn-blue">Click to View Image</button>
+            </div>
+            <div class="px-3 py-3">
+              <p class="m-0">Caption of the picture2</p>
+            </div>
+        </div>
+        <div class="col-xl-3 my_gallery_card m-4" data-toggle="modal" data-target="#imageModal" onclick="showImage(this)">
+            <div class="image-container">
+              <img src="{% static 'imgs/test_g1.jpg' %}" alt="" class="speaker_img d-flex">
+              <div class="image-overlay"></div>
+              <button class="view-button btn btn-primary btn-blue">Click to View Image</button>
+            </div>
+            <div class="px-3 py-3">
+              <p class="m-0">Caption of the picture3</p>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<!-- Modal for full screen image -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imgModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Our Gallery</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <img id="modalImage" src="" alt="Image" class="img-fluid">
+        </div>
+      </div>
+    </div>
+</div>
+
+<script>
+    function showImage(element) {
+        const imageSrc = element.querySelector('.speaker_img').src;
+        const captionText = element.querySelector('p').textContent;
+        document.getElementById('modalImage').src = imageSrc;
+        document.querySelector('.modal-title').textContent = captionText;
+    }
+
+</script>  
+
+<!-- End: Gallery -->
+
+
+
+
+<style>
+    :root {
+        --ib1-url: url({% static 'imgs/test_g2.jpg' %});
+        --ib2-url: url({% static 'imgs/test_g1.jpg' %});
+    }
+</style>
+
+
+<!-- number count up js support -->
+<script type="text/javascript">
+	$(document).ready(function() {
+        var counted = false; // flag to make sure the counting only occurs once
+        $(window).scroll(function() {
+            var top_of_element = $(".no_card").offset().top;
+            var bottom_of_element = $(".no_card").offset().top + $(".no_card").outerHeight();
+            var bottom_of_screen = $(window).scrollTop() + $(window).innerHeight();
+            var top_of_screen = $(window).scrollTop();
+
+            if ((bottom_of_screen > top_of_element) && (top_of_screen < bottom_of_element)) {
+                // The element is visible, do something
+                if (!counted) {
+                    counted = true; // set the flag to true so the counting doesn't re-occur
+                    $('.count').each(function () {
+                        $(this).prop('Counter', 0).animate({
+                            Counter: $(this).text()
+                        }, {
+                            duration: 4000,
+                            easing: 'swing',
+                            step: function (now) {
+                                $(this).text(Math.ceil(now));
+                            }
+                        });
+                    });
+                }
+            }
+        });
+    });
+</script>
+
+
+
+
+{% endblock %}

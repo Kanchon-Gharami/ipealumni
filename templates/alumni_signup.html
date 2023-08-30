@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-5">
+    <p class="my_title text-center">
+        <span class="underline_span_center">Alumni Signup</span>
+    </p>
+    {% if error_message %}
+    <div class="alert alert-danger">
+        {{ error_message }}
+    </div>
+    {% endif %}
+    <span id="passwordError" class="text-danger"></span>
+
+
+    <form method="POST" action="" enctype="multipart/form-data" id="signupForm" class="my-5">
+        {% csrf_token %}
+
+        <div class="card my-3">
+            <div class="card-header fw-700">
+                Login Credintial
+            </div>
+            <div class="card-body">
+                <div class="row m-0">
+                    <div class="form-group col-lg-12">
+                        <label>Email <span class="mandatory_star">*</span> </label>
+                        <input type="email" name="email" class="form-control" required>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label>Password <span class="mandatory_star">*</span></label>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Create a new password" required>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label>Confirm Password <span class="mandatory_star">*</span></label>
+                        <input type="password" id="password2" name="password2" class="form-control" placeholder="Re-type password" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card my-3">
+            <div class="card-header fw-700">
+                Profile Information
+            </div>
+            <div class="card-body">
+                <div class="row m-0">
+                    <div class="form-group col-xl-6">
+                        <label>Name <span class="mandatory_star">*</span></label>
+                        <input type="text" name="name" class="form-control" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group col-xl-4">
+                        <label>Roll <span class="mandatory_star">*</span></label>
+                        <input type="number" name="roll" class="form-control" min="1000000" max="9999999" placeholder="RUET Roll No" required>
+                    </div>
+                    <div class="form-group col-xl-2">
+                        <label>Series <span class="mandatory_star">*</span></label>
+                        <select name="series" class="form-control" required>
+                            <option value="" disabled selected>Choose...</option>
+                            {% for year, year_str in SERIES_CHOICES %}
+                            <option value="{{ year }}">{{ year_str }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group col-xl-4">
+                        <label>Contact Number <span class="mandatory_star">*</span></label>
+                        <input type="text" name="phone_number" class="form-control" required>
+                    </div>
+                    <div class="form-group col-xl-4">
+                        <label>Whatsapp Number</label>
+                        <input type="text" name="whatsapp_no" class="form-control">
+                    </div>
+                    <div class="form-group col-xl-4">
+                        <label>Home District <span class="mandatory_star">*</span></label>
+                        <input type="text" name="home_district" class="form-control" placeholder="Your Origin" required>
+                    </div>
+                    <div class="form-group col-xl-4">
+                        <label>Current Position <span class="mandatory_star">*</span></label>
+                        <input type="text" name="current_position" class="form-control" placeholder="Your current Job" required>
+                    </div>
+                    <div class="form-group col-xl-4">
+                        <label>Current Organization <span class="mandatory_star">*</span></label>
+                        <input type="text" name="current_organization" class="form-control" placeholder="Your work place" required>
+                    </div>
+                    <div class="form-group col-xl-4">
+                        <label>Previous Experience</label>
+                        <input type="text" name="previous_experience" class="form-control" placeholder="Your Previous Job">
+                    </div>
+                    <div class="form-group col-xl-4">
+                        <label>Profile Picture <span class="mandatory_star">*</span></label>
+                        <input type="file" name="profile_picture" class="form-control">
+                    </div>
+                    <div class="form-group col-xl-4">
+                        <label>Blood Group <span class="mandatory_star">*</span></label>
+                        <select name="blood_group" class="form-control" required>
+                            <option value="" disabled selected>Choose...</option>
+                            {% for blood_group, blood_group_str in BLOOD_GROUP_CHOICES %}
+                            <option value="{{ blood_group }}">{{ blood_group_str }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group col-xl-4">
+                        <label>Marital Status</label>
+                        <select name="marital_status" class="form-control">
+                            <option value="" disabled selected>Choose...</option>
+                            {% for status, status_str in MARITAL_STATUS_CHOICES %}
+                            <option value="{{ status }}">{{ status_str }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group col-xl-6">
+                        <label>Present Address <span class="mandatory_star">*</span></label>
+                        <textarea name="present_address" class="form-control" rows="5" required></textarea>
+                    </div>
+                    <div class="form-group col-xl-6">
+                        <label>Skills</label>
+                        <textarea name="skills" class="form-control" rows="5"></textarea>
+                    </div>
+                    <div class="form-group col-xl-6">
+                        <label>Facebook</label>
+                        <input type="text" name="facebook" class="form-control" placeholder="Provide Your Facebook URL">
+                    </div>
+                    <div class="form-group col-xl-6">
+                        <label>LinkedIn</label>
+                        <input type="text" name="linkedin" class="form-control" placeholder="Provide Your Linkedin URL">
+                    </div>
+                </div>              
+            </div>
+        </div>
+
+        <div class="card my-3">
+            <div class="card-header fw-700">
+                Higher Studies Information
+            </div>
+            <div class="card-body">
+                <div class="row m-0">
+                    <div class="form-group col-xl-6">
+                        <label>Degree-1</label>
+                        <input type="text" name="name_of_degree1" class="form-control" placeholder="1st Achieved Degree">
+                    </div>
+                    <div class="form-group col-xl-6">
+                        <label>Institution-1</label>
+                        <input type="text" name="institution1" class="form-control" placeholder="Institution provide 1st achieved degree">
+                    </div>
+            
+                    <div class="form-group col-xl-6">
+                        <label>Degree-2</label>
+                        <input type="text" name="name_of_degree2" class="form-control" placeholder="2nd Achieved Degree">
+                    </div>
+                    <div class="form-group col-xl-6">
+                        <label>Institution-2</label>
+                        <input type="text" name="institution2" class="form-control" placeholder="Institution provide 2nd achieved degree">
+                    </div>
+                    
+                    <div class="form-group col-xl-6">
+                        <label>Degree-3</label>
+                        <input type="text" name="name_of_degree3" class="form-control" placeholder="3rd Achieved Degree">
+                    </div>
+                    <div class="form-group col-xl-6">
+                        <label>Institution-3</label>
+                        <input type="text" name="institution3" class="form-control" placeholder="Institution provide 3rd achieved degree">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-2 mx-auto mb-4">
+                <input type="submit" value="Sign Up" class="btn btn-primary btn-blue mt-3 px-4">
+            </div>
+            
+        </div>
+    </form>
+</div>
+
+
+<script>
+    $(document).ready(function() {
+        $("#signupForm").submit(function(e) {
+            let password = $("#password").val();
+            let confirmPassword = $("#password2").val();
+
+            if (password !== confirmPassword) {
+                e.preventDefault();
+                $("#passwordError").text("Passwords do not match.");
+            } else {
+                $("#passwordError").text("");
+                // Perform the submit action here if you want
+            }
+        });
+    });
+
+</script>
+
+
+{% endblock %}
