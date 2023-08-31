@@ -122,7 +122,7 @@
                             <i class="fas fa-user" style="margin-right: 5px;"></i> Admin Panel
                         </a>
                     {% elif user.is_superuser %}
-                        <a href="{% url 'superuser_pannel' %}" class="nav-link mx-1">
+                        <a href="{% url '/admin/' %}" class="nav-link mx-1">
                             <i class="fas fa-user" style="margin-right: 5px;"></i> Superuser Panel
                         </a>
                     {% endif %}
