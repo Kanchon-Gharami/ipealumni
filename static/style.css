@@ -480,6 +480,7 @@ a{
 }
 
 .area-calendar{
+    min-width: 80px;
     color: #2d2d2d;
     text-align: center;
     margin-top: -23px;      /* cheating! */
@@ -497,7 +498,7 @@ a{
 }
 
 .area-calendar .day{
-    font-size: 30px;
+    font-size: 26px;
     font-weight: 700;
 }
 
@@ -679,22 +680,22 @@ a{
 }
 
 .speaker_img{
-    height: 250px;
+    height: 280px !important;
     width: 100%;           /* Width can vary */
-    object-fit: cover;     /* Cover the entire container */
-    object-position: center; /* Center the image */
+    object-fit: cover;    
+    object-position: center; 
 }
 
 .alumni_card{
-    /* border-bottom: 3px solid #17449e; */
-}
-
-.alumni_card:hover{
-    /* transition: all .7s ease-in-out;
+    color: #212529;
     border-top: 1px solid #858687;
     border-left: 1px solid #858687;
     border-right: 1px solid #858687;
-    border-bottom: 1px solid #858687; */
+    border-bottom: 1px solid #858687; 
+}
+
+.alumni_card:hover{
+    color: #212529;
 }
 
 .alumni_card .speaker_img{
@@ -815,6 +816,9 @@ a{
     .prx-4{
         padding-left: 1rem !important;
         padding-right: 1rem !important;
+    }
+    .area-calendar{
+        margin-top: 0px;      /* cheating solve for small screen! */
     }
 }
 

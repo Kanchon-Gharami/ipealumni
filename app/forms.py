@@ -14,18 +14,18 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = '__all__'
         exclude = ['user']
-
-    def clean_whatsapp_no(self):
-        data = self.cleaned_data['whatsapp_no']
+    
+    # def clean_whatsapp_no(self):
+    #     data = self.cleaned_data['whatsapp_no']
         
-        # Remove any non-digit characters
-        cleaned_data = ''.join(filter(str.isdigit, str(data)))
+    #     # Remove any non-digit characters
+    #     cleaned_data = ''.join(filter(str.isdigit, str(data)))
 
-        # Check the length constraints
-        if len(cleaned_data) < 10 or len(cleaned_data) > 15:
-            raise ValidationError("Enter a valid WhatsApp number with 10 to 15 digits.")
+    #     # Check the length constraints
+    #     if len(cleaned_data) < 10 or len(cleaned_data) > 15:
+    #         raise ValidationError("Enter a valid WhatsApp number with 10 to 15 digits.")
 
-        return cleaned_data
+    #     return cleaned_data
     
 
 class ProfilePictureForm(forms.ModelForm):

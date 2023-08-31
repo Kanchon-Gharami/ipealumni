@@ -67,7 +67,7 @@ class Profile(models.Model):
     whatsapp_no = models.CharField(max_length=15, validators=[RegexValidator(r'^\d{10,15}$')], blank=True, null=True)
     current_position = models.CharField(max_length=100)
     current_organization = models.CharField(max_length=100)
-    previous_experience = models.CharField(max_length=300, blank=True, null=True)
+    previous_experience = models.TextField(null=True, blank=True)
     certificate = models.TextField(null=True, blank=True)
     skills = models.TextField(null=True, blank=True)
     present_address = models.TextField()

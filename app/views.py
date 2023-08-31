@@ -100,7 +100,7 @@ def alumni_signup(request):
                 img_format = img.format
 
                 if img.size[0] > 2000 or img.size[1] > 2000:
-                    img.thumbnail((2000, 2000), Image.ANTIALIAS)
+                    img.thumbnail((2000, 2000), Image.BICUBIC)
 
                 img_io = BytesIO()
                 img.save(img_io, format=img_format, quality=80)  # You can experiment with quality to meet your requirements
@@ -129,7 +129,7 @@ def logout_view(request):
     return HttpResponseRedirect('/')
 
 
-@user_is_alumni
+@login_required
 def alumni_profile(request, pk):
     alumni = MyCustomUser.objects.get(pk=pk)
     profile = alumni.profile

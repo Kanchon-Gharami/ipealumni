@@ -24,23 +24,23 @@
             
             <h3>User Details:</h3>
             <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
+                <label for="name" class="form-label">Name <span class="mandatory_star">*</span></label>
                 <input type="text" class="form-control" id="name" name="full_name" value="{{ user.name }}">
                 <!-- <input type="text" class="form-control" id="name" name="{{ user_form.name.name }}" value="{{ user.name }}"> -->
             </div>
 
             <div class="mb-3" style="display: none;">
-                <label for="email" class="form-label">Email</label>
+                <label for="email" class="form-label">Email <span class="mandatory_star">*</span></label>
                 <input type="email" class="form-control" id="email" name="{{ user_form.email.name }}" value="{{ user.email }}">
             </div>
 
             <div class="mb-3">
-                <label for="roll" class="form-label">Roll</label>
+                <label for="roll" class="form-label">Roll <span class="mandatory_star">*</span></label>
                 <input type="number" class="form-control" id="roll" name="{{ profile_form.roll.name }}" value="{{ profile_form.roll.value }}">
             </div>
 
             <div class="mb-3">
-                <label for="series" class="form-label">Series</label>
+                <label for="series" class="form-label">Series <span class="mandatory_star">*</span></label>
                 <select class="form-control" id="series" name="{{ profile_form.series.name }}">
                     {% for choice in profile_form.series.field.choices %}
                         <option value="{{ choice.0 }}" {% if choice.0 == profile_form.series.value %}selected{% endif %}>{{ choice.1 }}</option>
@@ -49,34 +49,35 @@
             </div>
 
             <div class="mb-3">
-                <label for="phone_number" class="form-label">Phone Number</label>
+                <label for="phone_number" class="form-label">Phone Number <span class="mandatory_star">*</span></label>
                 <input type="text" class="form-control" id="phone_number" name="{{ profile_form.phone_number.name }}" value="{{ profile_form.phone_number.value }}">
             </div>
 
             <div class="mb-3">
                 <label for="whatsapp_no" class="form-label">WhatsApp Number</label>
-                <input type="text" class="form-control" id="whatsapp_no" name="{{ profile_form.whatsapp_no.name }}" value="{{ profile_form.whatsapp_no.value }}">
+                {% if profile_form.whatsapp_no.valu %}
+                    <input type="text" class="form-control" id="whatsapp_no" name="{{ profile_form.whatsapp_no.name }}" value="{{ profile_form.whatsapp_no.value }}">
+                {% else %}
+                    <input type="text" class="form-control" id="whatsapp_no" name="{{ profile_form.whatsapp_no.name }}" value="">
+                {% endif %}
             </div>
 
             <div class="mb-3">
-                <label for="current_position" class="form-label">Current Position</label>
+                <label for="current_position" class="form-label">Current Position <span class="mandatory_star">*</span></label>
                 <input type="text" class="form-control" id="current_position" name="{{ profile_form.current_position.name }}" value="{{ profile_form.current_position.value }}">
             </div>
 
             <div class="mb-3">
-                <label for="current_organization" class="form-label">Current Organization</label>
+                <label for="current_organization" class="form-label">Current Organization <span class="mandatory_star">*</span></label>
                 <input type="text" class="form-control" id="current_organization" name="{{ profile_form.current_organization.name }}" value="{{ profile_form.current_organization.value }}">
             </div>
 
             <div class="mb-3">
-                <label for="previous_experience" class="form-label">Previous Experience</label>
-                <input type="text" class="form-control" id="previous_experience" name="{{ profile_form.previous_experience.name }}" value="{{ profile_form.previous_experience.value }}">
+                <label for="previous_experience" class="form-label">Previous Experience <span class="mandatory_star">*</span></label>
+                <textarea name="{{ profile_form.previous_experience.name }}" class="form-control" rows="3"  placeholder="Your Previous Job">{{ profile_form.previous_experience.value }}</textarea>
+                <!-- <input type="text" class="form-control" id="previous_experience" name="{{ profile_form.previous_experience.name }}" value="{{ profile_form.previous_experience.value }}"> -->
             </div>
 
-            <div class="mb-3">
-                <label for="certificate" class="form-label">Certificates</label>
-                <textarea class="form-control" id="certificate" name="{{ profile_form.certificate.name }}">{{ profile_form.certificate.value }}</textarea>
-            </div>
 
             <div class="mb-3">
                 <label for="skills" class="form-label">Skills</label>
@@ -84,7 +85,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="present_address" class="form-label">Present Address</label>
+                <label for="present_address" class="form-label">Present Address <span class="mandatory_star">*</span></label>
                 <textarea class="form-control" id="present_address" name="{{ profile_form.present_address.name }}">{{ profile_form.present_address.value }}</textarea>
             </div>
 
@@ -94,7 +95,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="blood_group" class="form-label">Blood Group</label>
+                <label for="blood_group" class="form-label">Blood Group <span class="mandatory_star">*</span></label>
                 <select class="form-control" id="blood_group" name="{{ profile_form.blood_group.name }}">
                     {% for choice in profile_form.blood_group.field.choices %}
                         <option value="{{ choice.0 }}" {% if choice.0 == profile_form.blood_group.value %}selected{% endif %}>{{ choice.1 }}</option>
@@ -113,44 +114,75 @@
 
             <div class="mb-3">
                 <label for="linkedin" class="form-label">LinkedIn</label>
-                <input type="url" class="form-control" id="linkedin" name="{{ profile_form.linkedin.name }}" value="{{ profile_form.linkedin.value }}">
+                {% if profile_form.linkedin.value %}
+                    <input type="url" class="form-control" id="linkedin" name="{{ profile_form.linkedin.name }}" value="{{ profile_form.linkedin.value }}">
+                {% else %}
+                    <input type="url" class="form-control" id="linkedin" name="{{ profile_form.linkedin.name }}" value="">
+                {% endif %}
             </div>
 
             <div class="mb-3">
                 <label for="facebook" class="form-label">Facebook</label>
+                {% if profile_form.facebook.value %}
                 <input type="url" class="form-control" id="facebook" name="{{ profile_form.facebook.name }}" value="{{ profile_form.facebook.value }}">
+                {% else %}
+                <input type="url" class="form-control" id="facebook" name="{{ profile_form.facebook.name }}" value="">
+                {% endif %}
             </div>
 
             <div class="mb-3">
                 <label for="name_of_degree1" class="form-label">name_of_degree1</label>
+                {% if profile_form.name_of_degree1.value %}
                 <input type="text" class="form-control" id="facebook" name="{{ profile_form.name_of_degree1.name }}" value="{{ profile_form.name_of_degree1.value }}">
+                {% else %}
+                <input type="text" class="form-control" id="facebook" name="{{ profile_form.name_of_degree1.name }}" value="">
+                {% endif %}
             </div>
 
             <div class="mb-3">
                 <label for="institution1" class="form-label">institution1</label>
+                {% if profile_form.institution1.value %}
                 <input type="text" class="form-control" id="facebook" name="{{ profile_form.institution1.name }}" value="{{ profile_form.institution1.value }}">
+                {% else %}
+                <input type="text" class="form-control" id="facebook" name="{{ profile_form.institution1.name }}" value="">
+                {% endif %}
             </div>
 
             <div class="mb-3">
                 <label for="name_of_degree2" class="form-label">name_of_degree2</label>
+                {% if profile_form.name_of_degree2.value %}
                 <input type="text" class="form-control" id="facebook" name="{{ profile_form.name_of_degree2.name }}" value="{{ profile_form.name_of_degree2.value }}">
+                {% else %}
+                <input type="text" class="form-control" id="facebook" name="{{ profile_form.name_of_degree2.name }}" value="">
+                {% endif %}
             </div>
 
             <div class="mb-3">
                 <label for="institution2" class="form-label">institution2</label>
+                {% if profile_form.institution2.value %}
                 <input type="text" class="form-control" id="facebook" name="{{ profile_form.institution2.name }}" value="{{ profile_form.institution2.value }}">
+                {% else %}
+                <input type="text" class="form-control" id="facebook" name="{{ profile_form.institution2.name }}" value="">
+                {% endif %}
             </div>
 
             <div class="mb-3">
                 <label for="name_of_degree3" class="form-label">name_of_degree3</label>
+                {% if profile_form.name_of_degree3.value %}
                 <input type="text" class="form-control" id="facebook" name="{{ profile_form.name_of_degree3.name }}" value="{{ profile_form.name_of_degree3.value }}">
+                {% else %}
+                <input type="text" class="form-control" id="facebook" name="{{ profile_form.name_of_degree3.name }}" value="">
+                {% endif %}
             </div>
 
             <div class="mb-3">
                 <label for="institution3" class="form-label">institution3</label>
+                {% if profile_form.institution3.value %}
                 <input type="text" class="form-control" id="facebook" name="{{ profile_form.institution3.name }}" value="{{ profile_form.institution3.value }}">
+                {% else %}
+                <input type="text" class="form-control" id="facebook" name="{{ profile_form.institution3.name }}" value="">
+                {% endif %}
             </div>
-
 
             <button type="submit" class="btn btn-primary">Save Changes</button>
         </form>

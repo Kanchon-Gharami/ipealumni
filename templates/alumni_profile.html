@@ -110,9 +110,15 @@
                     <hr>
 
                     <h5 class="card-title">Higher Education</h5>
-                    <li>{{ profile.name_of_degree1 }} from {{ profile.institution1 }}</li>
-                    <li>{{ profile.name_of_degree2 }} from {{ profile.institution2 }}</li>
-                    <li>{{ profile.name_of_degree3 }} from {{ profile.institution3 }}</li>
+                    {% if profile.name_of_degree1 %}
+                        <li>{{ profile.name_of_degree1 }} from {{ profile.institution1 }}</li>
+                    {% endif %}
+                    {% if profile.name_of_degree2 %}
+                        <li>{{ profile.name_of_degree2 }} from {{ profile.institution2 }}</li>
+                    {% endif %}
+                    {% if profile.name_of_degree3 %}
+                        <li>{{ profile.name_of_degree3 }} from {{ profile.institution3 }}</li>
+                    {% endif %}
                 </div>
             </div>
         </div>
