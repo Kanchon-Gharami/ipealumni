@@ -26,22 +26,27 @@
 
   <div class="row mt-4 d-flex justify-content-center">
     {% for profile in page_obj %}
-    <div class="col-lg-4 col-md-6 col-sm-12 mb-4 mx-2 alumni_card">
+    <div class="col-lg-3 col-md-6 col-sm-12 mb-2 mx-2 alumni_card">
         <img src="{{ profile.profile_picture.url }}" alt="{{ profile.user.name }}" class="speaker_img d-flex">
         <div class="px-3 py-2">
-            <p class="notice_headline m-0">{{ profile.user.name }}</p>
-            <p class="m-0 fs-15 fw-700 text-blue my-1">{{ profile.series }} Series</p>
-            <p class="fs-15 my-1">
-                {{ profile.current_position }} at {{ profile.current_organization }}
-            </p>
-            <div class="row m-0 mt-4 mb-3">
-                {% if user.is_authenticated %}
-                    <a href="{% url 'app:alumni_profile' pk=profile.user.pk %}" class="btn btn-outline-primary bg-outline-blue mx-auto px-4">View full profile</a>
+          {% if user.is_authenticated %}
+            <a href="{% url 'app:alumni_profile' pk=profile.user.pk %}" class="notice_headline m-0">{{ profile.user.name }}</a>
+          {% else %}
+            <a href="{% url 'app:alumni_profile' pk=profile.user.pk %}" class="notice_headline m-0">{{ profile.user.name }}</a>
+          {% endif %}
+              
+            <p class="m-0 fs-15 fw-700 text-grey my-1">Series: {{ profile.series }}</p>
+            <p class="m-0 fs-15 fw-700 my-1">Membership Category: </p>
+            <p class="fs-15 my-1">{{ profile.current_position }} </p>
+            <p class="fs-15 my-1">{{ profile.current_organization }}</p>
+            <div class="row m-0 mt-1 mb-3">
+                <!-- {% if user.is_authenticated %}
+                    <a href="{% url 'app:alumni_profile' pk=profile.user.pk %}" class="btn btn-sm btn-outline-primary bg-outline-blue mx-auto px-4">View full profile</a>
                 {% else %}
-                    <button type="button" class="btn btn-outline-primary bg-outline-blue mx-auto mx-1 px-4" data-toggle="modal" data-target="#loginModal">
-                        <i class="fas fa-sign-in-alt" style="margin-right: 5px;"></i> Login to View Profile
+                    <button type="button" class="btn btn-sm btn-outline-primary bg-outline-blue mx-auto mx-1 px-4" data-toggle="modal" data-target="#loginModal">
+                        <i class="fas fa-sign-in-alt" style="margin-right: 5px;"></i> Login to View
                     </button>
-                {% endif %}
+                {% endif %} -->
             </div>
         </div>
     </div>

@@ -58,7 +58,7 @@ class Profile(models.Model):
 
     # attribute fields
     user = models.OneToOneField(MyCustomUser, on_delete=models.CASCADE, related_name='profile')
-    roll = models.IntegerField(validators=[MinValueValidator(1000000), MaxValueValidator(9999999)])
+    roll = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(9999999)])
     series = models.CharField(max_length=4, choices=SERIES_CHOICES)
     phone_number = models.CharField(
         validators=[phone_regex],

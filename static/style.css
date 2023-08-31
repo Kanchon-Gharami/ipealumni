@@ -686,15 +686,24 @@ a{
 }
 
 .alumni_card{
-    border-bottom: 3px solid #17449e;
+    /* border-bottom: 3px solid #17449e; */
 }
 
 .alumni_card:hover{
-    transition: all .7s ease-in-out;
+    /* transition: all .7s ease-in-out;
     border-top: 1px solid #858687;
     border-left: 1px solid #858687;
     border-right: 1px solid #858687;
+    border-bottom: 1px solid #858687; */
 }
+
+.alumni_card .speaker_img{
+    height: 180px;
+    width: 100%;           /* Width can vary */
+    object-fit: cover;     /* Cover the entire container */
+    object-position: center; /* Center the image */
+}
+
 
 
 .no_card{
