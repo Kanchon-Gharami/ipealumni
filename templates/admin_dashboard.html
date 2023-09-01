@@ -5,46 +5,77 @@
 {% block content %}
 
 
-
-<div class="row m-0 py-3 d-flex justify-content-center">
-  <div class="col-xl-2 mx-2 bg-light">
-      <!-- Sidebar toggler -->
-      <button id="sidebar-toggler" class="d-xl-none" type="button">
-          <i class="fas fa-bars"></i>
-      </button>
-
-      <!-- Sidebar content -->
-      <ul class="sidebar-collapse collapse d-none d-xl-block" id="sidebarNav">
-          <a href="">
-              <li>ABC</li>
-          </a>
-          <a href="">
-              <li>DEF</li>
-          </a>
-          <a href="">
-              <li>GHI</li>
-          </a>
-      </ul>
-  </div>
-  <div class="col-xl-8 mx-2 bg-light">
-      Lorem ipsum...
-  </div>
-</div>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-      const sidebarToggler = document.getElementById("sidebar-toggler");
-      const sidebarNav = document.getElementById("sidebarNav");
+<div class="container-fluid my-5">
+    <div class="row m-0">
       
-      if(sidebarToggler && sidebarNav) {
-          sidebarToggler.addEventListener("click", function() {
-              sidebarNav.classList.toggle('d-none');
-              sidebarNav.classList.toggle('d-xl-block');
-          });
-      } else {
-          console.log("Either sidebarToggler or sidebarNav is null");
-      }
-  });
-</script>
+      <!-- Sidebar -->
+      <nav id="sidebarNav" class="col-md-3 col-lg-2 d-md-block sidebar collapse custom-sidebar p-0 px-3">
+        <ul class="nav flex-column bg-light">
+          <li class="nav-item">
+            <a class="nav-link active" href="#riia">About RIAA</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#mission">Mission</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Vision</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Alumni Constitution</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Executive Committee</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contacts</a>
+          </li>
+        </ul>
+      </nav>
+  
+      <!-- Sidebar Toggler and Content -->
+      <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4 sidebar_show_content">
+        <!-- Sidebar toggler -->
+        <button id="sidebar-toggler" class="d-md-none btn btn-light" type="button" data-toggle="collapse" data-target="#sidebarNav" aria-controls="sidebarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars"> <span class="mx-2">About Menu</span> </i>
+        </button>
+  
+        <!-- Content -->
+        <div id="riia">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Perferendis excepturi nesciunt consequuntur praesentium vero neque dolorem! 
+            Ab nihil consequatur architecto dolorem deleniti sed odit tenetur, 
+            enim doloribus dolorum asperiores nam!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Perferendis excepturi nesciunt consequuntur praesentium vero neque dolorem! 
+            Ab nihil consequatur architecto dolorem deleniti sed odit tenetur, 
+            enim doloribus dolorum asperiores nam!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Perferendis excepturi nesciunt consequuntur praesentium vero neque dolorem! 
+            Ab nihil consequatur architecto dolorem deleniti sed odit tenetur, 
+            enim doloribus dolorum asperiores nam!
+        </div>
+        <div style="height: 800px;"></div>
+        <div id="mission">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Perferendis excepturi nesciunt consequuntur praesentium vero neque dolorem! 
+            Ab nihil consequatur architecto dolorem deleniti sed odit tenetur, 
+            enim doloribus dolorum asperiores nam!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Perferendis excepturi nesciunt consequuntur praesentium vero neque dolorem! 
+            Ab nihil consequatur architecto dolorem deleniti sed odit tenetur, 
+            enim doloribus dolorum asperiores nam!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Perferendis excepturi nesciunt consequuntur praesentium vero neque dolorem! 
+            Ab nihil consequatur architecto dolorem deleniti sed odit tenetur, 
+            enim doloribus dolorum asperiores nam!
+        </div>
+
+      </div>
+    </div>
+</div>
+  
+  <div class="clear"></div>
+
+
 
 {% endblock %}

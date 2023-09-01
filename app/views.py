@@ -209,3 +209,9 @@ def all_alumni(request):
 def admin_dashboard(request):
     context = {}
     return render(request, 'admin_dashboard.html', context)
+
+
+
+def about(request):
+    context = {}
+    return render(request, 'about.html', context)

@@ -11,6 +11,8 @@ urlpatterns = [
     path('logout/', logout_view, name='logout'),
     path('alumni_profile/<int:pk>/', alumni_profile, name='alumni_profile'),
     path('edit_profile/', edit_profile, name='edit_profile'),
+    
+    path('about/', about, name='about'),
     path('all_alumni/', all_alumni, name='all_alumni'),
 
     path('admin_dashboard/', admin_dashboard, name='admin_dashboard'),

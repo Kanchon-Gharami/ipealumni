@@ -62,16 +62,16 @@
                   <a class="nav-link" href="{% url 'app:index' %}">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item dropdown mx-2">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="{% url 'app:about' %}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         About
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">About RIAA</a>
-                        <a class="dropdown-item" href="#">Mission</a>
-                        <a class="dropdown-item" href="#">Vision</a>
-                        <a class="dropdown-item" href="#">Alumni Constitution</a>
-                        <a class="dropdown-item" href="#">Executive Committee</a>
-                        <a class="dropdown-item" href="#">Contacts</a>
+                        <a class="dropdown-item" href="{% url 'app:about' %}#riia">About RIAA</a>
+                        <a class="dropdown-item" href="{% url 'app:about' %}#mission_vision">Mission</a>
+                        <a class="dropdown-item" href="{% url 'app:about' %}#mission_vision">Vision</a>
+                        <a class="dropdown-item" href="{% url 'app:about' %}">Alumni Constitution</a>
+                        <a class="dropdown-item" href="{% url 'app:about' %}#committee">Executive Committee</a>
+                        <a class="dropdown-item" href="{% url 'app:about' %}#contacts">Contacts</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown mx-2">
@@ -85,15 +85,21 @@
                       <a class="dropdown-item" href="#">Scholarship</a>
                     </div>
                 </li>
-                <li class="nav-item dropdown mx-2">
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Events
+                      Events
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Upcoming Event</a>
-                        <a class="dropdown-item" href="#">Past Events</a>
+                      <a class="dropdown-item dropdown-toggle" href="#" id="nestedDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Upcoming Events <i class="fas fa-angle-right" style="margin-top: 5px;"></i> 
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="nestedDropdown">
+                        <a class="dropdown-item" href="#">1st Reunion</a>
+                      </div>
+                      <a class="dropdown-item" href="#">Past Events</a>
                     </div>
-                </li>
+                  </li>
+                               
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'app:all_alumni' %}">Alumni Directory</a>
                 </li>
@@ -229,9 +235,9 @@
                     <ul class="footer_list p-0">
                         <li><a href="https://www.ruet.ac.bd/">RUET</a></li>
                         <li><a href="http://www.ipe.ruet.ac.bd/">IPE RUET</a></li>
-                        <li><a href="">Link Three</a></li>
-                        <li><a href="">Link Four</a></li>
-                        <li><a href="">Link Five</a></li>
+                        <li><a href="{% url 'app:all_alumni' %}">IPE Alumni</a></li>
+                        <li><a href="https://ugc.gov.bd/">UGC</a></li>
+                        <li><a href="https://moedu.gov.bd/">MoE</a></li>
                     </ul>
                 </div>
                 <div class="col-xl-3 mx-2">
