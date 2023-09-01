@@ -5,16 +5,23 @@ from django.contrib.auth import authenticate, login, logout
 from django.conf import settings
 from django.db import transaction
 from django.core.paginator import Paginator
+from django.db.models import Q
+from django.http import JsonResponse, HttpResponse
+from django.http import FileResponse, Http404
+from datetime import datetime
 import os
+import io
+import zipfile
+import pandas as pd
 from PIL import Image
 from io import BytesIO
 from django.core.files import File
-from django.http import JsonResponse
+from django.core.validators import validate_integer
 from django.core.paginator import Paginator
-from datetime import datetime
 
-from .models import MyCustomUser, Profile
-from .forms import ProfileForm, UserForm, ProfilePictureForm
+from django.contrib.auth import get_user_model
+from .models import MyCustomUser, Profile, ReunionRegistration
+from .forms import ProfileForm, UserForm
 from .decorators import user_is_alumni, user_is_admin, user_is_superuser
 from django.contrib.auth.decorators import login_required
 
@@ -38,8 +45,7 @@ def signin_view(request):
             if user.is_alumni:
                 return redirect('app:alumni_profile', pk=user.pk)
             elif user.is_admin:
-                #return redirect('app:admin_dashboard')
-                return redirect('app:index') 
+                return redirect('app:admin_dashboard') 
             elif user.is_superuser:
                 return redirect('/admin/') 
         else:
@@ -189,6 +195,38 @@ def edit_profile(request):
     return render(request, 'edit_profile.html', {'user_form': user_form, 'profile_form': profile_form})
 
 
+def admin_signup(request):
+    context = {}
+    error_message = ''
+    
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        name = request.POST.get('name')
+        password = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_password')
+
+        if password == confirm_password:
+            try:
+                with transaction.atomic():
+                    User = get_user_model()
+                    user = User.objects.create_user(
+                        username=username,
+                        email=email,
+                        name=name,
+                        password=password
+                    )
+                    return redirect('app:index')  
+            except Exception as e:
+                error_message = str(e)
+        else:
+            error_message = 'Passwords do not match'
+        
+    context['error_message'] = error_message
+    return render(request, 'admin_signup.html', context)
+
+
+
         
 def all_alumni(request):
     years = [str(year) for year in range(2005, 2017)]
@@ -206,12 +244,112 @@ def all_alumni(request):
     return render(request, 'all_alumni.html', {'years': years, 'page_obj': page_obj, 'series_filter': series_filter})
 
 
+
+
+@user_is_admin
 def admin_dashboard(request):
-    context = {}
+    search_query = request.GET.get('search', '')
+    if search_query:
+        reunion_registrations = ReunionRegistration.objects.filter(
+            Q(name__icontains=search_query) | 
+            Q(roll_number__icontains=search_query)
+        )
+    else:
+        reunion_registrations = ReunionRegistration.objects.all()
+
+    paginator = Paginator(reunion_registrations, 10) # Show 10 entries per page
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'page_obj': page_obj,
+        'search_query': search_query,
+    }
     return render(request, 'admin_dashboard.html', context)
+
+
+@user_is_admin
+def export_excel(request):
+    queryset = ReunionRegistration.objects.all()
+    df = pd.DataFrame.from_records(queryset.values(
+        'name', 'roll_number', 'email', 'number_of_guests', 'driver', 'total_amount_paid', 'is_payment_varified', 'upload_payment_slip'
+    ))
+    output = BytesIO()
+    with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
+        df.to_excel(writer, index=False, sheet_name='Sheet1')
+    output.seek(0)
+    
+    current_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    zip_filename = f"ReunionRegistrations_{current_time}.zip"
+
+    s = io.BytesIO()
+    with zipfile.ZipFile(s, 'w') as zipf:
+        zipf.writestr('ReunionRegistrations.xlsx', output.getvalue())
+        
+        image_folder_path = 'Media/payment_slips/'
+        for obj in ReunionRegistration.objects.all():
+            image_path = os.path.join(image_folder_path, os.path.basename(obj.upload_payment_slip.name))
+            if os.path.exists(image_path):
+                with open(image_path, 'rb') as f:
+                    zipf.writestr(f'payment_slips/{os.path.basename(image_path)}', f.read())
+
+    response = HttpResponse(s.getvalue(), content_type='application/zip')
+    response['Content-Disposition'] = f'attachment; filename={zip_filename}'
+    
+    return response
+
+
+
+
 
 
 
 def about(request):
+    return render(request, 'about.html')
+
+
+def first_reunion(request):
     context = {}
-    return render(request, 'about.html', context)
+    return render(request, 'first_reunion.html', context)
+
+
+
+def first_reunion_registration(request):
+    context = {}
+    error_message = ''
+    registration_successful = False
+    
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        roll_number = request.POST.get('roll_number')
+        number_of_guests = request.POST.get('number_of_guests')
+        driver = request.POST.get('driver')
+        total_amount_paid = request.POST.get('total_amount_paid')
+        upload_payment_slip = request.FILES.get('upload_payment_slip')
+
+        try:       
+            with transaction.atomic():
+                validate_integer(roll_number)
+                validate_integer(number_of_guests)
+                validate_integer(driver)
+                validate_integer(total_amount_paid)
+                
+                new_registration = ReunionRegistration(
+                    name=name,
+                    email=email,
+                    roll_number=int(roll_number),
+                    number_of_guests=int(number_of_guests),
+                    driver=int(driver),
+                    total_amount_paid=int(total_amount_paid),
+                    upload_payment_slip=upload_payment_slip
+                )
+                new_registration.save()
+                registration_successful = True  # set flag to true if saved successfully
+        except Exception as e:
+            error_message = str(e)
+
+    context['error_message'] = error_message
+    context['registration_successful'] = registration_successful
+    return render(request, 'first_reunion_registration.html', context)

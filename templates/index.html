@@ -155,7 +155,7 @@
                             </div>
                         </div>
                         <div class="col-xl-4 text-center mt-3">
-                            <a href="#" class="btn btn-primary btn-blue px-4 py-2 fs-18">Join Now</a>
+                            <a href="{% url 'app:first_reunion' %}" class="btn btn-primary btn-blue px-4 py-2 fs-18">Join Now</a>
                         </div>
                     </div>
                 </div>
@@ -186,7 +186,7 @@
 <script>
     $('.solution-container.reunion_redirect').on('click', function(e) {
         if (!$(e.target).hasClass('btn')) {
-            window.location.href = 'https://www.ipe.ruet.ac.bd/';
+            window.location.href = '{% url 'app:first_reunion' %}';
         }
     });
 </script>

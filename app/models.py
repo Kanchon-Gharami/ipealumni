@@ -90,13 +90,25 @@ class Profile(models.Model):
         return f"{self.user.name}'s Profile"
     
 
-'''    
-class HigherEducation(models.Model):
-    profile = models.ForeignKey(Profile, related_name='higher_education', on_delete=models.CASCADE)
-    name_of_degree = models.CharField(max_length=100)
-    institution = models.CharField(max_length=100)
-    
+class ReunionRegistration(models.Model):
+    name = models.CharField(max_length=255, null=False, blank=False)
+    email = models.EmailField(_('email address'), unique=True, blank=False, null=False)
+    roll_number = models.IntegerField(
+        null=False, blank=False,
+        validators=[MinValueValidator(0), MaxValueValidator(9999999)]
+    )
+    number_of_guests = models.IntegerField(
+        null=False, blank=False,
+        validators=[MinValueValidator(1), MaxValueValidator(10)]
+    )
+    driver = models.IntegerField(
+        null=False, blank=False,
+        validators=[MinValueValidator(1), MaxValueValidator(3)]
+    )
+    total_amount_paid = models.IntegerField(null=False, blank=False)
+    upload_payment_slip = models.ImageField(upload_to='payment_slips/', null=False, blank=False)
+    is_payment_varified = models.BooleanField(default=False)
+
     def __str__(self):
-        return f"{self.name_of_degree} from {self.institution}"
-    
-'''
+        return self.name
+

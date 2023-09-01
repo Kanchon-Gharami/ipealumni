@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="container-fluid my-5">
+    <div class="row m-0">
+      
+      <!-- Sidebar -->
+      <nav id="sidebarNav" class="col-md-3 col-lg-2 d-md-block sidebar collapse position-fixed custom-sidebar p-0 px-3">
+        <ul class="nav flex-column bg-light">
+          <li class="nav-item">
+            <a class="nav-link active" href="#brochure">Brochure</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#registration_process">How to Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">Payment Process</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#registration_process">Registration for 1st Reunion</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#committee">Organizing Committee</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#committee">Sub Comittee</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#gallary">Photo Gallary</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#accommodation ">Accommodation</a>
+          </li>
+        </ul>
+      </nav>
+  
+      <!-- Sidebar Toggler and Content -->
+      <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4 sidebar_show_content">
+        <!-- Sidebar toggler -->
+        <button id="sidebar-toggler" class="d-md-none btn btn-light" type="button" data-toggle="collapse" data-target="#sidebarNav" aria-controls="sidebarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars"> <span class="mx-2">Toggle Menu</span> </i>
+        </button>
+  
+        <!-- Content -->
+        <div id="brochure">
+            <img src="{% static 'imgs/brochure.png' %}" alt="" class="col-xl-11 col-md-12 img-fluid d-flex brochure_img">
+        </div>
+        <div style="height: 80px;"></div>
+        <div id="registration_process">
+            <p class="my_title fs-20 fw-700 mb-4">
+                <span class="underline_span_left">How to Register</span>
+            </p>
+            <div class="row m-0 mt-5 fs-800">
+                <div class="col-xl-7 mx-auto pr-5">
+                    <div class="card">
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><i class="fas fa-user fa-fw mr-3"></i>Sign In into your account, for new member click Sign Up</li>
+                        <li class="list-group-item"><i class="fas fa-edit fa-fw mr-3"></i>Update your profile</li>
+                        <li class="list-group-item"><i class="fas fa-money-check-alt fa-fw mr-3"></i>Make payments <a href="" class="text-blue">(Click here to explore payment process)</a> for reunion using Bank Account, Bkash, Rocket or Nagad</li>
+                        <li class="list-group-item"><i class="fas fa-map-signs fa-fw mr-3"></i>Goto reunion page (Events > Upcoming Event > 1st Reunion)</li>
+                        <li class="list-group-item"><i class="fas fa-mouse-pointer fa-fw mr-3"></i>Click on <span class="fw-800"> Registration for 1st Reunion </span></li>
+                        <li class="list-group-item"><i class="fas fa-upload fa-fw mr-3"></i>Give necessary information and upload payment slip (also keep a copy for yourself)</li>
+                        <li class="list-group-item"><i class="fas fa-check-circle fa-fw mr-3"></i>After admin approval (for payment confirmation) successful registration you will get a confirmation mail</li>
+                      </ul>
+                    </div>
+                </div>
+                
+                <div class="col-xl-5 mx-auto">
+                    <div class="card d-flex justify-content-center py-4">
+                        <p class="my_title text-center fs-24">
+                            <span class="underline_span_center" style="text-transform: none;">First Reunion & IPE Day</span>
+                        </p>
+                        <div class="my-4">
+                            <img src="{% static 'imgs/reg_influence1.png' %}" alt="" class="reg_influence d-flex mx-auto">
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <a href="{% url 'app:first_reunion_registration' %}" class="btn btn-primary btn-blue px-4">Registration for 1st Reunion</a>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+
+
+
+        <div style="height: 80px;"></div>
+
+        <div class="" id="committee">
+            <p class="my_title mt-4 mb-4"><span class="underline_span_left">Organizing & Sub Committee, IPE Alumni, RUET</span></p>
+
+            <div class="table-responsive committee_table">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>Committee</th>
+                        <th>Role</th>
+                        <th>Name</th>
+                    </tr>
+                    
+                    <!-- ... Start: Organizing Committee ... -->
+                        <tr>
+                        <td>Organizing Committee </td>
+                        <td>Chairman</td>
+                        <td>Prof. Dr. Md. Mosharraf Hossain</td>
+                        </tr>
+                        <tr>
+                        <td>Organizing Committee </td>
+                        <td>Co-Chair</td>
+                        <td>Md. Ariful Islam</td>
+                        </tr>
+                        <tr>
+                        <td>Organizing Committee </td>
+                        <td>Member Secretary</td>
+                        <td>Dr. Md. Mohibul Islam (05)</td>
+                        </tr>
+                        <tr>
+                        <td>Organizing Committee </td>
+                        <td>Joint Secretary</td>
+                        <td>Md. Muzahidul Islam (06)</td>
+                        </tr>
+                        <tr>
+                        <td>Organizing Committee </td>
+                        <td>Treasurer</td>
+                        <td>Sonia Akhter (07)</td>
+                        </tr>
+                        <tr>
+                        <td>Organizing Committee </td>
+                        <td>Member</td>
+                        <td>Khairun Nahar (05)</td>
+                        </tr>
+                        <tr>
+                        <td>Organizing Committee </td>
+                        <td>Member</td>
+                        <td>Mohammad Mohi Uddin (05)</td>
+                        </tr>
+                        <tr>
+                        <td>Organizing Committee </td>
+                        <td>Member</td>
+                        <td>Fazlay Rabby (05)</td>
+                        </tr>
+                        <tr>
+                        <td>Organizing Committee </td>
+                        <td>Member</td>
+                        <td>Morshed Alam (05)</td>
+                        </tr>
+                        <tr>
+                        <td>Organizing Committee </td>
+                        <td>Member</td>
+                        <td>Bablu Chondro Roy (06)</td>
+                        </tr>
+                        <tr>
+                        <td>Organizing Committee </td>
+                        <td>Member</td>
+                        <td>Md. Asadujjaman (07)</td>
+                        </tr>
+                        <tr>
+                        <td>Organizing Committee </td>
+                        <td>Member</td>
+                        <td>Md. Rifat Alam Munna (07)</td>
+                        </tr>
+                        <tr>
+                        <td>Organizing Committee </td>
+                        <td>Member</td>
+                        <td>Raisul Islam Rose (08)</td>
+                        </tr>
+                        <tr>
+                        <td>Organizing Committee </td>
+                        <td>Member</td>
+                        <td>Shanjoy Chowdhury (08)</td>
+                        </tr>
+                        <tr>
+                        <td>Organizing Committee </td>
+                        <td>Member</td>
+                        <td>Md Shah Alam (08)</td>
+                        </tr>
+                        <tr>
+                        <td>Organizing Committee </td>
+                        <td>Member</td>
+                        <td>Md. Rakibul Islam (09)</td>
+                        </tr>
+                        <tr>
+                        <td>Organizing Committee </td>
+                        <td>Member</td>
+                        <td>Md. Shahidul Islam Saddam (09)</td>
+                        </tr>
+                        <tr>
+                        <td>Organizing Committee </td>
+                        <td>Member</td>
+                        <td>Md Nur Akter Jaman (09)</td>
+                        </tr>
+                        <tr>
+                        <td>Organizing Committee </td>
+                        <td>Member</td>
+                        <td>Akhtar Ferdous Khan Asif (09)</td>
+                        </tr>
+                        <tr>
+                        <td>Organizing Committee </td>
+                        <td>Member</td>
+                        <td>Nazmul Islam (09)</td>
+                        </tr>
+                        <tr>
+                        <td>Organizing Committee </td>
+                        <td>Member</td>
+                        <td>Salim Reza (09)</td>
+                        </tr>
+                        <tr>
+                        <td>Organizing Committee </td>
+                        <td>Member</td>
+                        <td>Md. Rasel Sarkar (10)</td>
+                        </tr>
+                        <tr>
+                        <td>Organizing Committee </td>
+                        <td>Member</td>
+                        <td>Md. Ahasan Habib (10)</td>
+                        </tr>
+                        <tr>
+                        <td>Organizing Committee </td>
+                        <td>Member</td>
+                        <td>Md. Sazol Ahmmed (11)</td>
+                        </tr>
+                        <tr>
+                        <td>Organizing Committee </td>
+                        <td>Member</td>
+                        <td>Md. Shadatuzzaman (11)</td>
+                        </tr>
+                        <tr>
+                        <td>Organizing Committee </td>
+                        <td>Member</td>
+                        <td>Md. Asifur Rahman (11)</td>
+                        </tr>
+                        <tr>
+                        <td>Organizing Committee </td>
+                        <td>Member</td>
+                        <td>Nusrath Zahan (12)</td>
+                        </tr>
+                        <tr>
+                        <td>Organizing Committee </td>
+                        <td>Member</td>
+                        <td>Md. Ariful Haque (13)</td>
+                        </tr>
+                    <!-- ... End: Organizing Committee ... -->
+            
+                    <!-- ... Start: Finance and Sponsor Sub-committee ... -->
+                    <tr>
+                        <td>Finance and Sponsor Sub-committee</td>
+                        <td>Chairman</td>
+                        <td>Fazlay Rabby (05)</td>
+                    </tr>
+                    <tr>
+                        <td>Finance and Sponsor Sub-committee</td>
+                        <td>Member Secretary</td>
+                        <td>Bablu Chondro Roy (06)</td>
+                    </tr>
+                    <tr>
+                        <td>Finance and Sponsor Sub-committee</td>
+                        <td>Member</td>
+                        <td>Sonia Akhter (07)</td>
+                    </tr>
+                    <tr>
+                        <td>Finance and Sponsor Sub-committee</td>
+                        <td>Member</td>
+                        <td>Md. Mamun Reza Choudhury (06)</td>
+                    </tr>
+                    <tr>
+                        <td>Finance and Sponsor Sub-committee</td>
+                        <td>Member</td>
+                        <td>Umme Aftahaune Mohana (08)</td>
+                    </tr>
+                    <tr>
+                        <td>Finance and Sponsor Sub-committee</td>
+                        <td>Member</td>
+                        <td>Md. Sohanur Rahman (08)</td>
+                    </tr>
+                    <tr>
+                        <td>Finance and Sponsor Sub-committee</td>
+                        <td>Member</td>
+                        <td>Md. Ripon Hossain (09)</td>
+                    </tr>
+                    <tr>
+                        <td>Finance and Sponsor Sub-committee</td>
+                        <td>Member</td>
+                        <td>Ahmed Sobhan Abir (14)</td>
+                    </tr>
+                    <tr>
+                        <td>Finance and Sponsor Sub-committee</td>
+                        <td>Member</td>
+                        <td>Motiur Rahman (15)</td>
+                    </tr>
+                    <!-- ... End: Finance and Sponsor Sub-committee ... -->
+
+                    <!-- ... Start: Advertisement and Publicity Sub-committee ... -->
+                    <tr>
+                        <td>Advertisement and Publicity Sub-committee</td>
+                        <td>Chairman</td>
+                        <td>Md. Shahidul Islam Saddam (09)</td>
+                    </tr>
+                    <tr>
+                        <td>Advertisement and Publicity Sub-committee</td>
+                        <td>Member Secretary</td>
+                        <td>Md. Ahasan Habib (10)</td>
+                    </tr>
+                    <tr>
+                        <td>Advertisement and Publicity Sub-committee</td>
+                        <td>Member</td>
+                        <td>Khan Mohaimanul Islam (10)</td>
+                    </tr>
+                    <tr>
+                        <td>Advertisement and Publicity Sub-committee</td>
+                        <td>Member</td>
+                        <td>Md. Ariful Haque (13)</td>
+                    </tr>
+                    <tr>
+                        <td>Advertisement and Publicity Sub-committee</td>
+                        <td>Member</td>
+                        <td>Sharmin Akhter Diba (11)</td>
+                    </tr>
+                    <tr>
+                        <td>Advertisement and Publicity Sub-committee</td>
+                        <td>Member</td>
+                        <td>Mir Abdur Rahim (12)</td>
+                    </tr>
+                    <tr>
+                        <td>Advertisement and Publicity Sub-committee</td>
+                        <td>Member</td>
+                        <td>Abid Shahriyar (15)</td>
+                    </tr>
+                    <tr>
+                        <td>Advertisement and Publicity Sub-committee</td>
+                        <td>Member</td>
+                        <td>Md. Raquibul Haque (16)</td>
+                    </tr>
+                    <tr>
+                        <td>Advertisement and Publicity Sub-committee</td>
+                        <td>Member</td>
+                        <td>Maidul Islam Sakib (16)</td>
+                    </tr>
+                    <!-- ... End: Advertisement and Publicity Sub-committee ... -->
+
+                    <!-- ... Start: Welcome and Reception Sub-committee ... -->
+                    <tr>
+                        <td>Welcome and Reception Sub-committee</td>
+                        <td>Chairman</td>
+                        <td>Md. Rakibul Islam (09)</td>
+                    </tr>
+                    <tr>
+                        <td>Welcome and Reception Sub-committee</td>
+                        <td>Member Secretary</td>
+                        <td>Shuvro Prasad Ray (11)</td>
+                    </tr>
+                    <tr>
+                        <td>Welcome and Reception Sub-committee</td>
+                        <td>Member</td>
+                        <td>Abu Faisal (13)</td>
+                    </tr>
+                    <!-- Additional rows for Welcome and Reception Sub-committee -->
+                    <tr>
+                        <td>Welcome and Reception Sub-committee</td>
+                        <td>Member</td>
+                        <td>Tahjeeb Islam Prantik (14)</td>
+                    </tr>
+                    <tr>
+                        <td>Welcome and Reception Sub-committee</td>
+                        <td>Member</td>
+                        <td>Nabila Khayer (16)</td>
+                    </tr>
+                    <tr>
+                        <td>Welcome and Reception Sub-committee</td>
+                        <td>Member</td>
+                        <td>Nagib Sarfaraj (16)</td>
+                    </tr>
+                    <tr>
+                        <td>Welcome and Reception Sub-committee</td>
+                        <td>Member</td>
+                        <td>Maidul Islam Sakib (16)</td>
+                    </tr>
+                    <tr>
+                        <td>Welcome and Reception Sub-committee</td>
+                        <td>Member</td>
+                        <td>Armin Ali (16)</td>
+                    </tr>
+                    <!-- ... End: Welcome and Reception Sub-committee ... -->
+                    
+                    <!-- ... Start: Event Management Sub-committee ... -->
+                    <tr>
+                        <td>Event Management Sub-committee</td>
+                        <td>Chairman</td>
+                        <td>Khairun Nahar (05)</td>
+                    </tr>
+                    <tr>
+                        <td>Event Management Sub-committee</td>
+                        <td>Member Secretary</td>
+                        <td>Nazmul Islam (09)</td>
+                    </tr>
+                    <tr>
+                        <td>Event Management Sub-committee</td>
+                        <td>Member</td>
+                        <td>Ahsanul Haque Porash (12)</td>
+                    </tr>
+                    <!-- Additional rows for Event Management Sub-committee -->
+                    <tr>
+                        <td>Event Management Sub-committee</td>
+                        <td>Member</td>
+                        <td>Md. Monzurul Islam (12)</td>
+                    </tr>
+                    <tr>
+                        <td>Event Management Sub-committee</td>
+                        <td>Member</td>
+                        <td>Md. Al Imran (12)</td>
+                    </tr>
+                    <tr>
+                        <td>Event Management Sub-committee</td>
+                        <td>Member</td>
+                        <td>Md. Ashique Rezwan (14)</td>
+                    </tr>
+                    <tr>
+                        <td>Event Management Sub-committee</td>
+                        <td>Member</td>
+                        <td>Md. Rafiul Islam Fahim (15)</td>
+                    </tr>
+                    <tr>
+                        <td>Event Management Sub-committee</td>
+                        <td>Member</td>
+                        <td>Md. Mojibur Rahman (15)</td>
+                    </tr>
+                    <tr>
+                        <td>Event Management Sub-committee</td>
+                        <td>Member</td>
+                        <td>Rakibul Hasan (15)</td>
+                    </tr>
+                    <tr>
+                        <td>Event Management Sub-committee</td>
+                        <td>Member</td>
+                        <td>Md. Rasel Sarkar (10)</td>
+                    </tr>
+                    <!-- ... End: Event Management Sub-committee ... -->
+
+                    <!-- ... Start: Food Management Sub-committee ... -->
+                    <tr>
+                        <td>Food Management Sub-committee</td>
+                        <td>Chairman</td>
+                        <td>Md. Shah Alam (08)</td>
+                    </tr>
+                    <tr>
+                        <td>Food Management Sub-committee</td>
+                        <td>Member Secretary</td>
+                        <td>Salim Reza (08)</td>
+                    </tr>
+                    <tr>
+                        <td>Food Management Sub-committee</td>
+                        <td>Member</td>
+                        <td>Suvro Proshad Roy (11)</td>
+                    </tr>
+                    <!-- Additional rows for Food Management Sub-committee -->
+                    <tr>
+                        <td>Food Management Sub-committee</td>
+                        <td>Member</td>
+                        <td>Md. Ariful Haque (13)</td>
+                    </tr>
+                    <tr>
+                        <td>Food Management Sub-committee</td>
+                        <td>Member</td>
+                        <td>S. M. Raihanul Alam Shefa (14)</td>
+                    </tr>
+                    <tr>
+                        <td>Food Management Sub-committee</td>
+                        <td>Member</td>
+                        <td>Md. Nazmul Hasan Sumon (15)</td>
+                    </tr>
+                    <!-- ... End: Food Management Sub-committee ... -->
+                    
+                    <!-- ... Start: Souvenir Sub-committee ... -->
+                    <tr>
+                        <td>Souvenir Sub-committee</td>
+                        <td>Chairman</td>
+                        <td>Akhtar Ferdous Khan Asif (09)</td>
+                    </tr>
+                    <tr>
+                        <td>Souvenir Sub-committee</td>
+                        <td>Member Secretary</td>
+                        <td>Md. Shadatuzzaman (11)</td>
+                    </tr>
+                    <tr>
+                        <td>Souvenir Sub-committee</td>
+                        <td>Member</td>
+                        <td>Md. Masum Mollah (13)</td>
+                    </tr>
+                    <!-- Additional rows for Souvenir Sub-committee -->
+                    <tr>
+                        <td>Souvenir Sub-committee</td>
+                        <td>Member</td>
+                        <td>Iftekhar Ahmed (15)</td>
+                    </tr>
+                    <tr>
+                        <td>Souvenir Sub-committee</td>
+                        <td>Member</td>
+                        <td>Fatema-Tuj-Johora (15)</td>
+                    </tr>
+                    <tr>
+                        <td>Souvenir Sub-committee</td>
+                        <td>Member</td>
+                        <td>Anika Bushra (16)</td>
+                    </tr>
+                    <tr>
+                        <td>Souvenir Sub-committee</td>
+                        <td>Member</td>
+                        <td>Md. Ariful Islam</td>
+                    </tr>
+                    <tr>
+                        <td>Souvenir Sub-committee</td>
+                        <td>Member</td>
+                        <td>Dr. Md. Mohibul Islam</td>
+                    </tr>
+                    <!-- ... End: Souvenir Sub-committee ... -->
+                    
+                    <!-- ... Start: Cultural and Sports Sub-committee ... -->
+                    <tr>
+                        <td>Cultural and Sports Sub-committee</td>
+                        <td>Chairman</td>
+                        <td>Md. Nur Akter Jaman (09)</td>
+                    </tr>
+                    <tr>
+                        <td>Cultural and Sports Sub-committee</td>
+                        <td>Member Secretary</td>
+                        <td>Md. Asifur Rahman (11)</td>
+                    </tr>
+                    <tr>
+                        <td>Cultural and Sports Sub-committee</td>
+                        <td>Member</td>
+                        <td>Sonia Akhter (07)</td>
+                    </tr>
+                    <!-- Additional rows for Cultural and Sports Sub-committee -->
+                    <tr>
+                        <td>Cultural and Sports Sub-committee</td>
+                        <td>Member</td>
+                        <td>Samiran Chakma (11)</td>
+                    </tr>
+                    <tr>
+                        <td>Cultural and Sports Sub-committee</td>
+                        <td>Member</td>
+                        <td>Md. Abu Sazzad (12)</td>
+                    </tr>
+                    <tr>
+                        <td>Cultural and Sports Sub-committee</td>
+                        <td>Member</td>
+                        <td>Ahmad Toufiq Jamaly (13)</td>
+                    </tr>
+                    <tr>
+                        <td>Cultural and Sports Sub-committee</td>
+                        <td>Member</td>
+                        <td>Md. Zamir Hossain (13)</td>
+                    </tr>
+                    <tr>
+                        <td>Cultural and Sports Sub-committee</td>
+                        <td>Member</td>
+                        <td>Md. Rokibul Hossein (14)</td>
+                    </tr>
+                    <tr>
+                        <td>Cultural and Sports Sub-committee</td>
+                        <td>Member</td>
+                        <td>Argha Sikder Saurav (15)</td>
+                    </tr>
+                    <!-- ... End: Cultural and Sports Sub-committee ... -->
+
+                    <!-- Health, Safety and Security Sub-committee -->
+                    <tr>
+                        <td>Health, Safety and Security Sub-committee</td>
+                        <td>Chairman</td>
+                        <td>Raisul Islam Rose (08)</td>
+                    </tr>
+                    <tr>
+                        <td>Health, Safety and Security Sub-committee</td>
+                        <td>Member Secretary</td>
+                        <td>Md. Ariful Haque (13)</td>
+                    </tr>
+                    <tr>
+                        <td>Health, Safety and Security Sub-committee</td>
+                        <td>Member</td>
+                        <td>Yunus Ar Rafi (13)</td>
+                    </tr>
+                    <tr>
+                        <td>Health, Safety and Security Sub-committee</td>
+                        <td>Member</td>
+                        <td>Shoaib Talukder (13)</td>
+                    </tr>
+                    <tr>
+                        <td>Health, Safety and Security Sub-committee</td>
+                        <td>Member</td>
+                        <td>Sohag Miah (16)</td>
+                    </tr>
+
+                    <!-- Constitution Formation Sub-committee -->
+                    <tr>
+                        <td>Constitution Formation Sub-committee</td>
+                        <td>Chairman</td>
+                        <td>Mohammad Mohi Uddin (05)</td>
+                    </tr>
+                    <tr>
+                        <td>Constitution Formation Sub-committee</td>
+                        <td>Member Secretary</td>
+                        <td>Md. Rasel Sarkar (10)</td>
+                    </tr>
+                    <tr>
+                        <td>Constitution Formation Sub-committee</td>
+                        <td>Member</td>
+                        <td>Md. Muzahidul Islam (06)</td>
+                    </tr>
+                    <tr>
+                        <td>Constitution Formation Sub-committee</td>
+                        <td>Member</td>
+                        <td>Bablu Chondro Roy (06)</td>
+                    </tr>
+                    <tr>
+                        <td>Constitution Formation Sub-committee</td>
+                        <td>Member</td>
+                        <td>Md. Nuruzzaman (07)</td>
+                    </tr>
+                    <tr>
+                        <td>Constitution Formation Sub-committee</td>
+                        <td>Member</td>
+                        <td>Debashis Roy (07)</td>
+                    </tr>
+                    <tr>
+                        <td>Constitution Formation Sub-committee</td>
+                        <td>Member</td>
+                        <td>Raisul Islam Rose (08)</td>
+                    </tr>
+                    <tr>
+                        <td>Constitution Formation Sub-committee</td>
+                        <td>Member</td>
+                        <td>Shanjoy Chowdhury (08)</td>
+                    </tr>
+                    <tr>
+                        <td>Constitution Formation Sub-committee</td>
+                        <td>Member</td>
+                        <td>Md. Shahidul Islam Saddam (09)</td>
+                    </tr>
+                    <tr>
+                        <td>Constitution Formation Sub-committee</td>
+                        <td>Member</td>
+                        <td>Akhtar Ferdous Khan Asif (09)</td>
+                    </tr>
+                    <tr>
+                        <td>Constitution Formation Sub-committee</td>
+                        <td>Member</td>
+                        <td>Sahab Uddin Selim (10)</td>
+                    </tr>
+                    <tr>
+                        <td>Constitution Formation Sub-committee</td>
+                        <td>Member</td>
+                        <td>Md. Asifur Rahman (11)</td>
+                    </tr>
+                    <tr>
+                        <td>Constitution Formation Sub-committee</td>
+                        <td>Member</td>
+                        <td>Md. Shadatuzzaman (11)</td>
+                    </tr>
+                    <tr>
+                        <td>Constitution Formation Sub-committee</td>
+                        <td>Member</td>
+                        <td>Mahmodur Rahman (16)</td>
+                    </tr>
+                    <tr>
+                        <td>Constitution Formation Sub-committee</td>
+                        <td>Member</td>
+                        <td>Abu Jafor Bin Shad (16)</td>
+                    </tr>
+
+                    <!-- Foreign Affair Sub-committee -->
+                    <tr>
+                        <td>Foreign Affair Sub-committee</td>
+                        <td>Chairman</td>
+                        <td>Morshed Alam (05)</td>
+                    </tr>
+                    <tr>
+                        <td>Foreign Affair Sub-committee</td>
+                        <td>Member Secretary</td>
+                        <td>Md. Asadujjaman (07)</td>
+                    </tr>
+                    <tr>
+                        <td>Foreign Affair Sub-committee</td>
+                        <td>Member</td>
+                        <td>Shahed Mahmud  (07)</td>
+                    </tr>
+                    <tr>
+                        <td>Foreign Affair Sub-committee</td>
+                        <td>Member</td>
+                        <td>Md. Sazol Ahmmad</td>
+                    </tr>
+                    <tr>
+                        <td>Foreign Affair Sub-committee</td>
+                        <td>Member</td>
+                        <td>Md. Aliahsan Bappy (07)</td>
+                    </tr>
+                    <tr>
+                        <td>Foreign Affair Sub-committee</td>
+                        <td>Member</td>
+                        <td>Md. Mashum Billal (08)</td>
+                    </tr>
+                    <tr>
+                        <td>Foreign Affair Sub-committee</td>
+                        <td>Member</td>
+                        <td>Sayed Rezwanul Islam (10)</td>
+                    </tr>
+                    <tr>
+                        <td>Foreign Affair Sub-committee</td>
+                        <td>Member</td>
+                        <td>Yeasir Mohammad Akib (10)</td>
+                    </tr>
+                    <tr>
+                        <td>Foreign Affair Sub-committee</td>
+                        <td>Member</td>
+                        <td>Md. Zahidul Islam (11)</td>
+                    </tr>
+                    <tr>
+                        <td>Foreign Affair Sub-committee</td>
+                        <td>Member</td>
+                        <td>Toukir Ahmed (12)</td>
+                    </tr>
+                    <tr>
+                        <td>Foreign Affair Sub-committee</td>
+                        <td>Member</td>
+                        <td>Tazrin Jahan Priyanka (12)</td>
+                    </tr>
+                    <tr>
+                        <td>Foreign Affair Sub-committee</td>
+                        <td>Member</td>
+                        <td>Sabhasachi Saha (14)</td>
+                    </tr>
+                    <tr>
+                        <td>Foreign Affair Sub-committee</td>
+                        <td>Member</td>
+                        <td>Md. Sazid Rahman (14)</td>
+                    </tr>
+                    <tr>
+                        <td>Foreign Affair Sub-committee</td>
+                        <td>Member</td>
+                        <td>Limon Saha (14)</td>
+                    </tr>
+
+                    <!-- Registration Sub-committee -->
+                    <tr>
+                        <td>Registration Sub-committee</td>
+                        <td>Chairman</td>
+                        <td>Md. Rakibul Islam (09)</td>
+                    </tr>
+                    <tr>
+                        <td>Registration Sub-committee</td>
+                        <td>Member Secretary</td>
+                        <td>Md. Rasel Sarkar (10)</td>
+                    </tr>
+                    <tr>
+                        <td>Registration Sub-committee</td>
+                        <td>Member</td>
+                        <td>Kazi Aseer Intisar Arnab (13)</td>
+                    </tr>
+                    <tr>
+                        <td>Registration Sub-committee</td>
+                        <td>Member</td>
+                        <td>Fuad Ahmed Chyon (15)</td>
+                    </tr>
+                    <tr>
+                        <td>Registration Sub-committee</td>
+                        <td>Member</td>
+                        <td>Zannatul Ferdous Mim (16)</td>
+                    </tr>
+                    <tr>
+                        <td>Registration Sub-committee</td>
+                        <td>Member</td>
+                        <td>Mahmodur Rahman (16)</td>
+                    </tr>                 
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div style="height: 80px;"></div>
+
+        <div id="gallary" class="reunion_gallary">
+            <p class="my_title fs-20 fw-700 mb-4">
+                <span class="underline_span_left">Gallary</span>
+            </p>
+            <div class="row mx-0 my-5 d-flex justify-content-center">
+                <div class="col-xl-4 reunion_gallary_card mt-2 mb-5 mx-auto" data-toggle="modal" data-target="#imageModal" onclick="showImage(this)">
+                    <div class="image-container">
+                      <img src="{% static 'imgs/test_g1.jpg' %}" alt="" class="speaker_img d-flex">
+                      <div class="image-overlay"></div>
+                      <button class="view-button btn btn-primary btn-blue">Click to View Image</button>
+                    </div>
+                    <div class="px-3 py-3">
+                      <p class="m-0">Caption of the picture1</p>
+                    </div>
+                </div>
+                <div class="col-xl-4 reunion_gallary_card mt-2 mb-5 mx-auto" data-toggle="modal" data-target="#imageModal" onclick="showImage(this)">
+                    <div class="image-container">
+                      <img src="{% static 'imgs/test_g2.jpg' %}" alt="" class="speaker_img d-flex">
+                      <div class="image-overlay"></div>
+                      <button class="view-button btn btn-primary btn-blue">Click to View Image</button>
+                    </div>
+                    <div class="px-3 py-3">
+                      <p class="m-0">Caption of the picture2</p>
+                    </div>
+                </div>
+                <div class="col-xl-4 reunion_gallary_card mt-2 mb-5 mx-auto" data-toggle="modal" data-target="#imageModal" onclick="showImage(this)">
+                    <div class="image-container">
+                      <img src="{% static 'imgs/test_g3.jpg' %}" alt="" class="speaker_img d-flex">
+                      <div class="image-overlay"></div>
+                      <button class="view-button btn btn-primary btn-blue">Click to View Image</button>
+                    </div>
+                    <div class="px-3 py-3">
+                      <p class="m-0">Caption of the picture3</p>
+                    </div>
+                </div>
+                
+                <div class="col-xl-4 reunion_gallary_card mt-2 mb-5 mx-auto" data-toggle="modal" data-target="#imageModal" onclick="showImage(this)">
+                    <div class="image-container">
+                      <img src="{% static 'imgs/test_g2.jpg' %}" alt="" class="speaker_img d-flex">
+                      <div class="image-overlay"></div>
+                      <button class="view-button btn btn-primary btn-blue">Click to View Image</button>
+                    </div>
+                    <div class="px-3 py-3">
+                      <p class="m-0">Caption of the picture1</p>
+                    </div>
+                </div>
+                <div class="col-xl-4 reunion_gallary_card mt-2 mb-5 mx-auto" data-toggle="modal" data-target="#imageModal" onclick="showImage(this)">
+                    <div class="image-container">
+                      <img src="{% static 'imgs/test_g3.jpg' %}" alt="" class="speaker_img d-flex">
+                      <div class="image-overlay"></div>
+                      <button class="view-button btn btn-primary btn-blue">Click to View Image</button>
+                    </div>
+                    <div class="px-3 py-3">
+                      <p class="m-0">Caption of the picture2</p>
+                    </div>
+                </div>
+                <div class="col-xl-4 reunion_gallary_card mt-2 mb-5 mx-auto" data-toggle="modal" data-target="#imageModal" onclick="showImage(this)">
+                    <div class="image-container">
+                      <img src="{% static 'imgs/test_g1.jpg' %}" alt="" class="speaker_img d-flex">
+                      <div class="image-overlay"></div>
+                      <button class="view-button btn btn-primary btn-blue">Click to View Image</button>
+                    </div>
+                    <div class="px-3 py-3">
+                      <p class="m-0">Caption of the picture3</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <!-- Modal for full screen image -->
+        <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imgModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title">Our Gallery</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <img id="modalImage" src="" alt="Image" class="img-fluid">
+                </div>
+            </div>
+            </div>
+        </div>
+        <script>
+            function showImage(element) {
+                const imageSrc = element.querySelector('.speaker_img').src;
+                const captionText = element.querySelector('p').textContent;
+                document.getElementById('modalImage').src = imageSrc;
+                document.querySelector('.modal-title').textContent = captionText;
+            }
+
+        </script>  
+
+
+        <div style="height: 80px;"></div>
+
+        <div id="accommodation" class="accommodation">
+            <p class="my_title fs-20 fw-700 mb-4">
+                <span class="underline_span_left">Accommodation</span>
+            </p>
+            <p class="mt-1">
+                Rajshahi offers a rich spectrum of accommodation options to cater to your varied needs, whether you're looking for luxury or affordability. For those seeking a premium stay, the city features three 4-star hotels: Grand River View, Hotel X, and Hotel Royal Raj, each providing luxurious rooms, top-notch amenities, and excellent service. Apart from these luxury options, Rajshahi is home to a variety of mid-range hotels and guesthouses that offer comfortable lodgings and basic amenities. For budget-conscious visitors, there are numerous smaller hotels and hostels scattered across the city. You can also explore short-term apartment rentals or opt for home-stay experiences to get a feel of local culture. With this diverse range of options, you're sure to find something that fits your preferences and budget.
+              </p>
+            <div class="row m-0 d-flex justify-content-center">
+                <div class="row">
+                    <!-- Grand River View Hotel -->
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img src="{% static 'imgs/grand_river_view.jpg' %}" class="card-img-top" alt="Grand River View">
+                            <div class="card-body">
+                                <h5 class="card-title">Grand River View</h5>
+                                <p class="card-text">Elegant rooms with panoramic views of the city.</p>
+                                <a href="https://www.facebook.com/grvhrajshahi" class="btn btn-primary btn-blue">Explore</a>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- Hotel X -->
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img src="{% static 'imgs/hotelX.jpg' %}" class="card-img-top" alt="Hotel X">
+                            <div class="card-body">
+                                <h5 class="card-title">Hotel X</h5>
+                                <p class="card-text">Modern amenities in a stylish setting. Also include a grand dinning.</p>
+                                <a href="https://www.facebook.com/HotelXRajshahi" class="btn btn-blue btn-primary">Explore</a>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- Hotel Royal Raj -->
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img src="{% static 'imgs/royal-raj-hotel-condominium.jpg' %}" class="card-img-top" alt="Hotel Royal Raj">
+                            <div class="card-body">
+                                <h5 class="card-title">Hotel Royal Raj</h5>
+                                <p class="card-text">Experience royal luxury in the heart of Rajshahi.</p>
+                                <a href="https://www.facebook.com/royalrajhotel" class="btn btn-blue btn-primary">Explore</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      </div>
+    </div>
+</div>
+
+</div>
+  <div class="clear"></div>
+
+
+
+{% endblock %}

@@ -4,3 +4,6 @@ from app.models import *
 
 admin.site.register(MyCustomUser)
 admin.site.register(Profile)
+admin.site.register(ReunionRegistration)
+
+
