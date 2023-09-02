@@ -18,10 +18,13 @@
             <a class="nav-link" href="#registration_process">How to Register</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">Payment Process</a>
+            <a class="nav-link" href="#payment_process">Payment Process</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#registration_process">Registration for 1st Reunion</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#program_schedule">Program Schedule</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#committee">Organizing Committee</a>
@@ -82,8 +85,143 @@
                         </div>
                     </div>
                 </div>
-            
             </div>
+        </div>
+
+        <div style="height: 80px;"></div>
+
+        <div class="payment_process_class" id="payment_process">
+            <p class="my_title mt-4 mb-4"><span class="underline_span_left">Payment Process</span></p>
+            <div class="payment-method">
+                <div class="card">
+                    <div class="card-header fw-700 fs-18 text-black">
+                        Payment method -1 (Bank)  <i class="fas fa-university"></i>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title fw-700">Bank Details</h5>
+                        <p class="card-text">
+                            <ul>
+                                <li>Bank Name: Rupali Bank Ltd., RUET Branch, Rajshahi</li>
+                                <li>A/C Name: IPE Alumni RUET</li>
+                                <li>A/C No: 3723010030019</li>
+                                <li>Routing No: 185812171</li>
+                                <li>BIC/SWIFT Code: RUPBBDDH</li>
+                            </ul>
+                        </p>
+                    </div>
+                </div>              
+            </div>
+
+            <div class="card">
+                <div class="card-header fw-700 fs-18 text-black">
+                    Payment method -2 (Rocket)  <i class="fas fa-rocket"></i>
+                </div>
+                <div class="card-body">
+                    <div class="row m-0">
+                        <div class="col-md-6 payment-method">
+                            <h5 class="card-title fw-700">Rocket App</h5>
+                            <p class="card-text">
+                                <ul>
+                                    <li>Log in to Rocket App.</li>
+                                    <li>Press On "Bill Pay" Option.</li>
+                                    <li>Enter "Biller ID" - xxxx</li>
+                                    <li>Enter Bill Number (Roll number)</li>
+                                    <li>Self/Other Account must be selected.</li>
+                                    <li>Enter Amount > Enter PIN > Pay Bill</li>
+                                    <li>Collect your payment slip (required for registration)</li>
+                                </ul>
+                            </p>
+                        </div>
+                        <div class="col-md-6 payment-method">
+                            <h5 class="card-title fw-700">Through dial *322#</h5>
+                            <p class="card-text">
+                                <ul>
+                                <li>Dial *322#</li>
+                                    <li>Press 1 and select "Bill Pay" Option.</li>
+                                    <li>Select your option</li>
+                                    <li>Select 1 (self registration).</li>
+                                    <li>Select 2 (for any other person)</li>
+                                    <li>Organisation name (Select – Other)</li>
+                                    <li>Enter Biller ID - xxxxx</li>
+                                    <li>Enter Bill Number (Roll number)</li>
+                                    <li>Enter Amount > Enter PIN</li>
+                                    <li>Preserve you TxnID (required for registration)</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="my-2 text-black">
+                <p>N/B: Domestic: Follow Method 1 or Method 2</p>
+                <p>Overseas: Method 1 Only.</p>
+            </div>
+
+        </div>
+
+        <div style="height: 80px;"></div>
+
+        <div class="" id="program_schedule">
+            <p class="my_title mt-4 mb-4"><span class="underline_span_left">Program Schedule</span></p>
+            <div class="row m-0">
+                <div class="col-xl-6 col-md-12 my-2">
+                <div class="custom-image-container" data-toggle="modal" data-target="#modal1">
+                    <img src="{% static 'imgs/Schedule-1.jpeg' %}" alt="Schedule 1" class="img-fluid">
+                    <div class="custom-overlay">
+                    <button type="button" class="btn btn-blue" data-toggle="modal" data-target="#modal1">Click for full screen</button>
+                    </div>
+                </div>
+                </div>
+                <div class="col-xl-6 col-md-12 my-2">
+                <div class="custom-image-container" data-toggle="modal" data-target="#modal2">
+                    <img src="{% static 'imgs/Schedule-2.jpeg' %}" alt="Schedule 2" class="img-fluid">
+                    <div class="custom-overlay">
+                    <button type="button" class="btn btn-blue" data-toggle="modal" data-target="#modal2">Click for full screen</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+          
+        <!-- Modal 1 -->
+        <div class="modal fade" id="modal1" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h5 class="modal-title">13th October Schedule</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <!-- Modal Body -->
+                    <div class="modal-body">
+                        <img src="{% static 'imgs/Schedule-1.jpeg' %}" alt="Schedule 1" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal 2 -->
+        <div class="modal fade" id="modal2" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h5 class="modal-title">14th October Schedule</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <!-- Modal Body -->
+                    <div class="modal-body">
+                        <img src="{% static 'imgs/Schedule-2.jpeg' %}" alt="Schedule 2" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 

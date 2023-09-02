@@ -29,7 +29,7 @@
     {% for profile in page_obj %}
       {% if user.is_authenticated %}
       <a href="{% url 'app:alumni_profile' pk=profile.user.pk %}" class="col-lg-3 col-md-6 col-sm-12 mb-2 mx-2 p-0 alumni_card">
-          <img src="{{ profile.profile_picture.url }}" alt="{{ profile.user.name }}" class="speaker_img d-flex m-0">
+          <img src="{{ profile.profile_picture.url }}" alt="{{ profile.user.name }}" class="speaker_img m-0">
           <div class="mx-2 px-3 py-2 fw-800 fs-22">
               <p class="m-0 text-blue">{{ profile.user.name }}</p>
             
@@ -41,7 +41,7 @@
       </a>
       {% else %}
         <a href="" class="col-lg-3 col-md-6 col-sm-12 mb-2 mx-2 p-0 alumni_card" data-toggle="modal" data-target="#loginModal" class="m-0">
-            <img src="{{ profile.profile_picture.url }}" alt="{{ profile.user.name }}" class="speaker_img d-flex m-0">
+            <img src="{{ profile.profile_picture.url }}" alt="{{ profile.user.name }}" class="speaker_img m-0">
             <div class="mx-2 px-3 py-2 fw-800 fs-22">
                 <p class="m-0 text-blue">{{ profile.user.name }}</p>
               
