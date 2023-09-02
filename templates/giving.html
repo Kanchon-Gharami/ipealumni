@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="container-fluid my-5">
+    <div class="row m-0">
+      
+      <!-- Sidebar -->
+      <nav id="sidebarNav" class="col-md-3 col-lg-2 d-md-block sidebar collapse position-fixed custom-sidebar p-0 px-3">
+        <ul class="nav flex-column bg-light">
+          <li class="nav-item">
+            <a class="nav-link active" href="#Giving_Overview">Giving Overview</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#Donar_Recognition">Donar Recognition</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#Make_Gift">Make a Gift</a>
+          </li>
+        </ul>
+      </nav>
+  
+        <!-- Sidebar Toggler and Content -->
+        <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4 sidebar_show_content">
+            <!-- Sidebar toggler -->
+            <button id="sidebar-toggler" class="d-md-none btn btn-light" type="button" data-toggle="collapse" data-target="#sidebarNav" aria-controls="sidebarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"> <span class="mx-2">Toggle Menu</span> </i>
+            </button>
+            <!-- Content -->
+            <div class="row m-0">
+                <div id="Giving_Overview" class="col-xl-10">
+                    <img src="{% static 'imgs/donate.jpg' %}" alt="" class="col-xl-12 col-md-12 img-fluid d-flex mb-4 interest_img">
+                    <p class="my_title fs-20 fw-700 mb-4">
+                        <span class="underline_span_left">Giving Overview</span>
+                    </p>
+                    <p class="text-justify mb-4">
+                        Your contribution matters more than you might realize. By donating to the IPE Alumni Association, you're not just giving back to your alma mater, but you're also laying the foundation for the next generation of Industrial and Production Engineers. Your generous donation could sponsor scholarship programs, research initiatives, and community projects that benefit not just our students, but society at large. It's a chance for you to be a part of something much larger than yourself—a legacy of innovation, leadership, and positive change. Plus, your contribution is a high-impact investment; it amplifies our ability to network, mentor, and support our students and alumni in numerous ways. Together, with your help, we can elevate the IPE community to unprecedented heights of excellence. Don't miss this chance to make a lasting impact. Donate now and be a part of this transformative journey!    
+                    </p>
+                </div>
+
+                <div id="Make_Gift" class="col-xl-10">
+                    <p class="my_title fs-20 fw-700 mb-4">
+                        <span class="underline_span_left">Make a Gift</span>
+                    </p>
+                    <div class="card my-3">
+                        <div class="card-body">
+                            <h5 class="card-title fw-700">Bank Details</h5>
+                            <p class="card-text">
+                                <ul>
+                                    <li>Bank Name: Rupali Bank Ltd., RUET Branch, Rajshahi</li>
+                                    <li>A/C Name: IPE Alumni RUET</li>
+                                    <li>A/C No: 3723010030019</li>
+                                    <li>Routing No: 185812171</li>
+                                    <li>BIC/SWIFT Code: RUPBBDDH</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+                    
+
+        </div>
+    </div>
+</div>
+
+</div>
+  <div class="clear"></div>
+
+
+
+{% endblock %}

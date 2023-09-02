@@ -257,90 +257,54 @@
             <p class="my_title">
                 <span class="underline_span_left">Achievements</span>
             </p>
-            <!-- Start: Single Achievements -->
+            <!-- Start: Achievements -->
+            {% for achievement in latest_achievements %}
             <div class="row mx-0 my-5">
                 <div class="col-md-3 p-0 mini_achievement">
-                    <img src="{% static 'imgs/test-1.jpg' %}" alt="" class="">
+                    {% if achievement.image %}
+                    <img src="{{ achievement.image.url }}" alt="" class="">
+                    {% else %}
+                    <img src="{% static 'imgs/achievement.jpg' %}" alt="" class="">
+                    {% endif %}
                 </div>
                 <div class="col-md-9 px-3">
-                    <p class="m-0">August 20, 2023 </p>
-                    <p class="notice_headline m-0">This is your awsome achievement container headline: Lorem ipsum dolor sit default emit, dolor sue exile.</p>
-                    <a href="" class="mx-auto a-blue">
+                    <p class="m-0">{{ achievement.datetime_field|date:"F d, Y" }}</p>
+                    <p class="notice_headline m-0">{{ achievement.title }}</p>
+                    <a href="{% url 'app:single_achievement' achievement.id %}" class="mx-auto a-blue">
                         READ MORE
                         <i class='fa fa-long-arrow-right'></i>
                     </a>
                 </div>
             </div>
-            <!-- End: Single Achievements -->
-            <!-- Start: Single Achievements -->
-            <div class="row mx-0 my-5">
-                <div class="col-md-3 p-0 mini_achievement">
-                    <img src="{% static 'imgs/test-1.jpg' %}" alt="" class="">
-                </div>
-                <div class="col-md-9 px-3">
-                    <p class="m-0">August 20, 2023 </p>
-                    <p class="notice_headline m-0">This is your awsome achievement container headline: Lorem ipsum dolor sit default emit, dolor sue exile.</p>
-                    <a href="" class="mx-auto a-blue">
-                        READ MORE
-                        <i class='fa fa-long-arrow-right'></i>
-                    </a>
-                </div>
-            </div>
-            <!-- End: Single Achievements -->
-            <a href="" class="btn btn-outline-primary bg-outline-blue px-5">Explore All</a>
+        {% endfor %}
+            <!-- End: Achievements -->
+            <a href="{% url 'app:all_achievement' %}" class="btn btn-outline-primary bg-outline-blue px-5">Explore All</a>
         </div>
 
         <div class="col-xl-5 col-md-12 mx-3 my-5 p-0">
             <p class="my_title">
                 <span class="underline_span_left">Notice</span>
             </p>
-            <!-- start:single notice -->
-            <div class="row mx-0 my-5">
-                <div class="col-md-1 mr-3"> 
-                    <div class="notice_month">AUG</div>
-                    <div class="notice_day">27</div>
-                </div>
-                <div class="col-md-10 mt-2">
-                    <p class="notice_headline m-0">IPE Alumni's 1st Reunion at RUET! Join Now</p>
-                    <a href="" class="mx-auto a-blue">
-                        READ MORE
-                        <i class='fa fa-long-arrow-right'></i>
-                    </a>
-                </div>
-            </div>  
-            <!-- end:single notice -->
-            <!-- start:single notice -->
-            <div class="row mx-0 my-5">
-                <div class="col-md-1 mr-3"> 
-                    <div class="notice_month">AUG</div>
-                    <div class="notice_day">27</div>
-                </div>
-                <div class="col-md-10 mt-2">
-                    <p class="notice_headline m-0">IPE Alumni's 1st Reunion at RUET! Join Now</p>
-                    <a href="" class="mx-auto a-blue">
-                        READ MORE
-                        <i class='fa fa-long-arrow-right'></i>
-                    </a>
-                </div>
-            </div>  
-            <!-- end:single notice -->
-            <!-- start:single notice -->
-            <div class="row mx-0 my-5">
-                <div class="col-md-1 mr-3"> 
-                    <div class="notice_month">AUG</div>
-                    <div class="notice_day">27</div>
-                </div>
-                <div class="col-md-10 mt-2">
-                    <p class="notice_headline m-0">IPE Alumni's 1st Reunion at RUET! Join Now</p>
-                    <a href="" class="mx-auto a-blue">
-                        READ MORE
-                        <i class='fa fa-long-arrow-right'></i>
-                    </a>
-                </div>
-            </div>  
-            <!-- end:single notice -->
+            <!-- start: notice -->
+            {% for notice in latest_notices %}
+                <div class="row mx-0 my-5">
+                    <div class="col-md-1 mr-3"> 
+                        <div class="notice_month">{{ notice.datetime_field|date:"M" }}</div>
+                        <div class="notice_day">{{ notice.datetime_field|date:"d" }}</div>
+                    </div>
+                    <div class="col-md-10 mt-2">
+                        <p class="notice_headline m-0">{{ notice.title }}</p>
+                        <a href="{% url 'app:single_notice' notice.id %}" class="mx-auto a-blue">
+                            READ MORE
+                            <i class='fa fa-long-arrow-right'></i>
+                        </a>
+                    </div>
+                </div>  
+            {% endfor %}
+
+            <!-- end: notice -->
             <div style="height: 32px;"></div>
-            <a href="" class="btn btn-outline-primary bg-outline-blue px-5">Explore All</a>
+            <a href="{% url 'app:all_notices' %}" class="btn btn-outline-primary bg-outline-blue px-5">Explore All</a>
         </div>
     </div>
 </div>

@@ -112,3 +112,21 @@ class ReunionRegistration(models.Model):
     def __str__(self):
         return self.name
 
+
+class Notice(models.Model):
+    title = models.CharField(max_length=500, blank=False, null=False)
+    paragraph = models.TextField(blank=False, null=False)
+    image = models.ImageField(upload_to='notices/', blank=True, null=True)
+    datetime_field = models.DateTimeField(auto_now_add=True, blank=False, null=False)
+
+    def __str__(self):
+        return self.title
+
+class Achievement(models.Model):
+    title = models.CharField(max_length=500, blank=False, null=False)
+    paragraph = models.TextField(blank=False, null=False)
+    image = models.ImageField(upload_to='achievements/', blank=True, null=True)
+    datetime_field = models.DateTimeField(auto_now_add=True, blank=False, null=False)
+
+    def __str__(self):
+        return self.title

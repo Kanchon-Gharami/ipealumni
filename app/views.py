@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth import authenticate, login, logout
 from django.conf import settings
@@ -12,25 +13,36 @@ from datetime import datetime
 import os
 import io
 import zipfile
+from zipfile import ZipFile
 import pandas as pd
 from PIL import Image
 from io import BytesIO
 from django.core.files import File
 from django.core.validators import validate_integer
 from django.core.paginator import Paginator
+from django.core.mail import send_mail
+from django.urls import reverse
+from django.utils.timezone import make_naive
+
 
 from django.contrib.auth import get_user_model
-from .models import MyCustomUser, Profile, ReunionRegistration
-from .forms import ProfileForm, UserForm
+from .models import MyCustomUser, Profile, ReunionRegistration, Notice, Achievement
+from .forms import ProfileForm, UserForm, ConfirmPaymentForm
 from .decorators import user_is_alumni, user_is_admin, user_is_superuser
 from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
 def index(request):
-    context= {}
+    latest_notices = Notice.objects.all().order_by('-datetime_field')[:3]
+    latest_achievements = Achievement.objects.all().order_by('-datetime_field')[:2]
     
+    context = {
+        'latest_notices': latest_notices,
+        'latest_achievements': latest_achievements
+    }
     return render(request, "index.html", context)
+
 
 def signin_view(request):
     context= {}
@@ -300,8 +312,223 @@ def export_excel(request):
     return response
 
 
+@user_is_admin
+@transaction.atomic  # Ensures atomicity of the database operations
+def confirm_payment(request, pk):
+    error_message = ""
+    obj = ReunionRegistration.objects.get(pk=pk)
+    form = ConfirmPaymentForm(request.POST or None)
+    
+    if request.method == 'POST':
+        if form.is_valid():
+            try:
+                with transaction.atomic():
+                    obj.is_payment_varified = True
+                    obj.save()
+                    return redirect('app:admin_dashboard')
+            except Exception as e:
+                error_message = str(e)
+    print(error_message)
+    context = {
+        'form': form,
+        'error_message': error_message,
+    }
+    return redirect('app:admin_dashboard')
 
 
+
+@user_is_admin
+def adminpannel_notice(request):
+    search_query = request.GET.get('search', '')
+    if search_query:
+        notices = Notice.objects.filter(title__icontains=search_query)
+    else:
+        notices = Notice.objects.all()
+    
+    paginator = Paginator(notices, 10)  # Show 10 notices per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {'notices': page_obj}
+    return render(request, 'adminpannel_notice.html', context)
+
+
+@user_is_admin
+def create_notice(request):
+    if request.method == "POST":
+        title = request.POST['title']
+        paragraph = request.POST['paragraph']
+        image = request.FILES.get('image')
+
+        new_notice = Notice(
+            title=title,
+            paragraph=paragraph,
+            image=image
+        )
+        new_notice.save()
+
+    return HttpResponseRedirect(reverse('app:adminpannel_notice'))
+
+
+@user_is_admin
+def edit_notice(request):
+    if request.method == "POST":
+        notice_id = request.POST['notice_id']
+        title = request.POST['title']
+        paragraph = request.POST['paragraph']
+        image = request.FILES.get('image')
+
+        notice_to_edit = Notice.objects.get(id=notice_id)
+        notice_to_edit.title = title
+        notice_to_edit.paragraph = paragraph
+        if image:
+            notice_to_edit.image = image
+        notice_to_edit.save()
+
+        return HttpResponseRedirect(reverse('app:adminpannel_notice'))
+
+
+
+@user_is_admin
+def delete_notice(request):
+    if request.method == "POST":
+        notice_id = request.POST['notice_id']
+        Notice.objects.get(id=notice_id).delete()
+
+        return HttpResponseRedirect(reverse('app:adminpannel_notice'))
+
+
+
+@user_is_admin
+def export_notice(request):
+    notices = Notice.objects.all().values('id', 'title', 'paragraph', 'datetime_field', 'image')
+    notices_list = list(notices)
+    
+    for notice in notices_list:
+        if notice['image']:
+            notice['image'] = str(notice['image'])
+        if notice['datetime_field']:
+            notice['datetime_field'] = make_naive(notice['datetime_field'])
+    
+    df = pd.DataFrame.from_records(notices_list)
+
+    # Create a BytesIO object
+    buffer = BytesIO()
+
+    with ZipFile(buffer, 'w') as zipf:
+        # Save DataFrame to Excel
+        excel_buffer = BytesIO()
+        with pd.ExcelWriter(excel_buffer, engine='openpyxl') as writer:
+            df.to_excel(writer, index=False)
+        excel_data = excel_buffer.getvalue()
+        zipf.writestr('notices.xlsx', excel_data)
+
+        # Add images to the ZIP file
+        for notice in notices_list:
+            if notice['id'] and Notice.objects.filter(id=notice['id']).first().image:
+                image_path = Notice.objects.get(id=notice['id']).image.path
+                zipf.write(image_path, os.path.basename(image_path))
+
+    buffer.seek(0)
+    response = HttpResponse(buffer.read(), content_type='application/zip')
+    buffer.close()
+
+    # Set the ZIP file name
+    response['Content-Disposition'] = 'attachment; filename=notices.zip'
+
+    return response
+
+
+
+@user_is_admin
+def adminpannel_achievement(request):
+    search_query = request.GET.get('search', '')
+    if search_query:
+        achievements = Achievement.objects.filter(title__icontains=search_query)
+    else:
+        achievements = Achievement.objects.all()
+    
+    paginator = Paginator(achievements, 10)  # Show 10 achievements per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {'achievements': page_obj}
+    return render(request, 'adminpannel_achievement.html', context)
+
+
+@user_is_admin
+def create_achievement(request):
+    if request.method == "POST":
+        title = request.POST['title']
+        paragraph = request.POST['paragraph']
+        image = request.FILES.get('image')
+
+        new_achievement = Achievement(
+            title=title,
+            paragraph=paragraph,
+            image=image
+        )
+        new_achievement.save()
+
+    return HttpResponseRedirect(reverse('app:adminpannel_achievement'))
+
+
+@user_is_admin
+def edit_achievement(request):
+    if request.method == "POST":
+        achievement_id = request.POST['achievement_id']
+        title = request.POST['title']
+        paragraph = request.POST['paragraph']
+        image = request.FILES.get('image')
+
+        achievement_to_edit = Achievement.objects.get(id=achievement_id)
+        achievement_to_edit.title = title
+        achievement_to_edit.paragraph = paragraph
+        if image:
+            achievement_to_edit.image = image
+        achievement_to_edit.save()
+
+    return HttpResponseRedirect(reverse('app:adminpannel_achievement'))
+
+
+@user_is_admin
+def delete_achievement(request):
+    if request.method == "POST":
+        achievement_id = request.POST['achievement_id']
+        Achievement.objects.get(id=achievement_id).delete()
+
+    return HttpResponseRedirect(reverse('app:adminpannel_achievement'))
+
+@user_is_admin
+def export_achievement(request):
+    achievements = Achievement.objects.all().values('id', 'title', 'paragraph', 'image')
+    achievements_list = list(achievements)
+
+    for achievement in achievements_list:
+        if achievement['image']:
+            achievement['image'] = str(achievement['image'])
+
+    df = pd.DataFrame.from_records(achievements_list)
+
+    buffer = BytesIO()
+
+    with ZipFile(buffer, 'w') as zipf:
+        excel_buffer = BytesIO()
+        with pd.ExcelWriter(excel_buffer, engine='openpyxl') as writer:
+            df.to_excel(writer, index=False)
+        excel_data = excel_buffer.getvalue()
+        zipf.writestr('achievements.xlsx', excel_data)
+
+        for achievement in achievements_list:
+            if achievement['id'] and Achievement.objects.filter(id=achievement['id']).first().image:
+                image_path = Achievement.objects.get(id=achievement['id']).image.path
+                zipf.write(image_path, os.path.basename(image_path))
+
+    buffer.seek(0)
+    response = HttpResponse(buffer.read(), content_type='application/zip')
+    buffer.close()
+    response['Content-Disposition'] = 'attachment; filename=achievements.zip'
+    return response
 
 
 
@@ -310,8 +537,28 @@ def about(request):
 
 
 def first_reunion(request):
-    context = {}
+    search_query = request.GET.get('search', '')
+
+    if search_query:
+        reunion_registrations = ReunionRegistration.objects.filter(
+            Q(name__icontains=search_query) |
+            Q(roll_number__icontains=search_query) |
+            Q(email__icontains=search_query)
+        ).order_by('name')  
+    else:
+        reunion_registrations = ReunionRegistration.objects.all().order_by('name')  
+
+    paginator = Paginator(reunion_registrations, 10)  # Show 10 records per page
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'reunion_registrations': page_obj,
+        'search_query': search_query,
+    }
     return render(request, 'first_reunion.html', context)
+
 
 
 
@@ -353,3 +600,69 @@ def first_reunion_registration(request):
     context['error_message'] = error_message
     context['registration_successful'] = registration_successful
     return render(request, 'first_reunion_registration.html', context)
+
+
+
+def all_notices(request):
+    search_query = request.GET.get('search', '')
+
+    if search_query:
+        all_notices_list = Notice.objects.filter(title__icontains=search_query).order_by('-datetime_field')
+    else:
+        all_notices_list = Notice.objects.all().order_by('-datetime_field')
+
+    paginator = Paginator(all_notices_list, 15) 
+    page = request.GET.get('page')
+    all_notices = paginator.get_page(page)
+
+    context = {
+        'all_notices': all_notices,
+        'search_query': search_query,
+    }
+
+    return render(request, "all_notices.html", context)
+
+
+def single_notice(request, pk):
+    notice = get_object_or_404(Notice, pk=pk)
+    context = {
+        'notice': notice,
+    }
+    return render(request, 'single_notice.html', context)
+
+
+def all_achievement(request):
+    search_query = request.GET.get('search', '')
+
+    if search_query:
+        all_achievement_list = Achievement.objects.filter(title__icontains=search_query).order_by('-datetime_field')
+    else:
+        all_achievement_list = Achievement.objects.all().order_by('-datetime_field')
+
+    paginator = Paginator(all_achievement_list, 15) 
+    page = request.GET.get('page')
+    all_achievement = paginator.get_page(page)
+
+    context = {
+        'all_achievement': all_achievement,
+        'search_query': search_query,
+    }
+
+    return render(request, "all_achievement.html", context)
+
+
+def single_achievement(request, pk):
+    achievement = get_object_or_404(Achievement, pk=pk)
+    context = {
+        'achievement': achievement,
+    }
+    return render(request, 'single_achievement.html', context)
+
+
+def interest(request):
+    return render(request, 'interest.html')
+
+
+def giving(request):
+    return render(request, 'giving.html')
+

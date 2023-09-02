@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="row m-0 my-4 d-flex justify-content-center">
+    <div class="col-lg-7">
+        <div class="row m-0">
+            <p class="my_title mb-4">
+                <span class="underline_span_left">All Notice</span>
+            </p>
+            <form method="get" class="d-inline-flex ml-auto mxauto_inandroid" style="align-items: stretch;">
+                <input type="text" class="form-control" name="search" placeholder="Search by title" value="{{ search_query }}" style="flex-grow: 1;">
+                <button type="submit" class="btn btn-sm btn-primary btn-blue ml-2" style="height: 38px; align-self: stretch;">Search</button>
+            </form>
+            
+        </div>
+    </div>
+    <div class="col-lg-7 bg-light my-4 px-5 py-3">
+        <!-- start: notice -->
+        {% for notice in all_notices %}
+            <div class="row mx-0 my-5">
+                <div class="col-md-1 mr-3"> 
+                    <div class="notice_month">{{ notice.datetime_field|date:"M" }}</div>
+                    <div class="notice_day">{{ notice.datetime_field|date:"d" }}</div>
+                </div>
+                <div class="col-md-10 mt-2">
+                    <p class="notice_headline m-0">{{ notice.title }}</p>
+                    <a href="{% url 'app:single_notice' notice.id %}" class="mx-auto a-blue">
+                        READ MORE
+                        <i class='fa fa-long-arrow-right'></i>
+                    </a>
+                </div>
+            </div>  
+        {% endfor %}
+        <div class="pagination">
+            <span class="step-links">
+                {% if all_notices.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ all_notices.previous_page_number }}">previous</a>
+                {% endif %}
+                
+                <span class="current">
+                    Page {{ all_notices.number }} of {{ all_notices.paginator.num_pages }}.
+                </span>
+                
+                {% if all_notices.has_next %}
+                    <a href="?page={{ all_notices.next_page_number }}">next</a>
+                    <a href="?page={{ all_notices.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+        
+    </div>
+</div>
+
+
+{% endblock %}

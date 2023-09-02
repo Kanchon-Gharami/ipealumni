@@ -33,3 +33,6 @@ class ProfilePictureForm(forms.ModelForm):
         model = Profile
         fields = ['profile_picture']
 
+
+class ConfirmPaymentForm(forms.Form):
+    confirm = forms.BooleanField(initial=True, widget=forms.HiddenInput())

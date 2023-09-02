@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="row m-0 my-4 d-flex justify-content-center">
+    <div class="col-lg-8">
+        {% if achievement.image %}
+            <img src="{{ achievement.image.url }}" alt="" class="img-fluid">
+        {% endif %}
+        <p class="my_title mt-4 mb-4">
+            <span class="underline_span_left">{{ achievement.title }}</span>
+        </p>
+        <p>{{ achievement.datetime_field|date:"F j, Y, P" }}</p>
+        {{ achievement.paragraph }}
+    </div>
+</div>
+
+
+
+{% endblock %}

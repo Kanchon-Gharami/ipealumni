@@ -5,5 +5,6 @@ from app.models import *
 admin.site.register(MyCustomUser)
 admin.site.register(Profile)
 admin.site.register(ReunionRegistration)
-
+admin.site.register(Notice)
+admin.site.register(Achievement)
 

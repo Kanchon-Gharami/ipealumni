@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="row m-0 my-4 d-flex justify-content-center">
+    <div class="col-lg-7">
+        <div class="row m-0">
+            <p class="my_title mb-4">
+                <span class="underline_span_left">All Achievement</span>
+            </p>
+            <form method="get" class="d-inline-flex ml-auto mxauto_inandroid" style="align-items: stretch;">
+                <input type="text" class="form-control" name="search" placeholder="Search by title" value="{{ search_query }}" style="flex-grow: 1;">
+                <button type="submit" class="btn btn-sm btn-primary btn-blue ml-2" style="height: 38px; align-self: stretch;">Search</button>
+            </form>
+            
+        </div>
+    </div>
+    <div class="col-lg-7 bg-light my-4 px-5 py-3">
+        <!-- start: achievement -->
+        {% for achievement in all_achievement %}
+            <div class="row mx-0 my-5">
+                <div class="col-md-1 mr-3"> 
+                    <div class="notice_month">{{ achievement.datetime_field|date:"M" }}</div>
+                    <div class="notice_day">{{ achievement.datetime_field|date:"d" }}</div>
+                </div>
+                <div class="col-md-10 mt-2">
+                    <p class="notice_headline m-0">{{ achievement.title }}</p>
+                    <a href="{% url 'app:single_achievement' achievement.id %}" class="mx-auto a-blue">
+                        READ MORE
+                        <i class='fa fa-long-arrow-right'></i>
+                    </a>
+                </div>
+            </div>  
+        {% endfor %}
+        <div class="pagination">
+            <span class="step-links">
+                {% if all_achievement.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ all_achievement.previous_page_number }}">previous</a>
+                {% endif %}
+                
+                <span class="current">
+                    Page {{ all_achievement.number }} of {{ all_achievement.paginator.num_pages }}.
+                </span>
+                
+                {% if all_achievement.has_next %}
+                    <a href="?page={{ all_achievement.next_page_number }}">next</a>
+                    <a href="?page={{ all_achievement.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+        
+    </div>
+</div>
+
+
+{% endblock %}

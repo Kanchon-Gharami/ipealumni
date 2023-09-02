@@ -11,13 +11,13 @@
       <nav id="sidebarNav" class="col-md-3 col-lg-2 d-md-block sidebar collapse position-fixed custom-sidebar p-0 px-3">
         <ul class="nav flex-column bg-light">
           <li class="nav-item">
-            <a class="nav-link active" href="#reunion_registration">Reunion Registration</a>
+            <a class="nav-link active" href="{% url 'app:admin_dashboard' %}">Reunion Registration</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">Notice</a>
+            <a class="nav-link" href="{% url 'app:adminpannel_notice' %}">Notice</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">Achievement</a>
+            <a class="nav-link" href="{% url 'app:adminpannel_achievement' %}">Achievement</a>
           </li>
         </ul>
       </nav>
@@ -30,11 +30,11 @@
             <p class="my_title mb-4">
                 <span class="underline_span_left">Reunion Registration</span>
             </p>
-            <form method="get">
+            <form method="get" class="mt-4">
               <div class="form-group row m-0 my-3">
-                <a href="{% url 'app:export_excel' %}" class="btn btn-primary btn-blue">Export Excel</a>
-                <input type="text" class="form-control col-xl-3 ml-auto" name="search" value="{{ search_query }}" placeholder="Search by Name or Roll">
-                <button type="submit" class="btn btn-primary btn-blue">Search</button>
+                <a href="{% url 'app:export_excel' %}" class="btn btn-primary btn-blue my-2">Export Excel</a>
+                <input type="text" class="form-control col-xl-3 ml-auto my-2" name="search" value="{{ search_query }}" placeholder="Search by Name or Roll">
+                <button type="submit" class="btn btn-primary btn-blue" style="height: 38px; margin-top: 8px;">Search</button>
               </div>
             </form>
             
@@ -61,24 +61,31 @@
                           <td>{{ obj.number_of_guests }}</td>
                           <td>{{ obj.driver }}</td>
                           <td>{{ obj.total_amount_paid }}</td>
-                          {% if is_payment_varified %}
+                          {% if obj.is_payment_varified %}
                           <td class="text-blue">{{ obj.is_payment_varified }}</td>
                           {% else %}
                           <td class="text-red">{{ obj.is_payment_varified }}</td>
                           {% endif %}
                           <td>
                               <!-- Trigger Modal -->
-                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#detailModal{{ obj.id }}">View</button>
+                              <button type="button" class="btn btn-sm btn-primary btn-blue" data-toggle="modal" data-target="#detailModal{{ obj.id }}">View</button>
       
                               <!-- Modal -->
                               <div class="modal fade" id="detailModal{{ obj.id }}" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-lg">
                                       <div class="modal-content">
                                           <div class="modal-header">
-                                              <h5 class="modal-title fw-600" id="detailModalLabel">
-                                                {{ obj.name }}
-                                                <br>
-                                                <p class="text-blue fw-700 fs-14 m-0 p-0">Roll: {{ obj.roll_number }}</p>
+                                              <h5 class="modal-title row m-0 fw-600" id="detailModalLabel" style="width: 90%;">
+                                                <div class="col-xl-7">
+                                                    {{ obj.name }}
+                                                    <br>
+                                                    <p class="text-blue fw-700 fs-14 m-0 p-0">Roll: {{ obj.roll_number }}</p>
+                                                </div>
+                                                <div class="col-xl-5 fw-700 fs-14 mt-2">
+                                                    Total Payment: {{ obj.total_amount_paid }}
+                                                    <br>
+                                                    Total: {{ obj.number_of_guests }} (Guest) + {{ obj.driver }} (Driver) + 1 (own)
+                                                </div>
                                               </h5>
                                               
                                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -89,8 +96,13 @@
                                               <!-- Show Details -->
                                               <img src="{{ obj.upload_payment_slip.url }}" alt="Payment Slip" class="img-fluid" style="width: 100%;">
                                           </div>
-                                          <div class="modal-footer">
-                                            <!-- Close Button -->
+                                          <div class="modal-footer">                                            
+                                            <!-- Confirm Payment Button -->
+                                            <form method="post" action="{% url 'app:confirm_payment' obj.id %}">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="confirm" value="True">
+                                                <button type="submit" class="btn btn-primary btn-blue">Confirm Payment</button>
+                                            </form>
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                           </div>
                                       </div>

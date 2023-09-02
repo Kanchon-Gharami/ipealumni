@@ -858,10 +858,24 @@ a{
 /* =================== Start: About   ====================== */
 
 
+
+/* =================== Start: Interest   ====================== */
+
+.interest_img{
+    max-height: 250px;
+    width: 100%;
+    object-fit: cover;     /* Cover the entire container */
+    object-position: center; /* Center the image */
+}
+
+
+/* =================== End: Interest   ====================== */
+
+
 /* =================== Start: First Reunion   ====================== */
 
 .reg_influence{
-    max-height: 200px;
+    max-height: 225px;
     width: auto;
 }
 
@@ -979,7 +993,12 @@ fa-li {
     }
   }
   
-  
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;  /* or whatever max-width you want */
+}
 
 /* =================== End: admin pannel   ====================== */
 
@@ -1049,6 +1068,10 @@ fa-li {
     .colon{
         margin: 0px 5px;
         margin-top: -30px;
+    }
+
+    .mxauto_inandroid{
+        margin: auto !important;
     }
     
     

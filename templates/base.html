@@ -79,10 +79,10 @@
                         Interest
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">Career Centre</a>
-                      <a class="dropdown-item" href="#">News & Stories</a>
-                      <a class="dropdown-item" href="#">Learning Recourses</a>
-                      <a class="dropdown-item" href="#">Scholarship</a>
+                      <a class="dropdown-item" href="{% url 'app:interest' %}#Career_Centre">Career Centre</a>
+                      <a class="dropdown-item" href="{% url 'app:interest' %}#News">News & Stories</a>
+                      <a class="dropdown-item" href="{% url 'app:interest' %}#Learning_Recourses">Learning Recourses</a>
+                      <a class="dropdown-item" href="{% url 'app:interest' %}#Scholarship">Scholarship</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -108,9 +108,9 @@
                         Giving
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Giving Overview</a>
-                        <a class="dropdown-item" href="#">Donar Recognition</a>
-                        <a class="dropdown-item" href="#">Make a Gift</a>
+                        <a class="dropdown-item" href="{% url 'app:giving' %}">Giving Overview</a>
+                        <a class="dropdown-item" href="{% url 'app:giving' %}">Donar Recognition</a>
+                        <a class="dropdown-item" href="{% url 'app:giving' %}#Make_Gift">Make a Gift</a>
                     </div>
                 </li>
                 <li class="nav-item">

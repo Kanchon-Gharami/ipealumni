@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="container-fluid my-5">
+    <div class="row m-0">
+      
+      <!-- Sidebar -->
+      <nav id="sidebarNav" class="col-md-3 col-lg-2 d-md-block sidebar collapse position-fixed custom-sidebar p-0 px-3">
+        <ul class="nav flex-column bg-light">
+          <li class="nav-item">
+            <a class="nav-link active" href="#Career_Centre">Career Centre</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#News">News & Stories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#Learning_Recourses">Learning Recourses</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#Scholarship">Scholarship</a>
+          </li>
+        </ul>
+      </nav>
+  
+        <!-- Sidebar Toggler and Content -->
+        <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4 sidebar_show_content">
+            <!-- Sidebar toggler -->
+            <button id="sidebar-toggler" class="d-md-none btn btn-light" type="button" data-toggle="collapse" data-target="#sidebarNav" aria-controls="sidebarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"> <span class="mx-2">Toggle Menu</span> </i>
+            </button>
+            <!-- Content -->
+            <div id="brochure">
+                <img src="{% static 'imgs/interest.jpeg' %}" alt="" class="col-xl-11 col-md-12 img-fluid d-flex interest_img">
+            </div>
+
+            <div style="height: 80px;"></div>
+
+            <div id="Career_Centre">
+                <p class="my_title fs-4 fw-bold mb-4">
+                  <span class="underline_span_left">Career Centre</span>
+                </p>
+                <p class="text-justify mb-4">
+                  Welcome to the RUET IPEAR Alumni Association's Career Center, your gateway to a world of exciting opportunities.
+                  Discover a curated hub of job listings tailored for our Industrial and Production Engineering graduates.
+                  From fresh graduates to seasoned professionals, find diverse roles across industries like manufacturing, supply chain, and project management.
+                  Access networking events, skill-building workshops, and mentorship to fuel your growth.
+                  Elevate your career journey with the support of a thriving community and valuable resources.
+                  Your success story starts here at the Career Center.
+                </p>
+              
+                <div class="container">
+                  <div class="row m-0 justify-content-center">
+                        <!-- First Card -->
+                        <div class="card col-xl-3 m-3">
+                            <img src="{% static 'imgs/career.jpg' %}" alt="Job Thumbnail" class="card-img-top">
+                            <div class="card-body">
+                            <h5 class="card-title fw-700 text-black">Walton</h5>
+                            <p class="card-text">Bd Jobs</p>
+                            <a href="https://jobs.bdjobs.com/jobdetails.asp?id=1171833&ln=1&JobKeyword=walton" target="_blank" class="btn btn-sm btn-primary btn-blue">Learn More</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Second Card -->
+                        <div class="card col-xl-3 m-3">
+                            <img src="{% static 'imgs/career.jpg' %}" alt="Job Thumbnail" class="card-img-top">
+                            <div class="card-body">
+                            <h5 class="card-title fw-700 text-black">Walton</h5>
+                            <p class="card-text">Bd Jobs</p>
+                            <a href="https://jobs.bdjobs.com/jobdetails.asp?id=1170400&fcatId=-1&ln=1&JobKeyword=walton" target="_blank" class="btn btn-sm btn-primary btn-blue">Learn More</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Third Card -->
+                        <div class="card col-xl-3 m-3">
+                            <img src="{% static 'imgs/career.jpg' %}" alt="Job Thumbnail" class="card-img-top">
+                            <div class="card-body">
+                            <h5 class="card-title fw-700 text-black">IPE</h5>
+                            <p class="card-text">Bd Jobs</p>
+                            <a href="https://jobs.bdjobs.com/jobdetails.asp?id=1173507&ln=1&JobKeyword=ipe" target="_blank" class="btn btn-sm btn-primary btn-blue">Learn More</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Fourth Card -->
+                        <div class="card col-xl-3 m-3">
+                            <img src="{% static 'imgs/career.jpg' %}" alt="Job Thumbnail" class="card-img-top">
+                            <div class="card-body">
+                            <h5 class="card-title fw-700 text-black">IPE</h5>
+                            <p class="card-text">Bd Jobs</p>
+                            <a href="https://jobs.bdjobs.com/jobdetails.asp?id=1173562&ln=1&JobKeyword=ipe" target="_blank" class="btn btn-sm btn-primary btn-blue">Learn More</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Fifth Card -->
+                        <div class="card col-xl-3 m-3">
+                            <img src="{% static 'imgs/career.jpg' %}" alt="Job Thumbnail" class="card-img-top">
+                            <div class="card-body">
+                            <h5 class="card-title fw-700 text-black">IPE</h5>
+                            <p class="card-text">Bd Jobs</p>
+                            <a href="https://jobs.bdjobs.com/jobdetails.asp?id=1171122&ln=1&JobKeyword=ipe" target="_blank" class="btn btn-sm btn-primary btn-blue">Learn More</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Sixth Card -->
+                        <div class="card col-xl-3 m-3">
+                            <img src="{% static 'imgs/career.jpg' %}" alt="Job Thumbnail" class="card-img-top">
+                            <div class="card-body">
+                            <h5 class="card-title fw-700 text-black">IPE</h5>
+                            <p class="card-text">Bd Jobs</p>
+                            <a href="https://jobs.bdjobs.com/jobdetails.asp?id=1174148&ln=1&JobKeyword=ipe" target="_blank" class="btn btn-sm btn-primary btn-blue">Learn More</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Seventh Card -->
+                        <!-- <div class="card col-xl-3 m-3">
+                            <img src="{% static 'imgs/career.jpg' %}" alt="Job Thumbnail" class="card-img-top">
+                            <div class="card-body">
+                            <h5 class="card-title fw-700 text-black">IPE</h5>
+                            <p class="card-text">Bd Jobs</p>
+                            <a href="https://jobs.bdjobs.com/jobdetails.asp?id=1174820&ln=1&JobKeyword=ipe" target="_blank" class="btn btn-sm btn-primary btn-blue">Learn More</a>
+                            </div>
+                        </div> -->
+  
+                  </div>
+                </div>
+            </div>
+              
+
+            <div style="height: 80px;"></div>
+
+            <div id="Learning_Recourses">
+                <p class="my_title fs-20 fw-700 mb-4">
+                    <span class="underline_span_left">Learning Resources</span>
+                </p>
+                
+                <!-- Bootstrap container to hold the cards -->
+                <div class="container">
+                    <div class="row row-cols-1 row-cols-md-3 g-4">
+                        
+                        <!-- First Card -->
+                        <div class="col my-3">
+                            <div class="card">
+                              <h5 class="card-header">Featured</h5>
+                              <div class="card-body">
+                                <h5 class="card-title text-black fw-600">Resource 1</h5>
+                                <p class="card-text">Description for Resource 1.</p>
+                                <a href="#" class="btn btn-sm btn-blue btn-primary">Go somewhere</a>
+                              </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Second Card -->
+                        <div class="col my-3">
+                            <div class="card">
+                              <h5 class="card-header">Featured</h5>
+                              <div class="card-body">
+                                <h5 class="card-title text-black fw-600">Resource 2</h5>
+                                <p class="card-text">Description for Resource 2.</p>
+                                <a href="#" class="btn btn-sm btn-blue btn-primary">Go somewhere</a>
+                              </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Third Card -->
+                        <div class="col my-3">
+                            <div class="card">
+                              <h5 class="card-header">Featured</h5>
+                              <div class="card-body">
+                                <h5 class="card-title text-black fw-600">Resource 3</h5>
+                                <p class="card-text">Description for Resource 3.</p>
+                                <a href="#" class="btn btn-sm btn-blue btn-primary">Go somewhere</a>
+                              </div>
+                            </div>
+                        </div>
+            
+                        <!-- Fourth Card -->
+                        <div class="col my-3">
+                            <div class="card">
+                            <h5 class="card-header">Featured</h5>
+                            <div class="card-body">
+                                <h5 class="card-title text-black fw-600">Resource 4</h5>
+                                <p class="card-text">Description for Resource 4.</p>
+                                <a href="#" class="btn btn-sm btn-blue btn-primary">Go somewhere</a>
+                            </div>
+                            </div>
+                        </div>
+
+                        <!-- Fifth Card -->
+                        <div class="col my-3">
+                            <div class="card">
+                            <h5 class="card-header">Featured</h5>
+                            <div class="card-body">
+                                <h5 class="card-title text-black fw-600">Resource 5</h5>
+                                <p class="card-text">Description for Resource 5.</p>
+                                <a href="#" class="btn btn-sm btn-blue btn-primary">Go somewhere</a>
+                            </div>
+                            </div>
+                        </div>
+
+                        <!-- Sixth Card -->
+                        <div class="col my-3">
+                            <div class="card">
+                            <h5 class="card-header">Featured</h5>
+                            <div class="card-body">
+                                <h5 class="card-title text-black fw-600">Resource 6</h5>
+                                <p class="card-text">Description for Resource 6.</p>
+                                <a href="#" class="btn btn-sm btn-blue btn-primary">Go somewhere</a>
+                            </div>
+                            </div>
+                        </div>
+
+            
+                    </div>
+                </div>
+            </div>
+            
+
+            <div style="height: 80px;"></div>
+
+            <div id="News">
+                <p class="my_title fs-20 fw-700 mb-5">
+                    <span class="underline_span_left">News & Stories</span>
+                </p>
+                <img src="{% static 'imgs/brochure.png' %}" alt="" class="col-xl-10 col-md-12 img-fluid d-flex brochure_img">
+            </div>
+
+            <div style="height: 80px;"></div>
+
+            <div id="Scholarship">
+                <p class="my_title fs-20 fw-700 mb-4">
+                    <span class="underline_span_left">Scholarship</span>
+                </p>
+                <p class="text-justify mb-4">
+                    The field of Industrial and Production Engineering (IPE) is not just rich in career opportunities, but it also offers a broad landscape for academic advancement through scholarships for higher education. Whether you're looking to deepen your expertise, specialize in a particular area, or undertake cutting-edge research, there are numerous scholarships available to help you achieve your academic goals. These financial aids are provided by various institutions, including prestigious universities, research organizations, and industry partners who recognize the value that IPE graduates bring to the table. From merit-based scholarships to research fellowships and international study grants, there is a plethora of financial support options tailored to meet the diverse needs and aspirations of IPE students. So if you're an IPE graduate or aspiring student, don't miss out on these incredible opportunities to elevate your academic journey to new heights.    
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</div>
+  <div class="clear"></div>
+
+
+
+{% endblock %}
