@@ -1,5 +1,7 @@
 **/__pycache__
 .env
 Media
+app/migrations/*
+!app/migrations/__init__.py
 */migrations/*
 assets
