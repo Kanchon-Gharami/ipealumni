@@ -21,13 +21,13 @@
             <a class="nav-link" href="#payment_process">Payment Process</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#registration_process">Registration for 1st Reunion</a>
+            <a class="nav-link" href="{% url 'app:first_reunion_registration' %}">Registration for 1st Reunion</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#program_schedule">Program Schedule</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#registered_alumni">Registered Alumni</a>
+            <a class="nav-link" href="{% url 'app:first_reunion_participant' %}">Registered Alumni</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#organizing_committee">Organizing Committee</a>
@@ -55,8 +55,8 @@
         <div id="brochure">
             <img src="{% static 'imgs/brochure.png' %}" alt="" class="col-xl-11 col-md-12 img-fluid d-flex brochure_img">
         </div>
-        <div style="height: 80px;"></div>
-        <div id="registration_process">
+        <div style="height: 80px;" id="registration_process"></div>
+        <div>
             <p class="my_title fs-20 fw-700 mb-4">
                 <span class="underline_span_left">How to Register</span>
             </p>
@@ -70,7 +70,7 @@
                         <li class="list-group-item"><i class="fas fa-map-signs fa-fw mr-3"></i>Goto reunion page (Events > Upcoming Event > 1st Reunion)</li>
                         <li class="list-group-item"><i class="fas fa-mouse-pointer fa-fw mr-3"></i>Click on <span class="fw-800"> Registration for 1st Reunion </span></li>
                         <li class="list-group-item"><i class="fas fa-upload fa-fw mr-3"></i>Give necessary information and upload payment slip (also keep a copy for yourself)</li>
-                        <li class="list-group-item"><i class="fas fa-check-circle fa-fw mr-3"></i>After admin approval (for payment confirmation) successful registration can find 'Payment Verification' Completed in <a href="#registered_alumni">Registered Alumni</a> Section. </li>
+                        <li class="list-group-item"><i class="fas fa-check-circle fa-fw mr-3"></i>After admin approval (for payment confirmation) successful registration can find 'Payment Verification' Completed in <a href="{% url 'app:first_reunion_participant' %}">Registered Alumni</a> Section. </li>
                       </ul>
                     </div>
                 </div>
@@ -91,9 +91,9 @@
             </div>
         </div>
 
-        <div style="height: 80px;"></div>
+        <div style="height: 80px;" id="payment_process"></div>
 
-        <div class="payment_process_class" id="payment_process">
+        <div class="payment_process_class">
             <p class="my_title mt-4 mb-4"><span class="underline_span_left">Payment Process</span></p>
             <div class="card my-3">
                 <div class="card-header fw-700 fs-18 text-black">
@@ -162,9 +162,9 @@
 
         </div>
 
-        <div style="height: 80px;"></div>
+        <div style="height: 80px;" id="program_schedule"></div>
 
-        <div class="" id="program_schedule">
+        <div class="">
             <p class="my_title mt-4 mb-4"><span class="underline_span_left">Program Schedule</span></p>
             <div class="row m-0">
                 <div class="col-xl-6 col-md-12 my-2">
@@ -224,89 +224,17 @@
             </div>
         </div>
 
-
-
-        <div style="height: 80px;"></div>
-
         
-
-        <div id="registered_alumni">
-            <p class="my_title mt-4 mb-4"><span class="underline_span_left">Alumnis Already Registered for Reunion</span></p>
-            <form method="get" class="mt-4">
-                <div class="form-group row m-0 my-3">
-                    <input type="text" name="search" class="form-control col-xl-4 ml-auto" value="{{ search_query }}" placeholder="Search by name, roll number or email">
-                    <button type="submit" value="Search" class="btn btn-primary btn-blue">Search</button>
-                </div>
-            </form>
-            <div class="table-responsive">
-                <!-- the table -->
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Roll Number</th>
-                            <th>Number of Guests</th>
-                            <th>Driver</th>
-                            <th>Total Amount Paid</th>
-                            <th>Payment Verification</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for obj in reunion_registrations %}
-                        <tr>
-                            <td>{{ obj.name }}</td>
-                            <td>{{ obj.email }}</td>
-                            <td>{{ obj.roll_number }}</td>
-                            <td>{{ obj.number_of_guests }}</td>
-                            <td>{{ obj.driver }}</td>
-                            <td>{{ obj.total_amount_paid }}</td>
-                            {% if obj.is_payment_varified %}
-                                <td class="text-blue">Completed</td>
-                            {% else %}
-                                <td class="text-red">Processing</td>
-                            {% endif %}
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Pagination controls -->
-        <div class="pagination">
-            <span class="step-links">
-                {% if reunion_registrations.has_previous %}
-                    <a href="?page=1&search={{ search_query }}">first</a>
-                    <a href="?page={{ reunion_registrations.previous_page_number }}&search={{ search_query }}">previous</a>
-                {% endif %}
-
-                <span class="current-page">
-                    Page {{ reunion_registrations.number }} of {{ reunion_registrations.paginator.num_pages }}.
-                </span>
-
-                {% if reunion_registrations.has_next %}
-                    <a href="?page={{ reunion_registrations.next_page_number }}&search={{ search_query }}">next</a>
-                    <a href="?page={{ reunion_registrations.paginator.num_pages }}&search={{ search_query }}">last</a>
-                {% endif %}
-            </span>
-        </div>
-        
-        <div style="height: 80px;"></div>
+        <div style="height: 80px;" id="organizing_committee"></div>
         
 
 
-        <div class="" id="organizing_committee">
+        <div class="">
             <p class="my_title mt-4 mb-4"><span class="underline_span_left">Organizing Committee, IPE 1st Reunion, RUET</span></p>
 
             <div class="table-responsive committee_table">
                 <table class="table table-bordered table-striped">
                     <thead>
-                    <tr>
-                        <th>Role</th>
-                        <th>Name</th>
-                    </tr>
-                    
                     <!-- ... Start: Organizing Committee ... -->
                         <tr>
                         <td>Chairman</td>
@@ -426,25 +354,22 @@
             </div>
         </div>
 
-        <div style="height: 80px;"></div>
+        <div style="height: 80px;" id="sub_committee"></div>
         
 
 
-        <div class="" id="sub_committee">
+        <div class="">
             <p class="my_title mt-4 mb-4"><span class="underline_span_left">Sub Committee, IPE 1st Reunion, RUET</span></p>
 
             <div class="table-responsive committee_table">
                 <table class="table table-bordered table-striped">
                     <thead>
-                    <tr>
-                        <th>Committee</th>
-                        <th>Role</th>
-                        <th>Name</th>
-                    </tr>
-                    
+                        <th colspan="2" class="text-blue text-center fw-800">Finance and Sponsor Sub-committee</th>
+                    </thead>
+
                     <!-- ... Start: Finance and Sponsor Sub-committee ... -->
                     <tr>
-                        <td rowspan="9">Finance and Sponsor Sub-committee</td>
+                        
                         <td>Chairman</td>
                         <td>Fazlay Rabby (05)</td>
                     </tr>
@@ -483,8 +408,10 @@
                     <!-- ... End: Finance and Sponsor Sub-committee ... -->
 
                     <!-- ... Start: Advertisement and Publicity Sub-committee ... -->
+                    <thead>
+                        <th colspan="2" class="text-blue text-center fw-800">Advertisement and Publicity Sub-committee</th>
+                    </thead>
                     <tr>
-                        <td rowspan="9">Advertisement and Publicity Sub-committee</td>
                         <td>Chairman</td>
                         <td>Md. Shahidul Islam Saddam (09)</td>
                     </tr>
@@ -523,8 +450,10 @@
                     <!-- ... End: Advertisement and Publicity Sub-committee ... -->
 
                     <!-- ... Start: Welcome and Reception Sub-committee ... -->
+                    <thead>
+                        <th colspan="2" class="text-blue text-center fw-800">Welcome and Reception Sub-committee</th>
+                    </thead>
                     <tr>
-                        <td rowspan="8">Welcome and Reception Sub-committee</td>
                         <td>Chairman</td>
                         <td>Md. Rakibul Islam (09)</td>
                     </tr>
@@ -560,8 +489,10 @@
                     <!-- ... End: Welcome and Reception Sub-committee ... -->
                     
                     <!-- ... Start: Event Management Sub-committee ... -->
+                    <thead>
+                        <th colspan="2" class="text-blue text-center fw-800">Event Management Sub-committee</th>
+                    </thead>
                     <tr>
-                        <td rowspan="10">Event Management Sub-committee</td>
                         <td>Chairman</td>
                         <td>Khairun Nahar (05)</td>
                     </tr>
@@ -605,8 +536,10 @@
                     <!-- ... End: Event Management Sub-committee ... -->
 
                     <!-- ... Start: Food Management Sub-committee ... -->
+                    <thead>
+                        <th colspan="2" class="text-blue text-center fw-800">Food Management Sub-committee</th>
+                    </thead>
                     <tr>
-                        <td rowspan="6">Food Management Sub-committee</td>
                         <td>Chairman</td>
                         <td>Md. Shah Alam (08)</td>
                     </tr>
@@ -633,8 +566,10 @@
                     <!-- ... End: Food Management Sub-committee ... -->
                     
                     <!-- ... Start: Souvenir Sub-committee ... -->
+                    <thead>
+                        <th colspan="2" class="text-blue text-center fw-800">Souvenir Sub-committee</th>
+                    </thead>
                     <tr>
-                        <td rowspan="8">Souvenir Sub-committee</td>
                         <td>Chairman</td>
                         <td>Akhtar Ferdous Khan Asif (09)</td>
                     </tr>
@@ -670,8 +605,10 @@
                     <!-- ... End: Souvenir Sub-committee ... -->
                     
                     <!-- ... Start: Cultural and Sports Sub-committee ... -->
+                    <thead>
+                        <th colspan="2" class="text-blue text-center fw-800">Cultural and Sports Sub-committee</th>
+                    </thead>
                     <tr>
-                        <td rowspan="9">Cultural and Sports Sub-committee</td>
                         <td>Chairman</td>
                         <td>Md. Nur Akter Jaman (09)</td>
                     </tr>
@@ -711,8 +648,10 @@
                     <!-- ... End: Cultural and Sports Sub-committee ... -->
 
                     <!-- Health, Safety and Security Sub-committee -->
+                    <thead>
+                        <th colspan="2" class="text-blue text-center fw-800">Health, Safety and Security Sub-committee</th>
+                    </thead>
                     <tr>
-                        <td rowspan="5">Health, Safety and Security Sub-committee</td>
                         <td>Chairman</td>
                         <td>Raisul Islam Rose (08)</td>
                     </tr>
@@ -734,8 +673,11 @@
                     </tr>
 
                     <!-- Constitution Formation Sub-committee -->
+                    <thead>
+                        <th colspan="2" class="text-blue text-center fw-800">Constitution Formation Sub-committee</th>
+                    </thead>
                     <tr>
-                        <td rowspan="6">Constitution Formation Sub-committee</td>
+                    <tr>
                         <td>Chairman</td>
                         <td>Mohammad Mohi Uddin (05)</td>
                     </tr>
@@ -760,7 +702,6 @@
                         <td>Debashis Roy (07)</td>
                     </tr>
                     <tr>
-                        <td rowspan="9">Constitution Formation Sub-committee</td>
                         <td>Member</td>
                         <td>Raisul Islam Rose (08)</td>
                     </tr>
@@ -798,8 +739,10 @@
                     </tr>
 
                     <!-- Foreign Affair Sub-committee -->
+                    <thead>
+                        <th colspan="2" class="text-blue text-center fw-800">Foreign Affair Sub-committee</th>
+                    </thead>
                     <tr>
-                        <td rowspan="14">Foreign Affair Sub-committee</td>
                         <td>Chairman</td>
                         <td>Morshed Alam (05)</td>
                     </tr>
@@ -857,8 +800,10 @@
                     </tr>
 
                     <!-- Registration Sub-committee -->
+                    <thead>
+                        <th colspan="2" class="text-blue text-center fw-800">Registration Sub-committee</th>
+                    </thead>
                     <tr>
-                        <td rowspan="6">Registration Sub-committee</td>
                         <td>Chairman</td>
                         <td>Md. Rakibul Islam (09)</td>
                     </tr>
@@ -888,76 +833,67 @@
             </div>
         </div>
 
-        <div style="height: 80px;"></div>
+        <div style="height: 80px;" class="reunion_gallary" id="gallary"></div>
 
-        <div id="gallary" class="reunion_gallary">
+        <div>
             <p class="my_title fs-20 fw-700 mb-4">
                 <span class="underline_span_left">Gallary</span>
             </p>
             <div class="row mx-0 my-5 d-flex justify-content-center">
+                {% for image in gallery_images %}
                 <div class="col-xl-4 reunion_gallary_card mt-2 mb-5 mx-auto" data-toggle="modal" data-target="#imageModal" onclick="showImage(this)">
                     <div class="image-container">
-                      <img src="{% static 'imgs/test_g1.jpg' %}" alt="" class="speaker_img d-flex">
-                      <div class="image-overlay"></div>
-                      <button class="view-button btn btn-primary btn-blue">Click to View Image</button>
+                        <img src="{{ image.image.url }}" alt="" class="speaker_img d-flex">
+                        <div class="image-overlay"></div>
+                        <button class="view-button btn btn-primary btn-blue">Click to View Image</button>
                     </div>
                     <div class="px-3 py-3">
-                      <p class="m-0">Caption of the picture1</p>
+                        <p class="m-0">{{ image.caption }}</p>
                     </div>
                 </div>
-                <div class="col-xl-4 reunion_gallary_card mt-2 mb-5 mx-auto" data-toggle="modal" data-target="#imageModal" onclick="showImage(this)">
-                    <div class="image-container">
-                      <img src="{% static 'imgs/test_g2.jpg' %}" alt="" class="speaker_img d-flex">
-                      <div class="image-overlay"></div>
-                      <button class="view-button btn btn-primary btn-blue">Click to View Image</button>
-                    </div>
-                    <div class="px-3 py-3">
-                      <p class="m-0">Caption of the picture2</p>
-                    </div>
-                </div>
-                <div class="col-xl-4 reunion_gallary_card mt-2 mb-5 mx-auto" data-toggle="modal" data-target="#imageModal" onclick="showImage(this)">
-                    <div class="image-container">
-                      <img src="{% static 'imgs/test_g3.jpg' %}" alt="" class="speaker_img d-flex">
-                      <div class="image-overlay"></div>
-                      <button class="view-button btn btn-primary btn-blue">Click to View Image</button>
-                    </div>
-                    <div class="px-3 py-3">
-                      <p class="m-0">Caption of the picture3</p>
-                    </div>
-                </div>
-                
-                <div class="col-xl-4 reunion_gallary_card mt-2 mb-5 mx-auto" data-toggle="modal" data-target="#imageModal" onclick="showImage(this)">
-                    <div class="image-container">
-                      <img src="{% static 'imgs/test_g2.jpg' %}" alt="" class="speaker_img d-flex">
-                      <div class="image-overlay"></div>
-                      <button class="view-button btn btn-primary btn-blue">Click to View Image</button>
-                    </div>
-                    <div class="px-3 py-3">
-                      <p class="m-0">Caption of the picture1</p>
-                    </div>
-                </div>
-                <div class="col-xl-4 reunion_gallary_card mt-2 mb-5 mx-auto" data-toggle="modal" data-target="#imageModal" onclick="showImage(this)">
-                    <div class="image-container">
-                      <img src="{% static 'imgs/test_g3.jpg' %}" alt="" class="speaker_img d-flex">
-                      <div class="image-overlay"></div>
-                      <button class="view-button btn btn-primary btn-blue">Click to View Image</button>
-                    </div>
-                    <div class="px-3 py-3">
-                      <p class="m-0">Caption of the picture2</p>
-                    </div>
-                </div>
-                <div class="col-xl-4 reunion_gallary_card mt-2 mb-5 mx-auto" data-toggle="modal" data-target="#imageModal" onclick="showImage(this)">
-                    <div class="image-container">
-                      <img src="{% static 'imgs/test_g1.jpg' %}" alt="" class="speaker_img d-flex">
-                      <div class="image-overlay"></div>
-                      <button class="view-button btn btn-primary btn-blue">Click to View Image</button>
-                    </div>
-                    <div class="px-3 py-3">
-                      <p class="m-0">Caption of the picture3</p>
-                    </div>
-                </div>
-                
+                {% endfor %}
             </div>
+            <!-- Bootstrap 4 Pagination -->
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                {% if gallery_images.has_previous %}
+                    <li class="page-item">
+                    <a class="page-link" href="?image_page={{ gallery_images.previous_page_number }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                    </li>
+                {% endif %}
+            
+                {% for i in gallery_images.paginator.page_range %}
+                    {% if gallery_images.number == i %}
+                    <li class="page-item active"><a class="page-link" href="?image_page={{ i }}">{{ i }}</a></li>
+                    {% else %}
+                    <li class="page-item"><a class="page-link" href="?image_page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+            
+                {% if gallery_images.has_next %}
+                    <li class="page-item">
+                    <a class="page-link" href="?image_page={{ gallery_images.next_page_number }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                    </li>
+                {% endif %}
+                </ul>
+            </nav>
+  
         </div>
         <!-- Modal for full screen image -->
         <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imgModalLabel" aria-hidden="true">
@@ -986,9 +922,9 @@
         </script>  
 
 
-        <div style="height: 80px;"></div>
+        <div style="height: 80px;" class="accommodation"></div>
 
-        <div id="accommodation" class="accommodation">
+        <div id="accommodation">
             <p class="my_title fs-20 fw-700 mb-4">
                 <span class="underline_span_left">Accommodation</span>
             </p>

@@ -7,4 +7,7 @@ admin.site.register(Profile)
 admin.site.register(ReunionRegistration)
 admin.site.register(Notice)
 admin.site.register(Achievement)
+admin.site.register(Carousel)
+admin.site.register(GalleryImage)
+
 

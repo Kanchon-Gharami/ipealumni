@@ -22,6 +22,7 @@ urlpatterns = [
     path('all_alumni/', all_alumni, name='all_alumni'),
     path('interest/', interest, name='interest'),
     path('giving/', giving, name='giving'),
+    path('first_reunion_participant/', first_reunion_participant, name='first_reunion_participant'),
 
     path('admin_signup/', admin_signup, name='admin_signup'),
     path('admin_dashboard/', admin_dashboard, name='admin_dashboard'),
@@ -37,6 +38,15 @@ urlpatterns = [
     path('edit_achievement/', edit_achievement, name='edit_achievement'),
     path('delete_achievement/', delete_achievement, name='delete_achievement'),
     path('export_achievement/', export_achievement, name='export_achievement'),
+    path('admin_carousel/', admin_carousel, name='admin_carousel'),
+    path('delete_carousel/<int:carousel_id>/', delete_carousel, name='delete_carousel'),
+    path('create_carousel/', create_carousel, name='create_carousel'),
+    path('admin_gallary/', admin_gallary, name='admin_gallary'),
+    path('delete_image/<int:image_id>/', delete_image, name='delete_image'),
+    path('admin_alumnimanagement/', admin_alumnimanagement, name='admin_alumnimanagement'),
+    path('delete_user/', delete_user, name='delete_user'),
+    path('edit_membership/', edit_membership, name='edit_membership'),
+    path('export_alumni_data/', export_alumni_data, name='export_alumni_data'),
 
 ]
 

@@ -15,14 +15,19 @@
     <form method="POST" action="" enctype="multipart/form-data" class="my-5">
         {% csrf_token %}
         <div class="row m-0">
-            <div class="form-group col-xl-6">
+            <div class="form-group col-xl-4">
                 <label for="name">Name <span class="mandatory_star">*</span></label>
                 <input type="text" name="name" class="form-control" required>
             </div>
 
-            <div class="form-group col-xl-6">
+            <div class="form-group col-xl-4">
                 <label for="email">email <span class="mandatory_star">*</span></label>
                 <input type="email" name="email" class="form-control" required>
+            </div>
+
+            <div class="form-group col-xl-4">
+                <label for="phone_no">Phone No</label>
+                <input type="text" name="phone_no" class="form-control">
             </div>
     
             <div class="form-group col-xl-4">
@@ -31,23 +36,37 @@
             </div>
     
             <div class="form-group col-xl-4">
-                <label for="number_of_guests">Number of Guests <span class="mandatory_star">*</span></label>
-                <input type="number" name="number_of_guests" class="form-control" required>
-            </div>
-    
-            <div class="form-group col-xl-4">
-                <label for="driver">Driver <span class="mandatory_star">*</span></label>
-                <input type="number" name="driver" class="form-control" required>
-            </div>
-    
-            <div class="form-group col-xl-6">
-                <label for="total_amount_paid">Total Amount Paid <span class="mandatory_star">*</span></label>
-                <input type="number" name="total_amount_paid" class="form-control" required>
-            </div>
-            <div class="form-group col-xl-6">
-                <label for="upload_payment_slip">Upload Payment Slip (img only) <span class="mandatory_star">*</span></label>
-                <input type="file" name="upload_payment_slip" class="form-control-file" required>
-            </div>
+              <label for="number_of_guests">Number of Guests</label>
+              <select name="number_of_guests" class="form-control">
+                  {% for i in "0123456789"|make_list %}
+                      <option value="{{ i }}" {% if i == "0" %}selected{% endif %}>{{ i }}</option>
+                  {% endfor %}
+              </select>
+          </div>
+          
+          <div class="form-group col-xl-4">
+              <label for="driver">Driver</label>
+              <select name="driver" class="form-control">
+                  {% for i in "0123"|make_list %}
+                      <option value="{{ i }}" {% if i == "0" %}selected{% endif %}>{{ i }}</option>
+                  {% endfor %}
+              </select>
+          </div>
+          
+          <div class="form-group col-xl-4">
+              <label for="total_amount_paid">Total Amount Paid <span class="mandatory_star">*</span></label>
+              <input type="number" name="total_amount_paid" class="form-control" required>
+          </div>
+
+          <div class="form-group col-xl-4">
+              <label for="transaction_id">Transaction ID</label>
+              <input type="text" name="transaction_id" class="form-control">
+          </div>
+          
+          <div class="form-group col-xl-4">
+              <label for="upload_payment_slip">Upload Payment Slip (img only)</label>
+              <input type="file" name="upload_payment_slip" class="form-control-file">
+          </div>
             <button type="submit" class="btn btn-blue btn-primary px-3 my-3 ml-auto">Submit</button>
         </div>
     </form>

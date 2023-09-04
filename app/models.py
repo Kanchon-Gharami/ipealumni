@@ -44,6 +44,7 @@ class MyCustomUser(AbstractUser):
 class Profile(models.Model):
     # Choice fields
     SERIES_CHOICES = [(str(year), str(year)) for year in range(2005, 2017)]
+    SERIES_CHOICES.append(('faculty_member', 'Faculty Member'))
     phone_regex = RegexValidator(
         regex=r'^\+?([0-9]{1,3})?[-. ]?([0-9]{1,4})[-. ]?([0-9]{1,4})[-. ]?([0-9]{1,9})$',
         message="Enter a valid international phone number."
@@ -56,10 +57,17 @@ class Profile(models.Model):
     ]
     MARITAL_STATUS_CHOICES = [('married', 'Married'), ('single', 'Single')]
 
+    MEMBERSHIP_CHOICES = [
+        ('not_provided', 'Not Provided yet'),
+        ('alumni_member', 'Alumni Member'),
+        ('faculty_member', 'Faculty Member'),
+        ('honorary_member', 'Honorary Member'),
+        ('life_member', 'Life Member'),
+    ]
     # attribute fields
     user = models.OneToOneField(MyCustomUser, on_delete=models.CASCADE, related_name='profile')
     roll = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(9999999)])
-    series = models.CharField(max_length=4, choices=SERIES_CHOICES)
+    series = models.CharField(max_length=20, choices=SERIES_CHOICES)
     phone_number = models.CharField(
         validators=[phone_regex],
         max_length=18,
@@ -78,6 +86,12 @@ class Profile(models.Model):
     facebook = models.URLField(max_length=200, blank=True, null=True)
     profile_picture = models.ImageField(upload_to='profile_pics/')
 
+    membership = models.CharField(
+        max_length=20, 
+        choices=MEMBERSHIP_CHOICES, 
+        default='not_provided'
+    )
+
     # HigherEducation
     name_of_degree1 = models.CharField(max_length=100, blank=True, null=True)
     institution1 = models.CharField(max_length=100, blank=True, null=True)
@@ -91,6 +105,11 @@ class Profile(models.Model):
     
 
 class ReunionRegistration(models.Model):
+    phone_regex = RegexValidator(
+        regex=r'^\+?([0-9]{1,3})?[-. ]?([0-9]{1,4})[-. ]?([0-9]{1,4})[-. ]?([0-9]{1,9})$',
+        message="Enter a valid international phone number."
+    )
+    
     name = models.CharField(max_length=255, null=False, blank=False)
     email = models.EmailField(_('email address'), unique=True, blank=False, null=False)
     roll_number = models.IntegerField(
@@ -98,16 +117,22 @@ class ReunionRegistration(models.Model):
         validators=[MinValueValidator(0), MaxValueValidator(9999999)]
     )
     number_of_guests = models.IntegerField(
-        null=False, blank=False,
-        validators=[MinValueValidator(1), MaxValueValidator(10)]
+        null=True, blank=True, default=0,
+        validators=[MinValueValidator(0), MaxValueValidator(9)]
     )
     driver = models.IntegerField(
-        null=False, blank=False,
-        validators=[MinValueValidator(1), MaxValueValidator(3)]
+        null=True, blank=True, default=0,
+        validators=[MinValueValidator(0), MaxValueValidator(3)]
     )
     total_amount_paid = models.IntegerField(null=False, blank=False)
-    upload_payment_slip = models.ImageField(upload_to='payment_slips/', null=False, blank=False)
+    upload_payment_slip = models.ImageField(upload_to='payment_slips/', null=True, blank=True)
     is_payment_varified = models.BooleanField(default=False)
+    transaction_id = models.CharField(max_length=100, null=True, blank=True)
+    phone_no = models.CharField(
+        validators=[phone_regex],
+        max_length=18,
+        null=True, blank=True
+    )
 
     def __str__(self):
         return self.name
@@ -115,8 +140,8 @@ class ReunionRegistration(models.Model):
 
 class Notice(models.Model):
     title = models.CharField(max_length=500, blank=False, null=False)
-    paragraph = models.TextField(blank=False, null=False)
-    image = models.ImageField(upload_to='notices/', blank=True, null=True)
+    paragraph = models.TextField(blank=True, null=True)
+    file = models.FileField(upload_to='notice/', blank=True, null=True) 
     datetime_field = models.DateTimeField(auto_now_add=True, blank=False, null=False)
 
     def __str__(self):
@@ -130,3 +155,25 @@ class Achievement(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Carousel(models.Model):
+    image = models.ImageField(upload_to='carousel_images/')  # you need to have Pillow installed to use ImageField
+    quote = models.TextField()
+    datetime_field = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.quote[:50]
+    
+
+class GalleryImage(models.Model):
+    caption = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='gallery_images/')
+    TAG_CHOICES = [
+        ('first_reunion', 'First Reunion'),
+        ('home_gallery', 'Home Gallery'),
+    ]
+    tag = models.CharField(max_length=20, choices=TAG_CHOICES)
+
+    def __str__(self):
+        return self.caption

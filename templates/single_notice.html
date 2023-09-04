@@ -4,20 +4,21 @@
 {% load static %}
 {% block content %}
 
-
 <div class="row m-0 my-4 d-flex justify-content-center">
     <div class="col-lg-8">
-        {% if notice.image %}
-            <img src="{{ notice.image.url }}" alt="" class="img-fluid">
-        {% endif %}
         <p class="my_title mt-4 mb-4">
             <span class="underline_span_left">{{ notice.title }}</span>
         </p>
         <p>{{ notice.datetime_field|date:"F j, Y, P" }}</p>
         {{ notice.paragraph }}
+        <div class="row m-0 my-3">
+            {% if file_url %}
+                <a href="{{ file_url }}" download class="btn btn-primary btn-blue">Download Notice</a>
+            {% else %}
+                <button class="btn btn-primary btn-blue" disabled>No Attatched File</button>
+            {% endif %}
+        </div>
     </div>
 </div>
-
-
 
 {% endblock %}

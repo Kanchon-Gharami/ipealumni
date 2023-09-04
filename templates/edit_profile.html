@@ -33,6 +33,7 @@
                 <label for="email" class="form-label">Email <span class="mandatory_star">*</span></label>
                 <input type="email" class="form-control" id="email" name="{{ user_form.email.name }}" value="{{ user.email }}">
             </div>
+            
 
             <div class="mb-3">
                 <label for="roll" class="form-label">Roll <span class="mandatory_star">*</span></label>
@@ -92,6 +93,11 @@
             <div class="mb-3">
                 <label for="home_district" class="form-label">Home District</label>
                 <input type="text" class="form-control" id="home_district" name="{{ profile_form.home_district.name }}" value="{{ profile_form.home_district.value }}">
+            </div>
+
+            <div class="mb-3" style="display: none;">
+                <label for="membership" class="form-label">Membership</label>
+                <input type="text" class="form-control" id="membership" name="{{ profile_form.membership.name }}" value="{{ profile_form.membership.value }}">
             </div>
 
             <div class="mb-3">

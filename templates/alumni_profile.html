@@ -86,7 +86,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Personal Information</h5>
                     <p><strong>Full Name:</strong> {{ alumni.name }}</p>
-                    <p><strong>Membership:</strong> Alumni </p>
+                    <p><strong>Membership:</strong> {{ profile.get_membership_display }} </p>
                     <p class="card-text"><strong>Email:</strong> {{ alumni.email }}</p>
                     <hr>
 

@@ -34,7 +34,7 @@
               <p class="m-0 text-blue">{{ profile.user.name }}</p>
             
               <p class="m-0 fs-15 fw-600 text-black">Series: {{ profile.series }}</p>
-              <p class="m-0 fs-15 fw-600">Membership Category: </p>
+              <p class="m-0 fs-15 fw-600">Membership Category: {{ profile.get_membership_display }}</p>
               <p class="m-0 fs-15 fw-600">{{ profile.current_position }} </p>
               <p class="m-0 fs-15 fw-600">{{ profile.current_organization }}</p>
           </div>

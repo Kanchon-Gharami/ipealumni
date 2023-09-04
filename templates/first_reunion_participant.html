@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="row m-0 my-4 d-flex justify-content-center">
+    <div class="col-lg-8">
+        <div>
+            <p class="my_title mt-4 mb-4"><span class="underline_span_left">Alumnis Already Registered for Reunion</span></p>
+            <form method="get" class="mt-4">
+                <div class="form-group row m-0 my-3">
+                    <input type="text" name="search" class="form-control col-xl-4 ml-auto" value="{{ search_query }}" placeholder="Search by name, roll number or email">
+                    <button type="submit" value="Search" class="btn btn-primary btn-blue">Search</button>
+                </div>
+            </form>
+            <div class="table-responsive">
+                <!-- the table -->
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Roll Number</th>
+                            <th>Number of Guests</th>
+                            <th>Driver</th>
+                            <th>Total Amount Paid</th>
+                            <th>Payment Verification</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for obj in reunion_registrations %}
+                        <tr>
+                            <td>{{ obj.name }}</td>
+                            <td>{{ obj.email }}</td>
+                            <td>{{ obj.roll_number }}</td>
+                            <td>{{ obj.number_of_guests }}</td>
+                            <td>{{ obj.driver }}</td>
+                            <td>{{ obj.total_amount_paid }}</td>
+                            {% if obj.is_payment_varified %}
+                                <td class="text-blue">Completed</td>
+                            {% else %}
+                                <td class="text-red">Processing</td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Pagination controls -->
+        <div class="pagination">
+            <span class="step-links">
+                {% if reunion_registrations.has_previous %}
+                    <a href="?page=1&search={{ search_query }}">first</a>
+                    <a href="?page={{ reunion_registrations.previous_page_number }}&search={{ search_query }}">previous</a>
+                {% endif %}
+
+                <span class="current-page">
+                    Page {{ reunion_registrations.number }} of {{ reunion_registrations.paginator.num_pages }}.
+                </span>
+
+                {% if reunion_registrations.has_next %}
+                    <a href="?page={{ reunion_registrations.next_page_number }}&search={{ search_query }}">next</a>
+                    <a href="?page={{ reunion_registrations.paginator.num_pages }}&search={{ search_query }}">last</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

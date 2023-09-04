@@ -8,17 +8,9 @@
     <div class="row m-0">
       
       <nav id="sidebarNav" class="col-md-3 col-lg-2 d-md-block sidebar collapse position-fixed custom-sidebar p-0 px-3">
-        <ul class="nav flex-column bg-light">
-          <li class="nav-item">
-            <a class="nav-link active" href="{% url 'app:admin_dashboard' %}">Reunion Registration</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'app:adminpannel_notice' %}">Notice</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'app:adminpannel_achievement' %}">Achievement</a>
-          </li>
-        </ul>
+
+        {% include "admin_sidepannel.html" %}
+
       </nav>
       <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4 sidebar_show_content">
         <p class="my_title mb-4">
@@ -75,16 +67,16 @@
                             {% csrf_token %}
                             <input type="hidden" id="editNoticeId_{{ notice.id }}" name="notice_id" value="{{ notice.id }}">
                             <div class="form-group">
-                            <label for="editTitle">Title</label>
-                            <input type="text" class="form-control" id="editTitle" name="title" value="{{ notice.title }}" required>
+                                <label for="editTitle">Title</label>
+                                <input type="text" class="form-control" id="editTitle" name="title" value="{{ notice.title }}" required>
                             </div>
                             <div class="form-group">
-                            <label for="editParagraph">Paragraph</label>
-                            <textarea class="form-control" id="editParagraph" rows="10" name="paragraph" required>{{ notice.paragraph }}</textarea>
+                                <label for="editParagraph">Paragraph</label>
+                                <textarea class="form-control" id="editParagraph" rows="10" name="paragraph">{{ notice.paragraph }}</textarea>  <!-- removed required -->
                             </div>
                             <div class="form-group">
-                            <label for="editImage">Image</label>
-                            <input type="file" class="form-control-file" id="editImage" name="image">
+                                <label for="editFile">File</label>
+                                <input type="file" class="form-control-file" id="editFile" name="file">
                             </div>
                             <button type="submit" class="btn btn-primary">Save Changes</button>
                         </form>
@@ -159,16 +151,16 @@
                 <form id="createNoticeForm" method="post" enctype="multipart/form-data" action="{% url 'app:create_notice' %}">
                     {% csrf_token %}
                     <div class="form-group">
-                    <label for="title">Title</label>
-                    <input type="text" class="form-control" id="title" name="title" required>
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" id="title" name="title" required>
                     </div>
                     <div class="form-group">
-                    <label for="paragraph">Paragraph</label>
-                    <textarea class="form-control" rows="10" id="paragraph" name="paragraph" required></textarea>
+                        <label for="paragraph">Paragraph</label>
+                        <textarea class="form-control" rows="10" id="paragraph" name="paragraph"></textarea>  <!-- removed required -->
                     </div>
                     <div class="form-group">
-                    <label for="image">Image</label>
-                    <input type="file" class="form-control-file" id="image" name="image">
+                        <label for="file">File</label> <!-- Changed from Image to File -->
+                        <input type="file" class="form-control-file" id="file" name="file"> <!-- Changed from image to file -->
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
@@ -176,7 +168,6 @@
             </div>
             </div>
         </div>
-  
   
 
         

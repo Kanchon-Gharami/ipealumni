@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid my-5">
+    <div class="row m-0">
+      
+      <!-- Sidebar -->
+      <nav id="sidebarNav" class="col-md-3 col-lg-2 d-md-block sidebar collapse position-fixed custom-sidebar p-0 px-3">
+        {% include "admin_sidepannel.html" %}
+      </nav>
+      <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4 sidebar_show_content">
+        <button id="sidebar-toggler" class="d-md-none btn btn-light" type="button" data-toggle="collapse" data-target="#sidebarNav" aria-controls="sidebarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars"> <span class="mx-2">Toggle Menu</span> </i>
+        </button>
+        
+        <div id="admin_gallary">
+            <p class="my_title mb-4">
+                <span class="underline_span_left">Gallery</span>
+            </p>
+            <div class="row m-0 mb-4">
+                <!-- New image create button -->
+                <button type="button" class="btn btn-primary btn-blue my-2 mx-3" data-toggle="modal" data-target="#createNewImageModal">
+                    New Image
+                </button>
+            </div>
+            <div class="row m-0">
+                {% for image in gallery_images %}
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="{{ image.image.url }}" class="card-img-top" alt="{{ image.caption }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ image.caption }}</h5>
+                            <form method="POST" action="{% url 'app:delete_image' image.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div style="height: 80px;"></div>
+      </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="createNewImageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New Image</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form method="POST" action="{% url 'app:admin_gallary' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="imageCaption" class="form-label">Caption</label>
+                    <input type="text" class="form-control" id="imageCaption" name="caption">
+                </div>
+                <div class="mb-3">
+                    <label for="imageTag" class="form-label">Tag</label>
+                    <select class="form-control" id="imageTag" name="tag">
+                        <option value="first_reunion">First Reunion</option>
+                        <option value="home_gallery">Home Gallery</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="galleryImage" class="form-label">Image</label>
+                    <input type="file" class="form-control" id="galleryImage" name="image">
+                </div>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+        </div>
+      </div>
+    </div>
+</div>
+
+{% endblock %}

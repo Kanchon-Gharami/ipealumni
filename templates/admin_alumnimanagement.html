@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid my-5">
+    <div class="row m-0">
+      
+      <!-- Sidebar -->
+      <nav id="sidebarNav" class="col-md-3 col-lg-2 d-md-block sidebar collapse position-fixed custom-sidebar p-0 px-3">
+        {% include "admin_sidepannel.html" %}
+      </nav>
+      <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4 sidebar_show_content">
+        <button id="sidebar-toggler" class="d-md-none btn btn-light" type="button" data-toggle="collapse" data-target="#sidebarNav" aria-controls="sidebarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars"> <span class="mx-2">Toggle Menu</span> </i>
+        </button>
+        
+        <div id="reunion_registration">
+            <p class="my_title mb-4">
+                <span class="underline_span_left">Alumni Management</span>
+            </p>
+            <form method="get" class="mt-4">
+                <!-- search form -->
+              <div class="form-group row m-0 my-3">
+                <a href="{% url 'app:export_alumni_data' %}" class="btn btn-primary btn-blue my-2">Export Excel</a>
+                <input type="text" class="form-control col-xl-3 ml-auto my-2" name="search" value="{{ search_query }}" placeholder="Search by Name / Roll / Email">
+                <button type="submit" class="btn btn-primary btn-blue" style="height: 38px; margin-top: 8px;">Search</button>
+              </div>
+            </form>
+            
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Name</th>
+                            <th>Roll</th>
+                            <th>Phone</th>
+                            <th>Membership</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for profile in profiles %}
+                        <tr>
+                            <td>{{ profile.user.email }}</td>
+                            <td>{{ profile.user.name }}</td>
+                            <td>{{ profile.roll }}</td>
+                            <td>{{ profile.phone_number }}</td>
+                            <td>
+                                <div class="row m-0">
+                                    <p class="m-0 p-0">{{ profile.get_membership_display }}</p>
+                                    <button type="button" class="btn btn-primary btn-blue btn-sm ml-4" data-toggle="modal" data-target="#editModal{{ profile.id }}">Edit</button>
+                                </div>
+                            </td>
+                            <td>
+                                <form method="post" action="{% url 'app:delete_user' %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="profile_id" value="{{ profile.id }}">
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete?')">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <!-- Modal -->
+                        <div class="modal fade" id="editModal{{ profile.id }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <form method="post" action="{% url 'app:edit_membership' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="profile_id" value="{{ profile.id }}">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Edit Membership</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <select name="membership" class="form-control">
+                                                {% for value, display_name in profile.MEMBERSHIP_CHOICES %}
+                                                    <option value="{{ value }}" {% if profile.membership == value %}selected{% endif %}>{{ display_name }}</option>
+                                                {% endfor %}
+                                            </select>                                            
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </tbody>
+                </table>
+              </div>              
+            <!-- Paginator -->
+            <div class="paginator">
+                <span class="step-links">
+                    {% if profiles.has_previous %}
+                        <a href="?page=1&search={{ search_query }}">first</a>
+                        <a href="?page={{ profiles.previous_page_number }}&search={{ search_query }}">previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ profiles.number }} of {{ profiles.paginator.num_pages }}.
+                    </span>
+
+                    {% if profiles.has_next %}
+                        <a href="?page={{ profiles.next_page_number }}&search={{ search_query }}">next</a>
+                        <a href="?page={{ profiles.paginator.num_pages }}&search={{ search_query }}">last</a>
+                    {% endif %}
+                </span>
+            </div>
+
+    
+    
+        </div>
+
+        <div style="height: 80px;"></div>
+      </div>
+    </div>
+</div>
+  
+<div class="clear"></div>
+
+
+
+
+{% endblock %}

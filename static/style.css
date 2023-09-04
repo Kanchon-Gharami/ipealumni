@@ -70,7 +70,7 @@ a{
 
 
 .section_gap{
-    height: 150px;
+    height: 120px;
     width: 100%;
     
 }
@@ -711,10 +711,11 @@ a{
 
 .alumni_card{
     color: #212529;
-    border-top: 1px solid #858687;
+    border: 0.5px solid #d2d2d2;
+    /* border-top: 1px solid #858687;
     border-left: 1px solid #858687;
     border-right: 1px solid #858687;
-    border-bottom: 1px solid #858687; 
+    border-bottom: 1px solid #858687;  */
 }
 
 .alumni_card:hover{
