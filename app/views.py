@@ -50,10 +50,20 @@ def index(request):
     except EmptyPage:
         images = paginator.page(paginator.num_pages)
 
+
+    faculty_count = Profile.objects.filter(series='faculty_member').count()
+    alumni_count = Profile.objects.all().count()
+    ReunionRegistration_count = ReunionRegistration.objects.all().count()
+    achievement_count = Achievement.objects.all().count()
+
     context = {
         'latest_notices': latest_notices,
         'latest_achievements': latest_achievements,
         'latest_carousels': latest_carousels,
+        'faculty_count': faculty_count,
+        'alumni_count': alumni_count,
+        'ReunionRegistration': ReunionRegistration_count,
+        'achievement_count': achievement_count,
     }
     context['images'] = images
     return render(request, "index.html", context)

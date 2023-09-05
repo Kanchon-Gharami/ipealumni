@@ -21,10 +21,10 @@
                     <h4>
                         {{ carousel.quote }}
                     </h4>
-                    <div class="row m-0 mt-5 d-flex justify-content-center">
+                    <!-- <div class="row m-0 mt-5 d-flex justify-content-center">
                         <button class="btn btn-blue mx-2 px-5">Explore</button>
                         <button class="btn btn-outline-light mx-2 px-5">Share Memories</button>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         {% endfor %}
@@ -434,26 +434,27 @@
 <div class="row m-0 d-flex justify-content-center bg-light py-5">
     <div class="no_card mx-5">
         <img src="{% static 'icons/witch.png' %}" class="img-fluid d-flex mx-auto my-3">
-        <h1 class="fw-700 text-center m-0 p-0"><span class="count">12</span>+</h1>
-        <p class="text-center fw-600 m-0 p-0">Faculti Member</p>
+        <h1 class="fw-700 text-center m-0 p-0"><span class="count">{{ faculty_count }}</span></h1>
+        <p class="text-center fw-600 m-0 p-0">Faculty Member</p>
     </div>
     <div class="no_card mx-5">
         <img src="{% static 'icons/witch.png' %}" class="img-fluid d-flex mx-auto my-3">
-        <h1 class="fw-700 text-center m-0 p-0"><span class="count">200</span>+</h1>
-        <p class="text-center fw-600 m-0 p-0">Registered Alumnie</p>
+        <h1 class="fw-700 text-center m-0 p-0"><span class="count">{{ alumni_count }}</span></h1>
+        <p class="text-center fw-600 m-0 p-0">Registered Alumni</p>
     </div>
     <div class="no_card mx-5">
         <img src="{% static 'icons/witch.png' %}" class="img-fluid d-flex mx-auto my-3">
-        <h1 class="fw-700 text-center m-0 p-0"><span class="count">5</span></h1>
-        <p class="text-center fw-600 m-0 p-0">Committee</p>
+        <h1 class="fw-700 text-center m-0 p-0"><span class="count">{{ ReunionRegistration }}</span></h1>
+        <p class="text-center fw-600 m-0 p-0">1st Reunion Participant</p>
     </div>
     <div class="no_card mx-5">
         <img src="{% static 'icons/witch.png' %}" class="img-fluid d-flex mx-auto my-3">
-        <h1 class="fw-700 text-center m-0 p-0"><span class="count">10</span>+</h1>
+        <h1 class="fw-700 text-center m-0 p-0"><span class="count">{{ achievement_count }}</span></h1>
         <p class="text-center fw-600 m-0 p-0">Achievements</p>
     </div>
 </div>
 <!-- End: Number count -->
+
 
 
 <div class="section_gap"></div>

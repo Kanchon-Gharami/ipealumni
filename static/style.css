@@ -451,7 +451,7 @@ a{
 
 
 .carousel-caption {
-    top: 160px;
+    top: 360px;
     bottom: auto;
     max-width: 800px;
     margin: auto;
@@ -1047,6 +1047,13 @@ fa-li {
 
 /* CSS for screens smaller than 768 pixels */
 @media only screen and (max-width: 768px) {
+    
+    .carousel-caption {
+        top: 60px;
+        bottom: auto;
+        max-width: 300px;
+        margin: auto;
+    }
     .my_menu{
         padding-left: 5px;
         padding-right: 5px;
