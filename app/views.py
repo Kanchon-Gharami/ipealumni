@@ -286,9 +286,9 @@ def all_alumni(request):
     years = [str(year) for year in range(2005, 2017)]
     series_filter = request.GET.get('series', '')  # Get the 'series' parameter from the request
     if series_filter:
-        profiles = Profile.objects.filter(series=series_filter)  # Filter by series if provided
+        profiles = Profile.objects.filter(series=series_filter).order_by('roll') 
     else:
-        profiles = Profile.objects.all()  # Otherwise, display all
+        profiles = Profile.objects.all().order_by('roll')   # Otherwise, display all
     
     paginator = Paginator(profiles, 12)  # Show 12 profiles per page
 
@@ -770,9 +770,9 @@ def first_reunion_participant(request):
             Q(name__icontains=search_query) |
             Q(roll_number__icontains=search_query) |
             Q(email__icontains=search_query)
-        ).order_by('name')  
+        ).order_by('roll_number') 
     else:
-        reunion_registrations = ReunionRegistration.objects.all().order_by('name')  
+        reunion_registrations = ReunionRegistration.objects.all().order_by('roll_number') 
 
     paginator = Paginator(reunion_registrations, 10)  # Show 10 records per page
 
