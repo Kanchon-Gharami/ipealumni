@@ -20,11 +20,7 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Email</th>
                             <th>Roll Number</th>
-                            <th>Number of Guests</th>
-                            <th>Driver</th>
-                            <th>Total Amount Paid</th>
                             <th>Payment Verification</th>
                         </tr>
                     </thead>
@@ -32,11 +28,7 @@
                         {% for obj in reunion_registrations %}
                         <tr>
                             <td>{{ obj.name }}</td>
-                            <td>{{ obj.email }}</td>
                             <td>{{ obj.roll_number }}</td>
-                            <td>{{ obj.number_of_guests }}</td>
-                            <td>{{ obj.driver }}</td>
-                            <td>{{ obj.total_amount_paid }}</td>
                             {% if obj.is_payment_varified %}
                                 <td class="text-blue">Completed</td>
                             {% else %}

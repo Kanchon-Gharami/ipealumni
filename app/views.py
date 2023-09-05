@@ -24,7 +24,7 @@ from django.core.paginator import Paginator
 from django.core.mail import send_mail
 from django.urls import reverse
 from django.utils.timezone import make_naive
-
+from django.core.exceptions import ValidationError
 
 from django.contrib.auth import get_user_model
 from .models import MyCustomUser, Profile, ReunionRegistration, Notice, Achievement, Carousel, GalleryImage
@@ -113,42 +113,58 @@ def alumni_signup(request):
         # Validate inputs, this is a simplistic example, you could do more comprehensive checks
         if MyCustomUser.objects.filter(email=email).exists():
             return render(request, 'alumni_signup.html', {'error_message': 'Email already exists'})
-        
-        with transaction.atomic():
-            user = MyCustomUser.objects.create_user(email=email, password=password, name=name, is_alumni=True)
-            profile = Profile.objects.create(
-                user=user, roll=roll, series=series, phone_number=phone_number, whatsapp_no=whatsapp_no,
-                current_position=current_position, current_organization=current_organization, previous_experience=previous_experience, 
-                skills=skills, present_address=present_address, home_district=home_district, blood_group=blood_group,
-                marital_status=marital_status, linkedin=linkedin, facebook=facebook,
-                name_of_degree1=name_of_degree1, institution1=institution1,
-                name_of_degree2=name_of_degree2, institution2=institution2,
-                name_of_degree3=name_of_degree3, institution3=institution3,
-            )
-            
-            if 'profile_picture' in request.FILES:
-                profile_picture = request.FILES['profile_picture']
-                fs = FileSystemStorage()
+        try:
+            with transaction.atomic():
+                user = MyCustomUser.objects.create_user(email=email, password=password, name=name, is_alumni=True)
+                profile = Profile.objects.create(
+                    user=user, roll=roll, series=series, phone_number=phone_number, whatsapp_no=whatsapp_no,
+                    current_position=current_position, current_organization=current_organization, previous_experience=previous_experience, 
+                    skills=skills, present_address=present_address, home_district=home_district, blood_group=blood_group,
+                    marital_status=marital_status, linkedin=linkedin, facebook=facebook,
+                    name_of_degree1=name_of_degree1, institution1=institution1,
+                    name_of_degree2=name_of_degree2, institution2=institution2,
+                    name_of_degree3=name_of_degree3, institution3=institution3,
+                )
+                
+                if 'profile_picture' in request.FILES:
+                    profile_picture = request.FILES['profile_picture']
+                    fs = FileSystemStorage()
 
-                img = Image.open(profile_picture)
-                img_format = img.format
+                    img = Image.open(profile_picture)
+                    img_format = img.format
 
-                if img.size[0] > 2000 or img.size[1] > 2000:
-                    img.thumbnail((2000, 2000), Image.BICUBIC)
+                    if img.size[0] > 2000 or img.size[1] > 2000:
+                        img.thumbnail((2000, 2000), Image.BICUBIC)
 
-                img_io = BytesIO()
-                img.save(img_io, format=img_format, quality=80)  # You can experiment with quality to meet your requirements
-                img_content = File(img_io, name=profile_picture.name)
+                    img_io = BytesIO()
+                    img.save(img_io, format=img_format, quality=80)  # You can experiment with quality to meet your requirements
+                    img_content = File(img_io, name=profile_picture.name)
 
-                # Save compressed image
-                filename = fs.save(profile_picture.name, img_content)
-                profile.profile_picture = filename
-                profile.save()
+                    # Save compressed image
+                    filename = fs.save(profile_picture.name, img_content)
+                    profile.profile_picture = filename
+                    profile.save()
 
-            user = authenticate(request, email=email, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('app:index')
+                user = authenticate(request, email=email, password=password)
+                if user is not None:
+                    login(request, user)
+                    return redirect('app:index')
+        except ValidationError as e:
+            error_message = e.message
+            return render(request, 'alumni_signup.html', {
+                'SERIES_CHOICES': Profile.SERIES_CHOICES,
+                'BLOOD_GROUP_CHOICES': Profile.BLOOD_GROUP_CHOICES,
+                'MARITAL_STATUS_CHOICES': Profile.MARITAL_STATUS_CHOICES,
+                'error_message': error_message
+            })
+        except Exception as e:
+            error_message = str(e)
+            return render(request, 'alumni_signup.html', {
+                'SERIES_CHOICES': Profile.SERIES_CHOICES,
+                'BLOOD_GROUP_CHOICES': Profile.BLOOD_GROUP_CHOICES,
+                'MARITAL_STATUS_CHOICES': Profile.MARITAL_STATUS_CHOICES,
+                'error_message': error_message
+            })
     else:
         return render(request, 'alumni_signup.html', {
             'SERIES_CHOICES': Profile.SERIES_CHOICES,

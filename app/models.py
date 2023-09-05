@@ -66,7 +66,7 @@ class Profile(models.Model):
     ]
     # attribute fields
     user = models.OneToOneField(MyCustomUser, on_delete=models.CASCADE, related_name='profile')
-    roll = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(9999999)])
+    roll = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(9999999)], unique=True)
     series = models.CharField(max_length=20, choices=SERIES_CHOICES)
     phone_number = models.CharField(
         validators=[phone_regex],
@@ -113,7 +113,7 @@ class ReunionRegistration(models.Model):
     name = models.CharField(max_length=255, null=False, blank=False)
     email = models.EmailField(_('email address'), unique=True, blank=False, null=False)
     roll_number = models.IntegerField(
-        null=False, blank=False,
+        null=False, blank=False, unique=True,
         validators=[MinValueValidator(0), MaxValueValidator(9999999)]
     )
     number_of_guests = models.IntegerField(
