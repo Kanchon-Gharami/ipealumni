@@ -65,7 +65,8 @@
           
           <div class="form-group col-xl-4">
               <label for="upload_payment_slip">Upload Payment Slip (img only)</label>
-              <input type="file" name="upload_payment_slip" class="form-control-file">
+              <input type="file" id="paymentSlipInput" name="upload_payment_slip" class="form-control-file">
+              <small class="form-text text-muted">Required less than 2MB.</small>
           </div>
             <button type="submit" class="btn btn-blue btn-primary px-3 my-3 ml-auto">Submit</button>
         </div>
@@ -112,6 +113,19 @@
             showModal();
         }
     });
+
+     // Event listener for the payment slip
+     document.getElementById('paymentSlipInput').addEventListener('change', function() {
+        var file = this.files[0];
+
+        // Check file size
+        if (file.size > 2097152) { // 2MB = 2097152 bytes
+            alert('File size must be less than 2MB');
+            this.value = '';
+            return;
+        }
+    });
+    
 </script>
 
   

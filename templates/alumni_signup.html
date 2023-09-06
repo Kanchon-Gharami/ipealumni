@@ -91,8 +91,8 @@
                     </div>
                     <div class="form-group col-xl-4">
                         <label>Profile Picture <span class="mandatory_star">*</span></label>
-                        <input type="file" name="profile_picture" class="form-control" placeholder="aspect ratio: 1:1" required>
-                        <small class="form-text text-muted">Image with 1:1 aspect ratio (Ex. 500px by 500px) is prefered, but not mandatory.</small>
+                        <input type="file" id="profilePictureInput" name="profile_picture" class="form-control" placeholder="aspect ratio: 1:1" required>
+                        <small class="form-text text-muted">Required less than 1MB. Image with 1:1 aspect ratio is prefered, but not mandatory.</small>
                     </div>
                     <div class="form-group col-xl-4">
                         <label>Blood Group <span class="mandatory_star">*</span></label>
@@ -191,6 +191,17 @@
         });
     });
 
+</script>
+
+<script>
+    document.getElementById('profilePictureInput').addEventListener('change', function() {
+        var file = this.files[0];
+        if (file.size > 1048576) { // 1MB = 1048576 bytes
+            alert('File size must be less than 1MB');
+            this.value = '';
+            return;
+        }
+    });
 </script>
 
 
