@@ -806,7 +806,6 @@ def first_reunion_registration(request):
 
         try:       
             with transaction.atomic():
-                validate_integer(roll_number)
                 validate_integer(total_amount_paid)
                 
                 # Conditionally validate these only if they are not empty
@@ -818,7 +817,7 @@ def first_reunion_registration(request):
                 new_registration = ReunionRegistration(
                     name=name,
                     email=email,
-                    roll_number=int(roll_number),
+                    roll_number=roll_number,
                     total_amount_paid=int(total_amount_paid),
                     upload_payment_slip=upload_payment_slip,
                     transaction_id=transaction_id,
