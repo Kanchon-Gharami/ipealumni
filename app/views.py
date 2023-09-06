@@ -287,7 +287,7 @@ def all_alumni(request):
     years = [str(year) for year in range(2005, 2017)]
     series_filter = request.GET.get('series', '')  # Get the 'series' parameter from the request
     if series_filter:
-        profiles = Profile.objects.filter(series=series_filter).order_by('roll') 
+        profiles = Profile.objects.filter(series=series_filter).order_by('series') 
     else:
         profiles = Profile.objects.all().order_by('roll')   # Otherwise, display all
     
