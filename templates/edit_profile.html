@@ -37,7 +37,7 @@
 
             <div class="mb-3">
                 <label for="roll" class="form-label">Roll <span class="mandatory_star">*</span></label>
-                <input type="number" class="form-control" id="roll" name="{{ profile_form.roll.name }}" value="{{ profile_form.roll.value }}">
+                <input type="text" class="form-control" id="roll" name="{{ profile_form.roll.name }}" value="{{ profile_form.roll.value }}">
             </div>
 
             <div class="mb-3">
@@ -83,6 +83,11 @@
             <div class="mb-3">
                 <label for="skills" class="form-label">Skills</label>
                 <textarea class="form-control" id="skills" name="{{ profile_form.skills.name }}">{{ profile_form.skills.value }}</textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="certificate" class="form-label">Certificate</label>
+                <textarea class="form-control" id="certificate" name="{{ profile_form.certificate.name }}">{{ profile_form.certificate.value }}</textarea>
             </div>
 
             <div class="mb-3">

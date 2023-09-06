@@ -99,7 +99,7 @@ def alumni_signup(request):
         email = request.POST['email']
         password = request.POST['password']
         name = request.POST['name']
-        roll = int(request.POST['roll'])
+        roll = request.POST['roll']
         series = request.POST['series']
         phone_number = request.POST['phone_number']
         whatsapp_no = request.POST.get('whatsapp_no', None)  # Optional
@@ -108,6 +108,7 @@ def alumni_signup(request):
         previous_experience = request.POST.get('previous_experience', None)  # Optional
         skills = request.POST.get('skills', None)  # Optional
         present_address = request.POST['present_address']
+        certificate = request.POST.get('certificate', None)  # Optional
         home_district = request.POST['home_district']
         blood_group = request.POST['blood_group']
         marital_status = request.POST.get('marital_status', None)  # Optional

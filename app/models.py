@@ -66,7 +66,11 @@ class Profile(models.Model):
     ]
     # attribute fields
     user = models.OneToOneField(MyCustomUser, on_delete=models.CASCADE, related_name='profile')
-    roll = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(9999999)], unique=True)
+    roll = models.CharField(
+        max_length=7, 
+        validators=[RegexValidator(r'^\d{1,7}$', message="Enter a valid roll number consisting of up to 7 digits.")],
+        unique=True
+    )
     series = models.CharField(max_length=20, choices=SERIES_CHOICES)
     phone_number = models.CharField(
         validators=[phone_regex],

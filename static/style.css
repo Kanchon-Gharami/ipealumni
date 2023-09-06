@@ -286,7 +286,9 @@ a{
     color: white;
 }
 
-
+#sidebarNav.show {
+    margin-top: 45px;
+}
 
 /* =================== Start: base.html ====================== */
 
