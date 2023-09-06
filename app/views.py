@@ -25,6 +25,8 @@ from django.core.mail import send_mail
 from django.urls import reverse
 from django.utils.timezone import make_naive
 from django.core.exceptions import ValidationError
+from django.db.models import IntegerField
+from django.db.models.functions import Cast
 
 from django.contrib.auth import get_user_model
 from .models import MyCustomUser, Profile, ReunionRegistration, Notice, Achievement, Carousel, GalleryImage
@@ -285,11 +287,11 @@ def admin_signup(request):
         
 def all_alumni(request):
     years = [str(year) for year in range(2005, 2017)]
-    series_filter = request.GET.get('series', '')  # Get the 'series' parameter from the request
+    series_filter = request.GET.get('series', '') 
     if series_filter:
         profiles = Profile.objects.filter(series=series_filter).order_by('series') 
     else:
-        profiles = Profile.objects.all().order_by('roll')   # Otherwise, display all
+        profiles = Profile.objects.all().annotate(roll_as_int=Cast('roll', IntegerField())).order_by('roll_as_int')
     
     paginator = Paginator(profiles, 12)  # Show 12 profiles per page
 
