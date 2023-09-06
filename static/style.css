@@ -1066,7 +1066,9 @@ fa-li {
         padding-right: 10px;
         
     }
-
+    .fr_section_gap{
+        height: 30px !important;
+    }
     .register_process{
         padding: 0px !important;
     }
