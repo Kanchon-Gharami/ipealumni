@@ -1056,6 +1056,20 @@ fa-li {
         max-width: 300px;
         margin: auto;
     }
+    .brochure_img{
+        padding: 0px !important;
+        margin: 0px !important;
+        margin-top: 10px;
+    }
+    .sidebar_show_content{
+        padding-left: 10px;
+        padding-right: 10px;
+        
+    }
+
+    .register_process{
+        padding: 0px !important;
+    }
     .my_menu{
         padding-left: 5px;
         padding-right: 5px;
