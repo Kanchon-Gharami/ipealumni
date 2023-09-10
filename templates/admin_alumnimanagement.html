@@ -4,18 +4,23 @@
 {% load static %}
 {% block content %}
 
-<div class="container-fluid my-5">
+
+<!-- Sidebar toggler -->
+<div class="full-width-fixed p-0">
+    <button id="sidebar-toggler" class="btn btn-light py-1 w-100 d-flex justify-content-center align-items-center" type="button" data-toggle="collapse" data-target="#sidebarNav" aria-controls="sidebarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"> <span class="mx-2 fs-18">Admin Pannel Menu</span> </i>
+    </button>
+</div>
+
+
+<div class="container-fluid sidebar_pg_container">
     <div class="row m-0">
       
       <!-- Sidebar -->
       <nav id="sidebarNav" class="col-md-3 col-lg-2 d-md-block sidebar collapse position-fixed custom-sidebar p-0 px-3">
         {% include "admin_sidepannel.html" %}
       </nav>
-      <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4 sidebar_show_content">
-        <button id="sidebar-toggler" class="d-md-none btn btn-light" type="button" data-toggle="collapse" data-target="#sidebarNav" aria-controls="sidebarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <i class="fas fa-bars"> <span class="mx-2">Toggle Menu</span> </i>
-        </button>
-        
+      <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4 sidebar_show_content">        
         <div id="reunion_registration">
             <p class="my_title mb-4">
                 <span class="underline_span_left">Alumni Management</span>

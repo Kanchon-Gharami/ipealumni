@@ -4,7 +4,7 @@
   <head>
 
     <title>Alumni | IPE RUET</title>
-	<link rel="icon" type="image/x-icon" href="{% static 'imgs/logo.png' %}">
+	<link rel="icon" type="image/x-icon" href="{% static 'imgs/logo.jpeg' %}">
 
     <meta charset="UTF-8">
 
@@ -49,9 +49,9 @@
     <body>
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top my_menu">
-            <a class="navbar-brand" href="{% url 'app:index' %}">
-                <img src="{% static 'imgs/logo.png' %}" alt="" class="nav_logo mr-1">
-                IPE Alumni RUET
+            <a class="navbar-brand px-0 py-1" href="{% url 'app:index' %}">
+                <img src="{% static 'imgs/logo.jpeg' %}" alt="" class="nav_logo mr-0">
+                <span class="nav_brand_name ml-1">IPE Alumni RUET</span>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>

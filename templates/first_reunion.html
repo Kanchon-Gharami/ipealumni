@@ -4,8 +4,15 @@
 {% load static %}
 {% block content %}
 
+<!-- Sidebar toggler -->
+<div class="full-width-fixed p-0">
+    <button id="sidebar-toggler" class="btn btn-light py-1 w-100 d-flex justify-content-center align-items-center" type="button" data-toggle="collapse" data-target="#sidebarNav" aria-controls="sidebarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"> <span class="mx-2 fs-18">Reunion Menu</span> </i>
+    </button>
+</div>
 
-<div class="container-fluid my-5">
+
+<div class="container-fluid sidebar_pg_container">
     <div class="row m-0">
       
       <!-- Sidebar -->
@@ -45,15 +52,10 @@
       </nav>
   
       <!-- Sidebar Toggler and Content -->
-      <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4 sidebar_show_content">
-        <!-- Sidebar toggler -->
-        <button id="sidebar-toggler" class="d-md-none btn btn-light" type="button" data-toggle="collapse" data-target="#sidebarNav" aria-controls="sidebarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <i class="fas fa-bars"> <span class="mx-2">Toggle Menu</span> </i>
-        </button>
-  
+      <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4 sidebar_show_content">  
         <!-- Content -->
         <div id="brochure">
-            <img src="{% static 'imgs/brochure.png' %}" alt="" class="col-xl-11 col-md-12 img-fluid d-flex brochure_img">
+            <img src="{% static 'imgs/brochure.jpeg' %}" alt="" class="col-xl-11 col-md-12 img-fluid d-flex brochure_img">
         </div>
         <div style="height: 80px;" id="registration_process" class="fr_section_gap"></div>
         <div>
@@ -68,8 +70,8 @@
                         <li class="list-group-item"><i class="fas fa-edit fa-fw mr-3"></i>Update your profile</li>
                         <li class="list-group-item"><i class="fas fa-money-check-alt fa-fw mr-3"></i>Make payments <a href="#payment_process" class="text-blue">(Click here to explore payment process)</a> for reunion using Bank Account or Rocket.</li>
                         <!-- <li class="list-group-item"><i class="fas fa-map-signs fa-fw mr-3"></i>Goto reunion page (Events > Upcoming Event > 1st Reunion)</li> -->
-                        <li class="list-group-item"><i class="fas fa-mouse-pointer fa-fw mr-3"></i>Click on <span class="fw-800"> Registration for 1st Reunion </span></li>
-                        <li class="list-group-item"><i class="fas fa-upload fa-fw mr-3"></i>Give necessary information and upload payment slip (also keep a copy for yourself)</li>
+                        <li class="list-group-item"><i class="fas fa-mouse-pointer fa-fw mr-3"></i>Click on <a href="{% url 'app:first_reunion_registration' %}" class="fw-800"> Registration for 1st Reunion </a></li>
+                        <li class="list-group-item"><i class="fas fa-upload fa-fw mr-3"></i>Give necessary information and upload payment slip (rename the slip no to your roll number is recommanded), also keep a copy for yourself</li>
                         <li class="list-group-item"><i class="fas fa-check-circle fa-fw mr-3"></i>After admin approval (for payment confirmation) successful registration can find 'Payment Verification' Completed in <a href="{% url 'app:first_reunion_participant' %}">Registered Alumni</a> Section. </li>
                       </ul>
                     </div>
