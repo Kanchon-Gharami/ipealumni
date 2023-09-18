@@ -12,11 +12,7 @@
     <div class="row">
         <div class="col-lg-4 mb-4">
             <div class="card">
-                {% if profile.profile_picture %}
                 <img src="{{ profile.profile_picture.url }}" class="card-img-top" alt="Profile Picture">
-                {% else %}                
-                <img src="{% static 'imgs/avatar_face.png' %}" class="card-img-top" alt="Profile Picture">
-                {% endif %}
                 <div class="card-body">
                     <h5 class="card-title">{{ alumni.name }}</h5>
                     <!-- Button trigger modal -->

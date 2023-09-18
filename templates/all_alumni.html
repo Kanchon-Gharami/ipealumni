@@ -29,11 +29,7 @@
     {% for profile in page_obj %}
       {% if user.is_authenticated %}
       <a href="{% url 'app:alumni_profile' pk=profile.user.pk %}" class="col-lg-3 col-md-6 col-sm-12 mb-2 mx-2 p-0 alumni_card">
-          {% if profile.profile_picture %}
           <img src="{{ profile.profile_picture.url }}" alt="{{ profile.user.name }}" class="speaker_img m-0">
-          {% else %}                
-          <img src="{% static 'imgs/avatar_face.png' %}" class="card-img-top" alt="Profile Picture">
-          {% endif %}
           <div class="mx-2 px-3 py-2 fw-800 fs-22">
               <p class="m-0 text-blue">{{ profile.user.name }}</p>
             
