@@ -733,7 +733,7 @@ a{
 }
 
 .alumni_card .speaker_img{
-    height: 285px !important;
+    height: 305px !important;
     width: 100%; 
     object-fit: fill; /* This will stretch or squish your image */
 }
