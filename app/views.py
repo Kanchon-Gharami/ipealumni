@@ -285,20 +285,45 @@ def admin_signup(request):
 
 
         
+# def all_alumni(request):
+#     years = [str(year) for year in range(2005, 2017)]
+#     series_filter = request.GET.get('series', '') 
+#     if series_filter:
+#         profiles = Profile.objects.filter(series=series_filter).order_by('series') 
+#     else:
+#         profiles = Profile.objects.all().annotate(roll_as_int=Cast('roll', IntegerField())).order_by('roll_as_int')
+    
+#     paginator = Paginator(profiles, 12)  # Show 12 profiles per page
+
+#     page_number = request.GET.get('page')
+#     page_obj = paginator.get_page(page_number)
+
+#     return render(request, 'all_alumni.html', {'years': years, 'page_obj': page_obj, 'series_filter': series_filter})
+
+
 def all_alumni(request):
     years = [str(year) for year in range(2005, 2017)]
     series_filter = request.GET.get('series', '') 
+    keyword = request.GET.get('keyword', '')
+
+    profiles = Profile.objects.all()
+
     if series_filter:
-        profiles = Profile.objects.filter(series=series_filter).order_by('series') 
-    else:
-        profiles = Profile.objects.all().annotate(roll_as_int=Cast('roll', IntegerField())).order_by('roll_as_int')
+        profiles = profiles.filter(series=series_filter)
+
+    if keyword:
+        # Filter by keyword
+        profiles = profiles.filter(Q(user__name__icontains=keyword) | Q(roll__icontains=keyword) | Q(current_organization__icontains=keyword))
+
+    profiles = profiles.annotate(roll_as_int=Cast('roll', IntegerField())).order_by('roll_as_int')
     
     paginator = Paginator(profiles, 12)  # Show 12 profiles per page
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    return render(request, 'all_alumni.html', {'years': years, 'page_obj': page_obj, 'series_filter': series_filter})
+    return render(request, 'all_alumni.html', {'years': years, 'page_obj': page_obj, 'series_filter': series_filter, 'keyword': keyword})
+
 
 
 @user_is_admin
@@ -687,7 +712,7 @@ def export_alumni_data(request):
         'Marital Status', 'LinkedIn', 'Facebook',
         'Membership', 'Name of Degree 1', 'Institution 1',
         'Name of Degree 2', 'Institution 2', 'Name of Degree 3',
-        'Institution 3'
+        'Institution 3', 'Profile Picture'
     ]
     
     with open(csv_path, 'w', newline='') as csvfile:
@@ -719,6 +744,7 @@ def export_alumni_data(request):
                 'Institution 2': profile.institution2,
                 'Name of Degree 3': profile.name_of_degree3,
                 'Institution 3': profile.institution3,
+                'Profile Picture': os.path.basename(profile.profile_picture.name) if profile.profile_picture else "",
             })
     
     # Create ZIP file
@@ -791,6 +817,7 @@ def first_reunion_participant(request):
 
 
 def first_reunion_registration(request):
+    '''
     context = {}
     error_message = ''
     registration_successful = False
@@ -840,6 +867,8 @@ def first_reunion_registration(request):
     context['error_message'] = error_message
     context['registration_successful'] = registration_successful
     return render(request, 'first_reunion_registration.html', context)
+    '''
+    return render(request, 'registration_close.html')
 
 
 
