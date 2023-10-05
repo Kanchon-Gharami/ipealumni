@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<img src="https://pbs.twimg.com/media/D_3aRwIW4Ac7FI5.jpg" alt="Registration is Closed" class="img-fluid d-flex mx-auto reg_close_img">
+<h3 class="text-center">
+    <a href="{% url 'app:index' %}" class="btn btn-blue">Back to Home</a>
+</h3>  
+
+
+<style>
+    .reg_close_img{
+        max-width: 600px;
+    }
+
+    @media only screen and (max-width: 768px){
+        .reg_close_img{
+            max-width: 90%;
+        }
+    }
+</style>
+
+
+{% endblock %}
